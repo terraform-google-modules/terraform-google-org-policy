@@ -83,23 +83,7 @@ The project has the following folders and files:
 - [bats](https://github.com/sstephenson/bats) 0.4.0
 - [jq](https://stedolan.github.io/jq/) 1.5
 
-<<<<<<< HEAD
-#### Service Account
-In order to execute these tests you must have a Service Account with the following:
-- Give the `roles/resourcemanager.folderIamAdmin` role
-- Give the `roles/resourcemanager.folderViewer` role
-
-#### install gcloud beta commands
-`gcloud components update && gcloud components install beta`
-
-#### Enable APIs
-- Enable the Cloud Resource Manager API on projects used in the tests
-
-### Integration test
-##### Terraform integration tests
-=======
 ### Integration tests
->>>>>>> Prepare org policy module for open source release
 The integration tests for this module are built with bats, basically the test checks the following:
 - Perform `terraform init` command
 - Perform `terraform get` command
