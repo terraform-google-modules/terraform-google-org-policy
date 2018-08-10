@@ -34,3 +34,7 @@ crash.log
 # version control.
 #
 # example.tfvars
+
+# Files used for testing
+sa-key.json
+terraform.tfvars
