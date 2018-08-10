@@ -19,5 +19,5 @@ variable "credentials_file_path" {
 }
 
 variable "project_id" {
-  description = "The project id for putting the policy"
+  description = "The project ID to apply the policy to"
 }
