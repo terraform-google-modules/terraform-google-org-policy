@@ -10,11 +10,11 @@ module "org-policy" {
   source            = "github.com/terraform-google-modules/terraform-google-org-policy"
 
   constraint        = "constraints/serviceuser.services"
+  policy_type       = "list"
   organization_id   = "123456789"
   enforce           = "true"
-  exclude_folders   = ["folder1", "folder2"]
+  exclude_folders   = ["folders/folder-1-id", "folders/folder-2-id"]
   exclude_projects  = ["project3", "project4"]
-  policy_type       = "list"
 }
 ```
 
