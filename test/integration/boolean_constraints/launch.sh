@@ -61,9 +61,9 @@ export CLOUDSDK_AUTH_CREDENTIAL_FILE_OVERRIDE=$CREDENTIALS_PATH
 # Cleans the workdir
 function clean_workdir() {
   echo "Cleaning workdir"
-  yes | rm -f terraform.tfstate*
-  yes | rm -f *.tf
-  yes | rm -rf .terraform
+  rm -rf terraform.tfstate*
+  rm -rf -- *.tf
+  rm -rf .terraform
 }
 
 # Creates the main.tf file for Terraform

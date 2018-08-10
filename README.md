@@ -36,9 +36,6 @@ To control module's behavior, change variables' values regarding the following:
   - `allow`: list of values to include in the policy with ALLOW behavior
   - `deny`: list of values to include in the policy with DENY behavior
 
-#### Outputs
-Currently there is no outputs for this module.
-
 ## Requirements
 ### Terraform plugins
 - [Terraform](https://www.terraform.io/downloads.html) 0.10.x
