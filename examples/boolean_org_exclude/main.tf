@@ -32,5 +32,5 @@ module "org-disable-serial-port-access-deny-all-with-excludes" {
   enforce         = "true"
   policy_type     = "boolean"
 
-  exclude_folders  = ["folders/${var.excluded_folder_id}"]
+  exclude_folders = ["folders/${var.excluded_folder_id}"]
 }

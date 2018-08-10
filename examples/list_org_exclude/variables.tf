@@ -22,12 +22,6 @@ variable "organization_id" {
   description = "The organization id for putting the policy"
 }
 
-variable "exclude_folders" {
-  description = "List of folders to exclude from the policy"
-  type        = "list"
-}
-
-variable "exclude_projects" {
-  description = "List of projects to exclude from the policy"
-  type        = "list"
+variable "image_project_id" {
+  description = "The ID of a project to trust images from"
 }

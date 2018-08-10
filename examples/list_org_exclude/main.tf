@@ -14,95 +14,22 @@
  * limitations under the License.
  */
 
-locals {
-  credentials_file_path = "${var.credentials_file_path}"
-}
-
 /******************************************
   Provider configuration
  *****************************************/
 provider "google" {
-  credentials = "${file(local.credentials_file_path)}"
+  credentials = "${file(var.credentials_file_path)}"
 }
 
-module "org-trusted-image-projects-dey-all-with-excludes" {
+/******************************************
+  Apply the constraint using the module
+ *****************************************/
+module "org-policy" {
   source = "../../"
 
-  organization_id = "${var.organization_id}"
-  constraint      = "compute.trustedImageProjects"
-  enforce         = "true"
-  policy_type     = "list"
-
-  exclude_folders  = "${var.exclude_folders}"
-  exclude_projects = "${var.exclude_projects}"
+  organization_id  = "${var.organization_id}"
+  constraint       = "compute.trustedImageProjects"
+  policy_type      = "list"
+  allow            = ["projects/${var.image_project_id}"]
+  exclude_projects = ["${var.image_project_id}"]
 }
-
-/*
-To set a policy with list contraint, set the following variables:
-  - One (and only one) of organization_id, folder_id or project_id and determines where the root of the policy is specified
-  - policy_type: "list"
-  - enforce: "true" to root policy is to deny all or "false" to allow all
-
-  module "org-trusted-image-projects-deny-all" {
-    source = "source_path"
-
-    folder_id    = "${var.folder_id}"
-    constraint   = "compute.trustedImageProjects"
-    enforce      = "true"
-    policy_type  = "list"
-  }
-
-
-To allow/deny some services, set the following variables:
-  - One (and only one) of organization_id, folder_id or project_id and determines where the root of the policy is specified
-  - policy_type: "list"
-  - allow/deny: list of services allowed/denied
-
-  module "folder-service-user-services-custom-deny" {
-    source = "source_path"
-
-    folder_id   = "${var.folder_id}"
-    constraint  = "serviceuser.services"
-    policy_type = "list"
-
-    deny = ["compute.googleapis.com", "deploymentmanager.googleapis.com"]
- }
-
-
-To excludes some services:
-  - To exclude folders and/or projects as organization root set the following variables:
-    - organization_id: root of the policy
-    - policy_type: "list"
-    - enforce: "true" to root policy is to deny all or "false" to allow all
-    - exclude_folders: list of folders to exclude from the policy
-    - exclude_projects: list of projects to exclude from the policy
-
-    module "org-trusted-image-projects-deny-all-with-excludes" {
-      source = "../../../"
-
-      organization_id = "${var.organization_id}"
-      constraint      = "compute.trustedImageProjects"
-      enforce         = "true"
-      policy_type     = "list"
-
-      exclude_folders  = "${var.exclude_folders}"
-      exclude_projects = "${var.exclude_projects}"
-    }
-
-  - To exclude projects as folder root:
-    - project_id: root of the policy
-    - policy_type: "list"
-    - enforce: "true" to root policy is to deny all or "false" to allow all
-    - exclude_projects: list of projects to exclude from the policy
-
-    module "folder-trusted-image-projects-deny-all-with-excludes" {
-      source = "../../../"
-
-      folder_id       = "${var.folder_id}"
-      constraint      = "compute.trustedImageProjects"
-      enforce         = "true"
-      policy_type     = "list"
-
-      exclude_projects = "${var.exclude_projects}"
-    }
-*/

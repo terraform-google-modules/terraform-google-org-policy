@@ -27,8 +27,8 @@ provider "google" {
 module "org-policy" {
   source = "../../"
 
-  project_id = "${var.project_id}"
-  constraint      = "compute.disableSerialPortAccess"
-  policy_type     = "boolean"
-  enforce         = "false"
+  project_id  = "${var.project_id}"
+  constraint  = "compute.disableSerialPortAccess"
+  policy_type = "boolean"
+  enforce     = "false"
 }
