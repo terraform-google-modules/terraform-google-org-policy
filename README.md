@@ -18,6 +18,24 @@ module "org-policy" {
 }
 ```
 
+### Variables
+To control module's behavior, change variables' values regarding the following:
+
+- `constraint`: set this variable with the [constraint value](https://cloud.google.com/resource-manager/docs/organization-policy/org-policy-constraints#available_constraints) in the form `constraints/{constraint identifier}`. For example, `constraints/serviceuser.services`
+- `policy_type`: Specify either `boolean` for boolean policies or `list` for list policies. (default `list`)
+- Policy Root: set one of the following values to determine where the policy is applied:
+  - `organization_id`
+  - `project_id`
+  - `folder_id`
+- `exclude_folders`: a list of folder IDs to be excluded from this policy. These folders must be lower in the hierarchy than the policy root.
+- `exclude_projects`: a list of project IDs to be excluded from this policy. They must be lower in the hierarchy than the policy root.
+- Boolean policies (with `policy_type: "boolean"`) can set the following variables:
+  - `enforce`: if "true" the policy is enforced at the root, if "false" the policy is not enforced at the root. (default `true`)
+- List policies (with `policy_type: "list"`) can set **one of** the following variables. Only one may be set.
+  - `enforce`: if "true" policy will deny all, if "false" policy will allow all (default `true`)
+  - `allow`: list of values to include in the policy with ALLOW behavior
+  - `deny`: list of values to include in the policy with DENY behavior
+
 [^]: (autogen_docs_start)
 [^]: (autogen_docs_end)
 
