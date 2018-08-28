@@ -36,6 +36,9 @@ To control module's behavior, change variables' values regarding the following:
   - `allow`: list of values to include in the policy with ALLOW behavior
   - `deny`: list of values to include in the policy with DENY behavior
 
+[^]: (autogen_docs_start)
+[^]: (autogen_docs_end)
+
 ## Requirements
 ### Terraform plugins
 - [Terraform](https://www.terraform.io/downloads.html) 0.10.x
@@ -79,6 +82,7 @@ The project has the following folders and files:
 ### Requirements
 - [bats](https://github.com/sstephenson/bats) 0.4.0
 - [jq](https://stedolan.github.io/jq/) 1.5
+- [terraform-docs](https://github.com/segmentio/terraform-docs/releases) 0.3.0
 
 ### Integration tests
 The integration tests for this module are built with bats, basically the test checks the following:
@@ -94,6 +98,12 @@ Please edit the *test/integration/<list|boolean>_constraints/launch.sh* files in
 You can use the following command to run the integration tests in the folder */test/integration/<list|boolean>_constraints/*
 
   `. launch.sh`
+
+### Autogeneration of documentation from .tf files
+Run
+```
+make generate_docs
+```
 
 ### Linting
 The makefile in this project will lint or sometimes just format any shell,

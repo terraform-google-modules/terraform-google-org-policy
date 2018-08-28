@@ -16,3 +16,6 @@ module "folder-disable-serial-port-access-enforce-with-excludes" {
   exclude_projects = ["my-project"]
 }
 ```
+
+[^]: (autogen_docs_start)
+[^]: (autogen_docs_end)
