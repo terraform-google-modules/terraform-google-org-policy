@@ -37,6 +37,23 @@ To control module's behavior, change variables' values regarding the following:
   - `deny`: list of values to include in the policy with DENY behavior
 
 [^]: (autogen_docs_start)
+
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|:----:|:-----:|:-----:|
+| allow | (Only for list constraints) List of values which should be allowed | list | `<list>` | no |
+| constraint | The constraint to be applied | string | - | yes |
+| deny | (Only for list constraints) List of values which should be denied | list | `<list>` | no |
+| enforce | If boolean constraint, whether the policy is enforced at the root; if list constraint, whether to deny all (true) or allow all | string | `` | no |
+| exclude_folders | List of folders to exclude from the policy | list | `<list>` | no |
+| exclude_projects | List of projects to exclude from the policy | list | `<list>` | no |
+| folder_id | The folder id for putting the policy | string | `` | no |
+| organization_id | The organization id for putting the policy | string | `` | no |
+| policy_type | The constraint type to work with (either 'boolean' or 'list') | string | `list` | no |
+| project_id | The project id for putting the policy | string | `` | no |
+
 [^]: (autogen_docs_end)
 
 ## Requirements
