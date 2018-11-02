@@ -7,7 +7,7 @@ Many examples are included in the [examples](./examples/) folder, but simle usag
 
 ```hcl
 module "org-policy" {
-  source            = "github.com/terraform-google-modules/terraform-google-org-policy?ref=v1.0.0"
+  source            = "terraform-google-modules/org-policy/google"
 
   constraint        = "constraints/serviceuser.services"
   policy_type       = "list"
