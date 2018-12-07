@@ -90,6 +90,15 @@ provider "google" {
   credentials              = "\${file(local.credentials_file_path)}"
 }
 
+module "org-policy-restrict-domain" {
+  source = "../../../"
+
+  organization_id  = "$ORGANIZATION_ID"
+  constraint       = "$ORG_RESTRICT_DOMAIN_CONSTRAINT"
+  policy_type      = "list"
+  allow            = ["$ORG_RESTRICT_DOMAIN_CONSTRAINT_VALUE_1"]
+}
+
 module "org-policy-list-project" {
   source = "../../../"
 
