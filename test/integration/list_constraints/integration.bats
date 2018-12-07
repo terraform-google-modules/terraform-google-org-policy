@@ -22,7 +22,7 @@ load helpers
 
   run terraform plan
   [ "$status" -eq 0 ]
-  [[ "$output" =~ 6\ to\ add ]]
+  [[ "$output" =~ 7\ to\ add ]]
   [[ "$output" =~ 0\ to\ change ]]
   [[ "$output" =~ 0\ to\ destroy ]]
 }
@@ -31,7 +31,7 @@ load helpers
 
   run terraform apply -auto-approve -parallelism=1
   [ "$status" -eq 0 ]
-  [[ "$output" =~ 6\ added ]]
+  [[ "$output" =~ 7\ added ]]
   [[ "$output" =~ 0\ changed ]]
   [[ "$output" =~ 0\ destroyed ]]
 }
@@ -56,6 +56,16 @@ load helpers
   run echo "$RESULT"
   [ "$status" -eq 0 ]
   [[ "$output" = "true" ]]
+}
+
+@test "Test constraints on organization $ORGANIZATION_ID (restrict values) constraining $ORG_RESTRICT_DOMAIN_CONSTRAINT to $ORG_RESTRICT_DOMAIN_CONSTRAINT_VALUE_1" {
+
+  POLICY=$(gcloud beta resource-manager org-policies list --organization "$ORGANIZATION_ID" --format="json")
+  RESULT=$(check_list_policy_values "$ORG_RESTRICT_DOMAIN_CONSTRAINT" "$POLICY" "allow" "$ORG_RESTRICT_DOMAIN_CONSTRAINT_VALUE_1")
+  run echo "$RESULT"
+  [ "$status" -eq 0 ]
+  [[ "$output" = "true" ]]
+
 }
 
 @test "Test constraints on organization $ORGANIZATION_ID (deny values) and project $PROJECT_EXCLUDE and folder $FOLDER_EXCLUDE (exclusions)" {
@@ -96,5 +106,5 @@ load helpers
 
   run terraform destroy -force
   [ "$status" -eq 0 ]
-  [[ "$output" =~ 6\ destroyed ]]
+  [[ "$output" =~ 7\ destroyed ]]
 }
