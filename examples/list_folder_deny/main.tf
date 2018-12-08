@@ -31,4 +31,5 @@ module "org-policy" {
   constraint = "serviceuser.services"
   policy_type = "list"
   deny        = ["deploymentmanager.googleapis.com"]
+  deny_list_length = "1"
 }

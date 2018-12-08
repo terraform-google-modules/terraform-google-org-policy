@@ -30,6 +30,7 @@ load helpers
 @test "Terraform apply" {
 
   run terraform apply -auto-approve -parallelism=1
+
   [ "$status" -eq 0 ]
   [[ "$output" =~ 7\ added ]]
   [[ "$output" =~ 0\ changed ]]

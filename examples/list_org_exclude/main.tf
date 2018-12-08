@@ -31,5 +31,6 @@ module "org-policy" {
   constraint       = "compute.trustedImageProjects"
   policy_type      = "list"
   allow            = ["projects/${var.image_project_id}"]
+  allow_list_length = "1"
   exclude_projects = ["${var.image_project_id}"]
 }

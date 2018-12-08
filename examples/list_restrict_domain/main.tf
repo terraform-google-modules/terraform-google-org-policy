@@ -28,16 +28,13 @@ data "google_organization" "org" {
   domain = "${var.domain_to_allow}"
 }
 
-/******************************************
-  Specify specific resource for policy
- *****************************************/
-resource "google_organization_policy" "org_policy_list_allow_values" {
-  org_id     = "${var.organization_id}"
-  constraint = "constraints/iam.allowedPolicyMemberDomains"
+module "org-policy" {
+  source = "../../"
 
-  list_policy {
-    allow {
-      values = ["${data.google_organization.org.directory_customer_id}"]
-    }
-  }
+  organization_id  = "${var.organization_id}"
+  constraint       = "constraints/iam.allowedPolicyMemberDomains"
+  policy_type      = "list"
+  allow            = ["${data.google_organization.org.directory_customer_id}"]
+  allow_list_length = "1"
 }
+

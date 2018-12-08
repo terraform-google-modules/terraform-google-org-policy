@@ -101,6 +101,7 @@ module "org-policy-restrict-domain" {
   constraint       = "$ORG_RESTRICT_DOMAIN_CONSTRAINT"
   policy_type      = "list"
   allow            = ["$ORG_RESTRICT_DOMAIN_CONSTRAINT_VALUE_1"]
+  allow_list_length = "1"
 }
 
 module "org-policy-list-project" {
@@ -132,6 +133,7 @@ module "org-policy-list-org" {
   exclude_projects = ["$PROJECT_EXCLUDE"]
 
   deny             = ["$ORG_CONSTRAINT_VALUE_1", "$ORG_CONSTRAINT_VALUE_2"]
+  deny_list_length = "2"
 
 }
 
@@ -143,7 +145,7 @@ module "org-policy-list-folder-2" {
   policy_type      = "list"
 
   allow             = ["$FOLDER_2_CONSTRAINT_VALUE_1"]
-
+  allow_list_length = "1"
 }
 
 EOF
