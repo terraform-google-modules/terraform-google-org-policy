@@ -35,7 +35,7 @@ To control module's behavior, change variables' values regarding the following:
   - `enforce`: if "true" policy will deny all, if "false" policy will allow all (default `true`)
   - `allow`: list of values to include in the policy with ALLOW behavior
   - `deny`: list of values to include in the policy with DENY behavior
-- List policies with allow or deny values require the length to be set ( a workaround for [this terraform issue](https://github.com/hashicorp/terraform/issues/10857))
+- List policies with allow or deny values require the length to be set (a workaround for [this terraform issue](https://github.com/hashicorp/terraform/issues/10857))
   - `allow_list_length`
   - `deny_list_length`
 
