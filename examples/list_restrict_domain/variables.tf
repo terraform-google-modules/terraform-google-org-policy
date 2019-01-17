@@ -14,22 +14,14 @@
  * limitations under the License.
  */
 
-/******************************************
-  Provider configuration
- *****************************************/
-provider "google" {
-  credentials = "${file(var.credentials_file_path)}"
+variable "credentials_file_path" {
+  description = "Service account json auth path"
 }
 
-/******************************************
-  Apply the constraint using the module
- *****************************************/
-module "org-policy" {
-  source = "../../"
+variable "organization_id" {
+  description = "The organization id the policy is applied to"
+}
 
-  folder_id  = "${var.folder_id}"
-  constraint = "serviceuser.services"
-  policy_type = "list"
-  deny        = ["deploymentmanager.googleapis.com"]
-  deny_list_length = "1"
+variable "domain_to_allow" {
+  description = "The domain to allow users from"
 }

@@ -22,14 +22,19 @@ provider "google" {
 }
 
 /******************************************
-  Apply the constraint using the module
+  Look up customer id if necessary
  *****************************************/
+data "google_organization" "org" {
+  domain = "${var.domain_to_allow}"
+}
+
 module "org-policy" {
   source = "../../"
 
-  folder_id  = "${var.folder_id}"
-  constraint = "serviceuser.services"
-  policy_type = "list"
-  deny        = ["deploymentmanager.googleapis.com"]
-  deny_list_length = "1"
+  organization_id  = "${var.organization_id}"
+  constraint       = "constraints/iam.allowedPolicyMemberDomains"
+  policy_type      = "list"
+  allow            = ["${data.google_organization.org.directory_customer_id}"]
+  allow_list_length = "1"
 }
+

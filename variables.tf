@@ -67,3 +67,13 @@ variable "policy_type" {
   type        = "string"
   default     = "list"
 }
+
+variable "allow_list_length" {
+  description = "The number of elements in the allow list"
+  default = 0
+}
+
+variable "deny_list_length" {
+  description = "The number of elements in the allow list"
+  default = 0
+}

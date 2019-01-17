@@ -23,13 +23,11 @@ locals {
   project                      = "${var.project_id != ""}"
   boolean_policy               = "${var.policy_type == "boolean" }"
   list_policy                  = "${var.policy_type == "list" && !local.invalid_config}"
-  deny_list_length             = "${length(compact(var.deny))}"
-  allow_list_length            = "${length(compact(var.allow))}"
-  enforce                      = "${(local.allow_list_length > 0 || local.deny_list_length > 0) ? "" : var.enforce}"
+  enforce                      = "${(var.allow_list_length > 0 || var.deny_list_length > 0) ? "" : var.enforce}"
   exclude_folders_list_length  = "${length(compact(var.exclude_folders))}"
   exclude_projects_list_length = "${length(compact(var.exclude_projects))}"
-  invalid_config_case_1        = "${local.deny_list_length > 0 && local.allow_list_length > 0}"
-  invalid_config_case_2        = "${(local.allow_list_length + local.deny_list_length) > 0 && (var.enforce == "true" || local.enforce == "false")}"
+  invalid_config_case_1        = "${var.deny_list_length > 0 && var.allow_list_length > 0}"
+  invalid_config_case_2        = "${(var.allow_list_length + var.deny_list_length) > 0 && (var.enforce == "true" || local.enforce == "false")}"
   invalid_config               = "${var.policy_type == "list" && (local.invalid_config_case_1 || local.invalid_config_case_2)}"
 }
 

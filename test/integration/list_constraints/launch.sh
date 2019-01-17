@@ -57,6 +57,10 @@ export ORG_CONSTRAINT="constraints/serviceuser.services"
 export ORG_CONSTRAINT_VALUE_1="doubleclicksearch.googleapis.com"
 export ORG_CONSTRAINT_VALUE_2="resourceviews.googleapis.com"
 
+# Applied to: org
+export ORG_RESTRICT_DOMAIN_CONSTRAINT="constraints/iam.allowedPolicyMemberDomains"
+export ORG_RESTRICT_DOMAIN_CONSTRAINT_VALUE_1="C00u46n4k"
+
 # Applied to: folder 2
 export FOLDER_2_CONSTRAINT="constraints/compute.trustedImageProjects"
 export FOLDER_2_CONSTRAINT_VALUE_1="projects/base-project-196723"
@@ -90,6 +94,16 @@ provider "google" {
   credentials              = "\${file(local.credentials_file_path)}"
 }
 
+module "org-policy-restrict-domain" {
+  source = "../../../"
+
+  organization_id  = "$ORGANIZATION_ID"
+  constraint       = "$ORG_RESTRICT_DOMAIN_CONSTRAINT"
+  policy_type      = "list"
+  allow            = ["$ORG_RESTRICT_DOMAIN_CONSTRAINT_VALUE_1"]
+  allow_list_length = "1"
+}
+
 module "org-policy-list-project" {
   source = "../../../"
 
@@ -119,6 +133,7 @@ module "org-policy-list-org" {
   exclude_projects = ["$PROJECT_EXCLUDE"]
 
   deny             = ["$ORG_CONSTRAINT_VALUE_1", "$ORG_CONSTRAINT_VALUE_2"]
+  deny_list_length = "2"
 
 }
 
@@ -130,7 +145,7 @@ module "org-policy-list-folder-2" {
   policy_type      = "list"
 
   allow             = ["$FOLDER_2_CONSTRAINT_VALUE_1"]
-
+  allow_list_length = "1"
 }
 
 EOF

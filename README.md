@@ -35,6 +35,9 @@ To control module's behavior, change variables' values regarding the following:
   - `enforce`: if "true" policy will deny all, if "false" policy will allow all (default `true`)
   - `allow`: list of values to include in the policy with ALLOW behavior
   - `deny`: list of values to include in the policy with DENY behavior
+- List policies with allow or deny values require the length to be set ( a workaround for [this terraform issue](https://github.com/hashicorp/terraform/issues/10857))
+  - `allow_list_length`
+  - `deny_list_length`
 
 [^]: (autogen_docs_start)
 
@@ -44,8 +47,10 @@ To control module's behavior, change variables' values regarding the following:
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | allow | (Only for list constraints) List of values which should be allowed | list | `<list>` | no |
+| allow_list_length | (Only for allow list constraints) Count of the number of values in the allow list | string | "0" | no |
 | constraint | The constraint to be applied | string | - | yes |
 | deny | (Only for list constraints) List of values which should be denied | list | `<list>` | no |
+| deny_list_length | (Only for allow list constraints) Count of the number of values in the deny list | string | "0" | no |
 | enforce | If boolean constraint, whether the policy is enforced at the root; if list constraint, whether to deny all (true) or allow all | string | `` | no |
 | exclude_folders | List of folders to exclude from the policy | list | `<list>` | no |
 | exclude_projects | List of projects to exclude from the policy | list | `<list>` | no |
