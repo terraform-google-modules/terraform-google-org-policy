@@ -13,7 +13,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 #################################################################
 #   PLEASE FILL THE VARIABLES WITH VALID VALUES FOR TESTING     #
 #   DO NOT REMOVE/ADD ANY OF THE VARIABLES                      #

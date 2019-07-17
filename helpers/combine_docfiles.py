@@ -14,31 +14,36 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-''' Combine file from:
-  * script argument 1
-  with content of file from:
-  * script argument 2
-  using the beginning of line separators
-  hardcoded using regexes in this file:
+"""
+Combine files as described below.
 
-  We exclude any text using the separate
-  regex specified here
-'''
+* script argument 1
+with content of file from:
+* script argument 2
+using the beginning of line separators
+hardcoded using regexes in this file:
+
+We exclude any text using the separate
+regex specified here
+"""
 
 import re
 import sys
 
-insert_separator_regex = '(.*?\[\^\]\:\ \(autogen_docs_start\))(.*?)(\n\[\^\]\:\ \(autogen_docs_end\).*?$)'
-exclude_separator_regex = '(.*?)Copyright 20\d\d Google LLC.*?limitations under the License.(.*?)$'
+insert_separator_regex = \
+    r'(.*?\[\^\]\:\ \(autogen_docs_start\))(.*?)(\n\[\^\]\:\ \(autogen_docs_end\).*?$)'  # noqa: E501
+exclude_separator_regex = \
+    r'(.*?)Copyright 20\d\d Google LLC.*?limitations under the License.(.*?)$'
 
 if len(sys.argv) != 3:
-  sys.exit(1)
+    sys.exit(1)
 
 input = open(sys.argv[1], "r").read()
 replace_content = open(sys.argv[2], "r").read()
 
 # Exclude the specified content from the replacement content
-groups = re.match(exclude_separator_regex, replace_content, re.DOTALL).groups(0)
+groups = re.match(exclude_separator_regex,
+                  replace_content, re.DOTALL).groups(0)
 replace_content = groups[0] + groups[1]
 
 # Find where to put the replacement content, overwrite the input file

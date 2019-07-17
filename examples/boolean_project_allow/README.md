@@ -5,12 +5,11 @@ It disables enforcement of the `compute.disableSerialPortAccess` constraint on t
 
 [^]: (autogen_docs_start)
 
-
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| credentials_file_path | Service account json auth path | string | - | yes |
-| project_id | The project ID to apply the policy to | string | - | yes |
+| credentials\_file\_path | Service account json auth path | string | n/a | yes |
+| project\_id | The project ID to apply the policy to | string | n/a | yes |
 
 [^]: (autogen_docs_end)
