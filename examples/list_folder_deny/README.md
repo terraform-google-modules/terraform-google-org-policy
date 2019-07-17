@@ -3,12 +3,11 @@ This example shows how a list constraint can be applied to disallow certain serv
 
 [^]: (autogen_docs_start)
 
-
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| credentials_file_path | Service account json auth path | string | - | yes |
-| folder_id | The folder id for putting the policy | string | - | yes |
+| credentials\_file\_path | Service account json auth path | string | n/a | yes |
+| folder\_id | The folder id for putting the policy | string | n/a | yes |
 
 [^]: (autogen_docs_end)
