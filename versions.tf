@@ -13,22 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-/******************************************
-  Provider configuration
- *****************************************/
-provider "google" {
-  version     = "~> 2.5.0"
-  credentials = file(var.credentials_file_path)
-}
-
-/******************************************
-  Apply the constraint using the module
- *****************************************/
-module "org-policy" {
-  source      = "../../"
-  project_id  = var.project_id
-  constraint  = "compute.disableSerialPortAccess"
-  policy_type = "boolean"
-  enforce     = false
+terraform {
+  required_version = ">= 0.12"
 }

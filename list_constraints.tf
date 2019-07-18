@@ -18,10 +18,10 @@
   Organization policy, allow all (list constraint)
  *****************************************/
 resource "google_organization_policy" "org_policy_list_allow_all" {
-  count = "${local.organization && local.list_policy && local.enforce == "false" && var.deny_list_length == 0 ? 1 : 0}"
+  count = local.organization && local.list_policy && local.enforce == false && var.deny_list_length == 0 ? 1 : 0
 
-  org_id     = "${var.organization_id}"
-  constraint = "${var.constraint}"
+  org_id     = var.organization_id
+  constraint = var.constraint
 
   list_policy {
     allow {
@@ -34,10 +34,10 @@ resource "google_organization_policy" "org_policy_list_allow_all" {
   Folder policy, allow all (list constraint)
  *****************************************/
 resource "google_folder_organization_policy" "folder_policy_list_allow_all" {
-  count = "${local.folder && local.list_policy && local.enforce == "false" && var.deny_list_length == 0 ? 1 : 0}"
+  count = local.folder && local.list_policy && local.enforce == false && var.deny_list_length == 0 ? 1 : 0
 
-  folder     = "${var.folder_id}"
-  constraint = "${var.constraint}"
+  folder     = var.folder_id
+  constraint = var.constraint
 
   list_policy {
     allow {
@@ -50,10 +50,10 @@ resource "google_folder_organization_policy" "folder_policy_list_allow_all" {
   Project policy, allow all (list constraint)
  *****************************************/
 resource "google_project_organization_policy" "project_policy_list_allow_all" {
-  count = "${local.project && local.list_policy && local.enforce == "false" && var.deny_list_length == 0 ? 1 : 0}"
+  count = local.project && local.list_policy && local.enforce == false && var.deny_list_length == 0 ? 1 : 0
 
-  project    = "${var.project_id}"
-  constraint = "${var.constraint}"
+  project    = var.project_id
+  constraint = var.constraint
 
   list_policy {
     allow {
@@ -66,10 +66,10 @@ resource "google_project_organization_policy" "project_policy_list_allow_all" {
   Organization policy, deny all (list constraint)
  *****************************************/
 resource "google_organization_policy" "org_policy_list_deny_all" {
-  count = "${local.organization && local.list_policy && local.enforce == "true" && var.deny_list_length == 0 ? 1 : 0}"
+  count = local.organization && local.list_policy && local.enforce == true && var.deny_list_length == 0 ? 1 : 0
 
-  org_id     = "${var.organization_id}"
-  constraint = "${var.constraint}"
+  org_id     = var.organization_id
+  constraint = var.constraint
 
   list_policy {
     deny {
@@ -82,10 +82,10 @@ resource "google_organization_policy" "org_policy_list_deny_all" {
   Folder policy, deny all (list constraint)
  *****************************************/
 resource "google_folder_organization_policy" "folder_policy_list_deny_all" {
-  count = "${local.folder && local.list_policy && local.enforce == "true" && var.deny_list_length == 0 ? 1 : 0}"
+  count = local.folder && local.list_policy && local.enforce == true && var.deny_list_length == 0 ? 1 : 0
 
-  folder     = "${var.folder_id}"
-  constraint = "${var.constraint}"
+  folder     = var.folder_id
+  constraint = var.constraint
 
   list_policy {
     deny {
@@ -98,10 +98,10 @@ resource "google_folder_organization_policy" "folder_policy_list_deny_all" {
   Project policy, deny all (list constraint)
  *****************************************/
 resource "google_project_organization_policy" "project_policy_list_deny_all" {
-  count = "${local.project && local.list_policy && local.enforce == "true" && var.deny_list_length == 0 ? 1 : 0}"
+  count = local.project && local.list_policy && local.enforce == true && var.deny_list_length == 0 ? 1 : 0
 
-  project    = "${var.project_id}"
-  constraint = "${var.constraint}"
+  project    = var.project_id
+  constraint = var.constraint
 
   list_policy {
     deny {
@@ -114,14 +114,14 @@ resource "google_project_organization_policy" "project_policy_list_deny_all" {
   Organization policy, deny values (list constraint)
  *****************************************/
 resource "google_organization_policy" "org_policy_list_deny_values" {
-  count = "${local.organization && local.list_policy && var.deny_list_length > 0 ? 1 : 0}"
+  count = local.organization && local.list_policy && var.deny_list_length > 0 ? 1 : 0
 
-  org_id     = "${var.organization_id}"
-  constraint = "${var.constraint}"
+  org_id     = var.organization_id
+  constraint = var.constraint
 
   list_policy {
     deny {
-      values = ["${var.deny}"]
+      values = var.deny
     }
   }
 }
@@ -130,14 +130,14 @@ resource "google_organization_policy" "org_policy_list_deny_values" {
   Folder policy, deny values (list constraint)
  *****************************************/
 resource "google_folder_organization_policy" "folder_policy_list_deny_values" {
-  count = "${local.folder && local.list_policy && var.deny_list_length > 0 ? 1 : 0}"
+  count = local.folder && local.list_policy && var.deny_list_length > 0 ? 1 : 0
 
-  folder     = "${var.folder_id}"
-  constraint = "${var.constraint}"
+  folder     = var.folder_id
+  constraint = var.constraint
 
   list_policy {
     deny {
-      values = ["${var.deny}"]
+      values = var.deny
     }
   }
 }
@@ -146,14 +146,14 @@ resource "google_folder_organization_policy" "folder_policy_list_deny_values" {
   Project policy, deny values (list constraint)
  *****************************************/
 resource "google_project_organization_policy" "project_policy_list_deny_values" {
-  count = "${local.project && local.list_policy && var.deny_list_length > 0 ? 1 : 0}"
+  count = local.project && local.list_policy && var.deny_list_length > 0 ? 1 : 0
 
-  project    = "${var.project_id}"
-  constraint = "${var.constraint}"
+  project    = var.project_id
+  constraint = var.constraint
 
   list_policy {
     deny {
-      values = ["${var.deny}"]
+      values = var.deny
     }
   }
 }
@@ -162,14 +162,14 @@ resource "google_project_organization_policy" "project_policy_list_deny_values" 
   Organization policy, allow values (list constraint)
  *****************************************/
 resource "google_organization_policy" "org_policy_list_allow_values" {
-  count = "${local.organization && local.list_policy && var.allow_list_length > 0 ? 1 : 0}"
+  count = local.organization && local.list_policy && var.allow_list_length > 0 ? 1 : 0
 
-  org_id     = "${var.organization_id}"
-  constraint = "${var.constraint}"
+  org_id     = var.organization_id
+  constraint = var.constraint
 
   list_policy {
     allow {
-      values = ["${var.allow}"]
+      values = var.allow
     }
   }
 }
@@ -178,14 +178,14 @@ resource "google_organization_policy" "org_policy_list_allow_values" {
   Folder policy, allow values (list constraint)
  *****************************************/
 resource "google_folder_organization_policy" "folder_policy_list_allow_values" {
-  count = "${local.folder && local.list_policy && var.allow_list_length > 0 ? 1 : 0}"
+  count = local.folder && local.list_policy && var.allow_list_length > 0 ? 1 : 0
 
-  folder     = "${var.folder_id}"
-  constraint = "${var.constraint}"
+  folder     = var.folder_id
+  constraint = var.constraint
 
   list_policy {
     allow {
-      values = ["${var.allow}"]
+      values = var.allow
     }
   }
 }
@@ -194,14 +194,14 @@ resource "google_folder_organization_policy" "folder_policy_list_allow_values" {
   Project policy, allow values (list constraint)
  *****************************************/
 resource "google_project_organization_policy" "project_policy_list_allow_values" {
-  count = "${local.project && local.list_policy && var.allow_list_length > 0 ? 1 : 0}"
+  count = local.project && local.list_policy && var.allow_list_length > 0 ? 1 : 0
 
-  project    = "${var.project_id}"
-  constraint = "${var.constraint}"
+  project    = var.project_id
+  constraint = var.constraint
 
   list_policy {
     allow {
-      values = ["${var.allow}"]
+      values = var.allow
     }
   }
 }
@@ -210,10 +210,10 @@ resource "google_project_organization_policy" "project_policy_list_allow_values"
   Exclude folders from policy (list constraint)
  *****************************************/
 resource "google_folder_organization_policy" "folder_policy_list_exclude_folders" {
-  count = "${local.list_policy && !local.project ? local.exclude_folders_list_length : 0}"
+  count = local.list_policy && ! local.project ? local.exclude_folders_list_length : 0
 
-  folder     = "${var.exclude_folders[count.index]}"
-  constraint = "${var.constraint}"
+  folder     = var.exclude_folders[count.index]
+  constraint = var.constraint
 
   restore_policy {
     default = true
@@ -224,12 +224,13 @@ resource "google_folder_organization_policy" "folder_policy_list_exclude_folders
   Exclude projects from policy (list constraint)
  *****************************************/
 resource "google_project_organization_policy" "project_policy_list_exclude_projects" {
-  count = "${local.list_policy && !local.project ? local.exclude_projects_list_length : 0}"
+  count = local.list_policy && ! local.project ? local.exclude_projects_list_length : 0
 
-  project    = "${var.exclude_projects[count.index]}"
-  constraint = "${var.constraint}"
+  project    = var.exclude_projects[count.index]
+  constraint = var.constraint
 
   restore_policy {
     default = true
   }
 }
+

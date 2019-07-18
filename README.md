@@ -2,6 +2,10 @@
 
 This Terraform module makes it easier to manage to manage [organization policies](https://cloud.google.com/resource-manager/docs/organization-policy/overview) for your Google Cloud environment, particularly when you want to have exclusion rules. This module will allow you to set a top-level org policy and then disable it on individual projects or folders easily.
 
+## Compatibility
+This module is meant for use with Terraform 0.12. If you haven't [upgraded][terraform-0.12-upgrade] and need a Terraform 0.11.x-compatible version of this module, the last released version intended for Terraform 0.11.x
+is [1.0.0](https://github.com/terraform-google-modules/terraform-google-org-policy/releases/tag/v1.0.0).
+
 ## Usage
 Many examples are included in the [examples](./examples/) folder, but simle usage is as follows:
 
@@ -12,7 +16,7 @@ module "org-policy" {
   constraint        = "constraints/serviceuser.services"
   policy_type       = "list"
   organization_id   = "123456789"
-  enforce           = "true"
+  enforce           = true
   exclude_folders   = ["folders/folder-1-id", "folders/folder-2-id"]
   exclude_projects  = ["project3", "project4"]
 }
@@ -39,44 +43,42 @@ To control module's behavior, change variables' values regarding the following:
   - `allow_list_length`
   - `deny_list_length`
 
-[^]: (autogen_docs_start)
-
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| allow | (Only for list constraints) List of values which should be allowed | list | `<list>` | no |
-| allow\_list\_length | The number of elements in the allow list | string | `"0"` | no |
+| allow | (Only for list constraints) List of values which should be allowed | list(string) | `<list>` | no |
+| allow\_list\_length | The number of elements in the allow list | number | `"0"` | no |
 | constraint | The constraint to be applied | string | n/a | yes |
-| deny | (Only for list constraints) List of values which should be denied | list | `<list>` | no |
-| deny\_list\_length | The number of elements in the allow list | string | `"0"` | no |
-| enforce | If boolean constraint, whether the policy is enforced at the root; if list constraint, whether to deny all (true) or allow all | string | `""` | no |
-| exclude\_folders | List of folders to exclude from the policy | list | `<list>` | no |
-| exclude\_projects | List of projects to exclude from the policy | list | `<list>` | no |
-| folder\_id | The folder id for putting the policy | string | `""` | no |
-| organization\_id | The organization id for putting the policy | string | `""` | no |
+| deny | (Only for list constraints) List of values which should be denied | list(string) | `<list>` | no |
+| deny\_list\_length | The number of elements in the allow list | number | `"0"` | no |
+| enforce | If boolean constraint, whether the policy is enforced at the root; if list constraint, whether to deny all (true) or allow all | bool | `"null"` | no |
+| exclude\_folders | List of folders to exclude from the policy | list(string) | `<list>` | no |
+| exclude\_projects | List of projects to exclude from the policy | list(string) | `<list>` | no |
+| folder\_id | The folder id for putting the policy | string | `"null"` | no |
+| organization\_id | The organization id for putting the policy | string | `"null"` | no |
 | policy\_type | The constraint type to work with (either 'boolean' or 'list') | string | `"list"` | no |
-| project\_id | The project id for putting the policy | string | `""` | no |
+| project\_id | The project id for putting the policy | string | `"null"` | no |
 
-[^]: (autogen_docs_end)
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Requirements
 ### Terraform plugins
-- [Terraform](https://www.terraform.io/downloads.html) 0.10.x
-- [terraform-provider-google](https://github.com/terraform-providers/terraform-provider-google) v1.10.0
+- [Terraform](https://www.terraform.io/downloads.html) >= 0.12.0
+- [terraform-provider-google](https://github.com/terraform-providers/terraform-provider-google) >= v2.5.0
 
 ### Permissions
 In order to execute this module, the Service Account you run as must have the **Organization Policy Administrator** (`roles/orgpolicy.PolicyAdmin`) role.
 
 ## Install
-
 ### Terraform
-Be sure you have the correct Terraform version (0.10.x), you can choose the binary here:
+Be sure you have the correct Terraform version (0.12.x), you can choose the binary here:
 - https://releases.hashicorp.com/terraform/
 
 ### Terraform plugins
 
-- [terraform-provider-google](https://github.com/terraform-providers/terraform-provider-google) v1.10.0
+- [terraform-provider-google](https://github.com/terraform-providers/terraform-provider-google) >= v2.5.0
 
 
 ### Fast install (optional)

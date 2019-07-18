@@ -4,8 +4,7 @@ This example shows how to set a list constraint on an org level.
 
 Specifically, it sets a restricted domain policy so only users from a specified domains can be added to IAM policies.
 
-[^]: (autogen_docs_start)
-
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs
 
 | Name | Description | Type | Default | Required |
@@ -14,4 +13,4 @@ Specifically, it sets a restricted domain policy so only users from a specified 
 | domain\_to\_allow | The domain to allow users from | string | n/a | yes |
 | organization\_id | The organization id the policy is applied to | string | n/a | yes |
 
-[^]: (autogen_docs_end)
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
