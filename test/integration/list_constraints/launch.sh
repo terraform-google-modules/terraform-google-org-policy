@@ -84,11 +84,12 @@ function create_main_tf_file() {
   touch main.tf
   cat <<EOF > main.tf
 locals {
-  credentials_file_path    = "$CREDENTIALS_PATH"
+  credentials_file_path = "$CREDENTIALS_PATH"
 }
 
 provider "google" {
-  credentials              = "\${file(local.credentials_file_path)}"
+  version     = "~> 2.5.0"
+  credentials = file(local.credentials_file_path)
 }
 
 module "org-policy-restrict-domain" {

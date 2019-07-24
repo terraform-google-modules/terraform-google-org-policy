@@ -16,8 +16,11 @@
 
 variable "credentials_file_path" {
   description = "Service account json auth path"
+  type        = string
 }
 
 variable "folder_id" {
   description = "The folder id for putting the policy"
+  type        = string
 }
+

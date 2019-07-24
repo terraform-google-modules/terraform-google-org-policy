@@ -18,23 +18,23 @@
   Provider configuration
  *****************************************/
 provider "google" {
-  credentials = "${file(var.credentials_file_path)}"
+  version     = "~> 2.5.0"
+  credentials = file(var.credentials_file_path)
 }
 
 /******************************************
   Look up customer id if necessary
  *****************************************/
 data "google_organization" "org" {
-  domain = "${var.domain_to_allow}"
+  domain = var.domain_to_allow
 }
 
 module "org-policy" {
-  source = "../../"
-
-  organization_id  = "${var.organization_id}"
-  constraint       = "constraints/iam.allowedPolicyMemberDomains"
-  policy_type      = "list"
-  allow            = ["${data.google_organization.org.directory_customer_id}"]
+  source            = "../../"
+  organization_id   = var.organization_id
+  constraint        = "constraints/iam.allowedPolicyMemberDomains"
+  policy_type       = "list"
+  allow             = [data.google_organization.org.directory_customer_id]
   allow_list_length = "1"
 }
 
