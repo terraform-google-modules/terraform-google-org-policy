@@ -18,19 +18,19 @@
   Provider configuration
  *****************************************/
 provider "google" {
-  credentials = "${file(var.credentials_file_path)}"
+  version     = "~> 2.5.0"
+  credentials = file(var.credentials_file_path)
 }
 
 /******************************************
   Apply the constraint using the module
  *****************************************/
 module "org-disable-serial-port-access-deny-all-with-excludes" {
-  source = "../../"
-
-  organization_id = "${var.organization_id}"
+  source          = "../../"
+  organization_id = var.organization_id
   constraint      = "compute.disableSerialPortAccess"
-  enforce         = "true"
+  enforce         = true
   policy_type     = "boolean"
-
   exclude_folders = ["folders/${var.excluded_folder_id}"]
 }
+

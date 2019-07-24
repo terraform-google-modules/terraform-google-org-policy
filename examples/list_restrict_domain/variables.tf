@@ -16,12 +16,15 @@
 
 variable "credentials_file_path" {
   description = "Service account json auth path"
+  type        = string
 }
 
 variable "organization_id" {
   description = "The organization id the policy is applied to"
+  type        = string
 }
 
 variable "domain_to_allow" {
   description = "The domain to allow users from"
+  type        = string
 }

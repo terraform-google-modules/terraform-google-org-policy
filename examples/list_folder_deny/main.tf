@@ -18,18 +18,19 @@
   Provider configuration
  *****************************************/
 provider "google" {
-  credentials = "${file(var.credentials_file_path)}"
+  version     = "~> 2.5.0"
+  credentials = file(var.credentials_file_path)
 }
 
 /******************************************
   Apply the constraint using the module
  *****************************************/
 module "org-policy" {
-  source = "../../"
-
-  folder_id  = "${var.folder_id}"
-  constraint = "serviceuser.services"
-  policy_type = "list"
-  deny        = ["deploymentmanager.googleapis.com"]
-  deny_list_length = "1"
+  source           = "../../"
+  folder_id        = var.folder_id
+  constraint       = "serviceuser.services"
+  policy_type      = "list"
+  deny             = ["deploymentmanager.googleapis.com"]
+  deny_list_length = 1
 }
+

@@ -18,13 +18,13 @@
   Organization policy (boolean constraint)
  *****************************************/
 resource "google_organization_policy" "org_policy_boolean" {
-  count = "${local.organization && local.boolean_policy ? 1 : 0}"
+  count = local.organization && local.boolean_policy ? 1 : 0
 
-  org_id     = "${var.organization_id}"
-  constraint = "${var.constraint}"
+  org_id     = var.organization_id
+  constraint = var.constraint
 
   boolean_policy {
-    enforced = "${var.enforce}"
+    enforced = var.enforce
   }
 }
 
@@ -32,13 +32,13 @@ resource "google_organization_policy" "org_policy_boolean" {
   Folder policy (boolean constraint)
  *****************************************/
 resource "google_folder_organization_policy" "folder_policy_boolean" {
-  count = "${local.folder && local.boolean_policy ? 1 : 0}"
+  count = local.folder && local.boolean_policy ? 1 : 0
 
-  folder     = "${var.folder_id}"
-  constraint = "${var.constraint}"
+  folder     = var.folder_id
+  constraint = var.constraint
 
   boolean_policy {
-    enforced = "${var.enforce}"
+    enforced = var.enforce
   }
 }
 
@@ -46,13 +46,13 @@ resource "google_folder_organization_policy" "folder_policy_boolean" {
   Project policy (boolean constraint)
  *****************************************/
 resource "google_project_organization_policy" "project_policy_boolean" {
-  count = "${local.project && local.boolean_policy ? 1 : 0}"
+  count = local.project && local.boolean_policy ? 1 : 0
 
-  project    = "${var.project_id}"
-  constraint = "${var.constraint}"
+  project    = var.project_id
+  constraint = var.constraint
 
   boolean_policy {
-    enforced = "${var.enforce}"
+    enforced = var.enforce
   }
 }
 
@@ -60,13 +60,13 @@ resource "google_project_organization_policy" "project_policy_boolean" {
   Exclude folders from policy (boolean constraint)
  *****************************************/
 resource "google_folder_organization_policy" "policy_boolean_exclude_folders" {
-  count = "${local.boolean_policy && !local.project ? local.exclude_folders_list_length : 0}"
+  count = local.boolean_policy && ! local.project ? local.exclude_folders_list_length : 0
 
-  folder     = "${var.exclude_folders[count.index]}"
-  constraint = "${var.constraint}"
+  folder     = var.exclude_folders[count.index]
+  constraint = var.constraint
 
   boolean_policy {
-    enforced = "${!var.enforce}"
+    enforced = var.enforce != true
   }
 }
 
@@ -74,12 +74,12 @@ resource "google_folder_organization_policy" "policy_boolean_exclude_folders" {
   Exclude projects from policy (boolean constraint)
  *****************************************/
 resource "google_project_organization_policy" "policy_boolean_exclude_projects" {
-  count = "${local.boolean_policy && !local.project ? local.exclude_projects_list_length : 0}"
+  count = local.boolean_policy && ! local.project ? local.exclude_projects_list_length : 0
 
-  project    = "${var.exclude_projects[count.index]}"
-  constraint = "${var.constraint}"
+  project    = var.exclude_projects[count.index]
+  constraint = var.constraint
 
   boolean_policy {
-    enforced = "${!var.enforce}"
+    enforced = var.enforce != true
   }
 }
