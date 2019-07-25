@@ -2,7 +2,7 @@
 
 Please add new unreleased features here.
 
-## [2.0.0] - 2019-07-24
+## [2.0.0] - 2019-07-25
 
 ### Changed
 
