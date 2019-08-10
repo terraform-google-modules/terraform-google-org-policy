@@ -14,7 +14,7 @@ Many examples are included in the [examples](./examples/) folder, but simle usag
 ```hcl
 variable iam_policy_constraints {
   default = {
-    "constraints/iam.allowedPolicyMemberDomains" = {
+    "iam.allowedPolicyMemberDomains" = {
        #allow             = [ "all" ]
        allow             = [ "test", "test2" ]
        #deny              = [ "test", "test2" ]
@@ -23,7 +23,7 @@ variable iam_policy_constraints {
        exclude_projects  = ["project1-id", "project2-id"]
     }
 
-    "constraints/compute.disableSerialPortAccess" = {
+    "compute.disableSerialPortAccess" = {
        enforced        = true
        exclude_folders = ["folders/folder-1-id", "folders/folder-2-id"]
     }
@@ -41,7 +41,7 @@ module "org-policy" {
 ### Variables
 To control module's behavior, change variables' values regarding the following:
 
-- `constraints`: set this variable with [constraints values](https://cloud.google.com/resource-manager/docs/organization-policy/org-policy-constraints#available_constraints). See examples above.
+- `policy_constraints`: set this variable with [constraints values](https://cloud.google.com/resource-manager/docs/organization-policy/org-policy-constraints#available_constraints). See examples above.
 - Policies Root: set one of the following values to determine where the policy is applied:
   - `org_id`
   - `project`
