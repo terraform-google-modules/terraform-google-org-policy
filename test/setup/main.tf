@@ -48,6 +48,20 @@ module "project_exclude" {
   ]
 }
 
+resource "random_id" "folders" {
+  byte_length = 8
+}
+
+resource "google_folder" "org_policy_1" {
+  display_name = "test-folder-1-${random_id.folders.hex}"
+  parent       = "folders/${var.folder_id}"
+}
+
+resource "google_folder" "org_policy_2" {
+  display_name = "test-folder-2-${random_id.folders.hex}"
+  parent       = "folders/${var.folder_id}"
+}
+
 resource "null_resource" "wait_apis" {
   # Adding a pause as a workaround for of the provider issue
   # https://github.com/terraform-providers/terraform-provider-google/issues/1131

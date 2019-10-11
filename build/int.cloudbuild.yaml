@@ -23,14 +23,14 @@ steps:
   - 'TF_VAR_billing_account=$_BILLING_ACCOUNT'
 - id: test_list_constraints
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'cd test/integration/list_constraints && bash launch.sh']
+  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && test_list_constraints']
   env:
     - 'TF_VAR_org_id=$_ORG_ID'
     - 'TF_VAR_folder_id=$_FOLDER_ID'
     - 'TF_VAR_billing_account=$_BILLING_ACCOUNT'
 - id: test_boolean_constraints
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'cd test/integration/boolean_constraints && bash launch.sh']
+  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && test_boolean_constraints']
   env:
     - 'TF_VAR_org_id=$_ORG_ID'
     - 'TF_VAR_folder_id=$_FOLDER_ID'
