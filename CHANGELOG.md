@@ -1,4 +1,16 @@
+# Changelog
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
 ## [Unreleased]
+
+## [2.0.1] - 2019-XX-YY
+
+### Changed
+
+- Migrated to Cloud Build. [#18]
 
 Please add new unreleased features here.
 
@@ -12,8 +24,10 @@ Please add new unreleased features here.
 
 This is the initial release of the module, with full support for org policy management.
 
-[Unreleased]: https://github.com/terraform-google-modules/terraform-google-org-policy/compare/v2.0.0...HEAD 
+[Unreleased]: https://github.com/terraform-google-modules/terraform-google-org-policy/compare/v2.0.1...HEAD
+[2.0.0]: https://github.com/terraform-google-modules/terraform-google-org-policy/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/terraform-google-modules/terraform-google-org-policy/compare/v1.0.0...v2.0.0
 [1.0.0]: https://github.com/terraform-google-modules/terraform-google-org-policy/releases/tag/v1.0.0
 
 [#11]: https://github.com/terraform-google-modules/terraform-google-org-policy/pull/11
+[#18]: https://github.com/terraform-google-modules/terraform-google-org-policy/pull/18
