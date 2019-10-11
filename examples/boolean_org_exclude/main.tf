@@ -27,6 +27,7 @@ provider "google" {
  *****************************************/
 module "org-disable-serial-port-access-deny-all-with-excludes" {
   source          = "../../"
+  policy_for      = "organization"
   organization_id = var.organization_id
   constraint      = "compute.disableSerialPortAccess"
   enforce         = true

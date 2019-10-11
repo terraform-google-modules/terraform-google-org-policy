@@ -77,6 +77,7 @@ provider "google" {
 module "org-policy-restrict-domain" {
   source = "../../../"
 
+  policy_for       = "organization"
   organization_id  = "$ORGANIZATION_ID"
   constraint       = "$ORG_RESTRICT_DOMAIN_CONSTRAINT"
   policy_type      = "list"
@@ -87,6 +88,7 @@ module "org-policy-restrict-domain" {
 module "org-policy-list-project" {
   source = "../../../"
 
+  policy_for  = "project"
   constraint  = "$PROJECT_CONSTRAINT_DENY_ALL"
   project_id  = "$PROJECT_ID"
   enforce     = "true"
@@ -96,6 +98,7 @@ module "org-policy-list-project" {
 module "org-policy-list-folder" {
   source = "../../../"
 
+  policy_for  = "folder"
   constraint  = "$FOLDER_CONSTRAINT_ALLOW_ALL"
   folder_id   = "$FOLDER_1_ID"
   enforce     = "false"
@@ -105,6 +108,7 @@ module "org-policy-list-folder" {
 module "org-policy-list-org" {
   source = "../../../"
 
+  policy_for       = "organization"
   constraint       = "$ORG_CONSTRAINT"
   organization_id  = "$ORGANIZATION_ID"
   policy_type      = "list"
@@ -120,6 +124,7 @@ module "org-policy-list-org" {
 module "org-policy-list-folder-2" {
   source = "../../../"
 
+  policy_for       = "folder"
   constraint       = "$FOLDER_2_CONSTRAINT"
   folder_id        = "$FOLDER_2_ID"
   policy_type      = "list"

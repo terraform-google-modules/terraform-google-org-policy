@@ -6,13 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [2.0.1] - 2019-XX-YY
+Please add new unreleased features here.
 
+## [3.0.0] - 2019-XX-YY
+v3.0.0 is a backwards-incompatible release. Please see the [upgrading guide](./docs/upgrading_to_v3.0.md).
 ### Changed
 
-- Migrated to Cloud Build. [#18]
-
-Please add new unreleased features here.
+- **Breaking**: Fixed combining with folders/projects creation [#19] by adding `policy_for` input variable. 
 
 ## [2.0.0] - 2019-07-25
 

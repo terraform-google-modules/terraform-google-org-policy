@@ -69,6 +69,7 @@ provider "google" {
 module "org-policy-boolean-project" {
   source = "../../../"
 
+  policy_for  = "project"
   constraint  = "$PROJECT_CONSTRAINT"
   project_id  = "$PROJECT_ID"
   enforce     = "true"
@@ -78,6 +79,7 @@ module "org-policy-boolean-project" {
 module "org-policy-boolean-folder" {
   source = "../../../"
 
+  policy_for  = "folder"
   constraint  = "$FOLDER_CONSTRAINT"
   folder_id   = "$FOLDER_1_ID"
   enforce     = "true"
@@ -89,6 +91,7 @@ module "org-policy-boolean-folder" {
 module "org-policy-boolean-org" {
   source = "../../../"
 
+  policy_for       = "organization"
   constraint       = "$ORG_CONSTRAINT_BOOL"
   organization_id  = "$ORGANIZATION_ID"
   enforce          = "true"

@@ -14,6 +14,10 @@
  * limitations under the License.
  */
 
+variable "policy_for" {
+  description = "Resource hierarchy node to apply the policy to: can be one of `organization`, `folder`, or `project`."
+  type        = string
+}
 variable "organization_id" {
   description = "The organization id for putting the policy"
   type        = string

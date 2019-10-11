@@ -27,6 +27,7 @@ provider "google" {
  *****************************************/
 module "org-policy" {
   source            = "../../"
+  policy_for        = "organization"
   organization_id   = var.organization_id
   constraint        = "compute.trustedImageProjects"
   policy_type       = "list"
