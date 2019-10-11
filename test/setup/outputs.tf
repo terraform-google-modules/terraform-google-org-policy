@@ -14,6 +14,10 @@
  * limitations under the License.
  */
 
+output "org_id" {
+  value = var.org_id
+}
+
 output "project_id" {
   value = module.project.project_id
 }
@@ -23,11 +27,11 @@ output "project_exclude_id" {
 }
 
 output "folder_1_id" {
-  value = google_folder.org_policy[local.folders[0]].id
+  value = google_folder.org_policy_1.id
 }
 
 output "folder_2_id" {
-  value = google_folder.org_policy[local.folders[1]].id
+  value = google_folder.org_policy_2.id
 }
 
 output "sa_key" {

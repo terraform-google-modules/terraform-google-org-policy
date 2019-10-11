@@ -13,6 +13,10 @@ function check_boolean_policy {
   ENFORCED="$3"
   RESULT="false"
 
+  DEBUG=$(echo "$POLICY" | jq '.')
+  >&2 echo Test "$CONSTRAINT" is "$ENFORCED"
+  >&2 echo "$DEBUG"
+
   if [[ "$ENFORCED" = "true" ]]
   then
     RESULT=$(echo "$POLICY" | jq -r --arg const "$CONSTRAINT" '(.[]) | select(.constraint==$const) | .booleanPolicy.enforced==true')

@@ -18,7 +18,7 @@
 # Make will use bash instead of sh
 SHELL := /usr/bin/env bash
 
-DOCKER_TAG_VERSION_DEVELOPER_TOOLS := 0.1.0
+DOCKER_TAG_VERSION_DEVELOPER_TOOLS := 0.4.0
 DOCKER_IMAGE_DEVELOPER_TOOLS := cft/developer-tools
 REGISTRY_URL := gcr.io/cloud-foundation-cicd
 
@@ -76,7 +76,7 @@ docker_test_integration:
 		-e GOOGLE_APPLICATION_CREDENTIALS \
 		-v $(CURDIR):/workspace \
 		$(REGISTRY_URL)/${DOCKER_IMAGE_DEVELOPER_TOOLS}:${DOCKER_TAG_VERSION_DEVELOPER_TOOLS} \
-		/bin/bash -c 'cd test/integration/boolean_constraints && bash launch.sh; cd ../list_constraints && bash launch.sh'
+		/usr/local/bin/test_integration.sh
 
 # Generate documentation
 .PHONY: docker_generate_docs
