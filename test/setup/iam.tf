@@ -22,20 +22,7 @@ locals {
   organization_roles = [
     "roles/orgpolicy.policyAdmin"
   ]
-
-  folders = [
-    "1_0d419896c29",
-    "2_0d419896c29",
-  ]
 }
-
-resource "google_folder" "org_policy" {
-  for_each = toset(local.folders)
-
-  display_name = "ci-org-policy-${each.value}"
-  parent       = "folders/${var.folder_id}"
-}
-
 
 resource "google_service_account" "int_test" {
   project      = module.project.project_id

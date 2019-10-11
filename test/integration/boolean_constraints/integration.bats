@@ -67,13 +67,13 @@ load helpers
 @test "Test constraints on organization $ORGANIZATION_ID and folder $FOLDER_EXCLUDE" {
 
   POLICY=$(gcloud beta resource-manager org-policies list --organization "$ORGANIZATION_ID" --format="json")
-  RESULT=$(check_boolean_policy "$ORG_CONSTRAINT" "$POLICY" "true")
+  RESULT=$(check_boolean_policy "$ORG_CONSTRAINT_BOOL" "$POLICY" "true")
   run echo "$RESULT"
   [ "$status" -eq 0 ]
   [[ "$output" = "true" ]]
 
   POLICY=$(gcloud beta resource-manager org-policies list --folder "$FOLDER_EXCLUDE" --format="json")
-  RESULT=$(check_boolean_policy "$ORG_CONSTRAINT" "$POLICY" "false")
+  RESULT=$(check_boolean_policy "$ORG_CONSTRAINT_BOOL" "$POLICY" "false")
   run echo "$RESULT"
   [ "$status" -eq 0 ]
   [[ "$output" = "true" ]]
