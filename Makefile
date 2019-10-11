@@ -31,6 +31,30 @@ docker_run:
 		$(REGISTRY_URL)/${DOCKER_IMAGE_DEVELOPER_TOOLS}:${DOCKER_TAG_VERSION_DEVELOPER_TOOLS} \
 		/bin/bash
 
+# Execute prepare tests within the docker container
+.PHONY: docker_test_prepare
+docker_test_prepare:
+	docker run --rm -it \
+		-e SERVICE_ACCOUNT_JSON \
+		-e TF_VAR_org_id \
+		-e TF_VAR_folder_id \
+		-e TF_VAR_billing_account \
+		-v $(CURDIR):/workspace \
+		$(REGISTRY_URL)/${DOCKER_IMAGE_DEVELOPER_TOOLS}:${DOCKER_TAG_VERSION_DEVELOPER_TOOLS} \
+		/usr/local/bin/execute_with_credentials.sh prepare_environment
+
+# Clean up test environment within the docker container
+.PHONY: docker_test_cleanup
+docker_test_cleanup:
+	docker run --rm -it \
+		-e SERVICE_ACCOUNT_JSON \
+		-e TF_VAR_org_id \
+		-e TF_VAR_folder_id \
+		-e TF_VAR_billing_account \
+		-v $(CURDIR):/workspace \
+		$(REGISTRY_URL)/${DOCKER_IMAGE_DEVELOPER_TOOLS}:${DOCKER_TAG_VERSION_DEVELOPER_TOOLS} \
+		/usr/local/bin/execute_with_credentials.sh cleanup_environment
+
 # Execute lint tests within the docker container
 .PHONY: docker_test_lint
 docker_test_lint:
