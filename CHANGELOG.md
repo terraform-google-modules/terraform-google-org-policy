@@ -24,8 +24,8 @@ v3.0.0 is a backwards-incompatible release. Please see the [upgrading guide](./d
 
 This is the initial release of the module, with full support for org policy management.
 
-[Unreleased]: https://github.com/terraform-google-modules/terraform-google-org-policy/compare/v2.0.1...HEAD
-[2.0.0]: https://github.com/terraform-google-modules/terraform-google-org-policy/compare/v2.0.0...v2.0.1
+[Unreleased]: https://github.com/terraform-google-modules/terraform-google-org-policy/compare/v3.0.0...HEAD
+[3.0.0]: https://github.com/teHEADrraform-google-modules/terraform-google-org-policy/compare/v2.0.0...v3.0.0
 [2.0.0]: https://github.com/terraform-google-modules/terraform-google-org-policy/compare/v1.0.0...v2.0.0
 [1.0.0]: https://github.com/terraform-google-modules/terraform-google-org-policy/releases/tag/v1.0.0
 
