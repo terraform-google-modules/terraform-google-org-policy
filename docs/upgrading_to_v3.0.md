@@ -5,7 +5,7 @@ release.
 
 ## Migration Instructions
 
-In previous versions of this module the resource hirerarchy node was not defined explicitly which caused problems when the module is combined with project/folder creation. The `policy_for` variable was introdused to address that issue. 
+In previous versions of this module the resource hirerarchy node was not defined explicitly which caused problems when the module is combined with project/folder creation. The `policy_for` variable was introdused to address that issue.
 
 ### Update for project policies
 ```diff

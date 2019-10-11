@@ -12,7 +12,7 @@ Please add new unreleased features here.
 v3.0.0 is a backwards-incompatible release. Please see the [upgrading guide](./docs/upgrading_to_v3.0.md).
 ### Changed
 
-- **Breaking**: Fixed combining with folders/projects creation [#19] by adding `policy_for` input variable. 
+- **Breaking**: Fixed combining with folders/projects creation [#19] by adding `policy_for` input variable.
 
 ## [2.0.0] - 2019-07-25
 
