@@ -27,6 +27,7 @@ provider "google" {
  *****************************************/
 module "org-policy" {
   source           = "../../"
+  policy_for       = "folder"
   folder_id        = var.folder_id
   constraint       = "serviceuser.services"
   policy_type      = "list"

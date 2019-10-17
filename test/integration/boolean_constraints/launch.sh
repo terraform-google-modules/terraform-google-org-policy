@@ -50,43 +50,35 @@ function create_main_tf_file() {
   echo "Creating main.tf file"
   touch main.tf
   cat <<EOF > main.tf
-
 provider "google" {
   version     = "~> 2.5.0"
 }
-
 module "org-policy-boolean-project" {
   source = "../../../"
-
+  policy_for  = "project"
   constraint  = "$PROJECT_CONSTRAINT"
   project_id  = "$PROJECT_ID"
   enforce     = "true"
   policy_type = "boolean"
 }
-
 module "org-policy-boolean-folder" {
   source = "../../../"
-
+  policy_for  = "folder"
   constraint  = "$FOLDER_CONSTRAINT"
   folder_id   = "$FOLDER_1_ID"
   enforce     = "true"
   policy_type = "boolean"
-
   exclude_projects = ["$PROJECT_EXCLUDE"]
 }
-
-
 module "org-policy-boolean-org" {
   source = "../../../"
-
+  policy_for       = "organization"
   constraint       = "$ORG_CONSTRAINT_BOOL"
   organization_id  = "$ORGANIZATION_ID"
   enforce          = "true"
   policy_type      = "boolean"
-
   exclude_folders  = ["$FOLDER_EXCLUDE"]
 }
-
 EOF
 }
 

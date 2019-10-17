@@ -54,55 +54,45 @@ function create_main_tf_file() {
   echo "Creating main.tf file"
   touch main.tf
   cat <<EOF > main.tf
-
 provider "google" {
   version     = "~> 2.5.0"
 }
-
 module "org-policy-list-project" {
   source = "../../../"
-
+  policy_for  = "project"
   constraint  = "$PROJECT_CONSTRAINT_DENY_ALL"
   project_id  = "$PROJECT_ID"
   enforce     = "true"
   policy_type = "list"
 }
-
 module "org-policy-list-folder" {
   source = "../../../"
-
+  policy_for  = "folder"
   constraint  = "$FOLDER_CONSTRAINT_ALLOW_ALL"
   folder_id   = "$FOLDER_1_ID"
   enforce     = "false"
   policy_type = "list"
 }
-
 module "org-policy-list-org" {
   source = "../../../"
-
+  policy_for       = "organization"
   constraint       = "$ORG_CONSTRAINT"
   organization_id  = "$ORGANIZATION_ID"
   policy_type      = "list"
-
   exclude_folders  = ["$FOLDER_EXCLUDE"]
   exclude_projects = ["$PROJECT_EXCLUDE"]
-
   deny             = ["$ORG_CONSTRAINT_VALUE_1", "$ORG_CONSTRAINT_VALUE_2"]
   deny_list_length = "2"
-
 }
-
 module "org-policy-list-folder-2" {
   source = "../../../"
-
-  constraint       = "$FOLDER_2_CONSTRAINT"
-  folder_id        = "$FOLDER_2_ID"
-  policy_type      = "list"
-
+  policy_for        = "folder"
+  constraint        = "$FOLDER_2_CONSTRAINT"
+  folder_id         = "$FOLDER_2_ID"
+  policy_type       = "list"
   allow             = ["$FOLDER_2_CONSTRAINT_VALUE_1"]
   allow_list_length = "1"
 }
-
 EOF
 }
 
