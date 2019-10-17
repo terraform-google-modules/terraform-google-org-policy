@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Please add new unreleased features here.
 
-## [3.0.0] - 2019-XX-YY
+## [3.0.0] - 2019-10-17
 v3.0.0 is a backwards-incompatible release. Please see the [upgrading guide](./docs/upgrading_to_v3.0.md).
 ### Changed
 
