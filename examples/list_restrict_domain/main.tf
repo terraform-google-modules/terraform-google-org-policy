@@ -31,6 +31,7 @@ data "google_organization" "org" {
 
 module "org-policy" {
   source            = "../../"
+  policy_for        = "organization"
   organization_id   = var.organization_id
   constraint        = "constraints/iam.allowedPolicyMemberDomains"
   policy_type       = "list"
