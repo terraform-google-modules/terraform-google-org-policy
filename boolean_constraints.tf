@@ -24,7 +24,7 @@ resource "google_organization_policy" "org_policy_boolean" {
   constraint = var.constraint
 
   boolean_policy {
-    enforced = var.enforce
+    enforced = var.enforce != false
   }
 }
 
@@ -38,7 +38,7 @@ resource "google_folder_organization_policy" "folder_policy_boolean" {
   constraint = var.constraint
 
   boolean_policy {
-    enforced = var.enforce
+    enforced = var.enforce != false
   }
 }
 
@@ -52,7 +52,7 @@ resource "google_project_organization_policy" "project_policy_boolean" {
   constraint = var.constraint
 
   boolean_policy {
-    enforced = var.enforce
+    enforced = var.enforce != false
   }
 }
 
@@ -66,7 +66,7 @@ resource "google_folder_organization_policy" "policy_boolean_exclude_folders" {
   constraint = var.constraint
 
   boolean_policy {
-    enforced = var.enforce != true
+    enforced = var.enforce == false
   }
 }
 
@@ -80,6 +80,6 @@ resource "google_project_organization_policy" "policy_boolean_exclude_projects" 
   constraint = var.constraint
 
   boolean_policy {
-    enforced = var.enforce != true
+    enforced = var.enforce == false
   }
 }

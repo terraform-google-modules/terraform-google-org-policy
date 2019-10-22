@@ -18,17 +18,21 @@
   Locals configuration for module logic
  *****************************************/
 locals {
-  organization                 = var.policy_for == "organization"
-  folder                       = var.policy_for == "folder"
-  project                      = var.policy_for == "project"
-  boolean_policy               = var.policy_type == "boolean"
-  list_policy                  = var.policy_type == "list" && ! local.invalid_config
-  enforce                      = var.allow_list_length > 0 || var.deny_list_length > 0 ? null : var.enforce
+  organization   = var.policy_for == "organization"
+  folder         = var.policy_for == "folder"
+  project        = var.policy_for == "project"
+  boolean_policy = var.policy_type == "boolean"
+  list_policy    = var.policy_type == "list" && ! local.invalid_config
+
+  // If allow/deny list empty and enforce is not set, enforce is set to true
+  enforce                      = var.allow_list_length > 0 || var.deny_list_length > 0 ? null : var.enforce != false
   exclude_folders_list_length  = length(compact(var.exclude_folders))
   exclude_projects_list_length = length(compact(var.exclude_projects))
   invalid_config_case_1        = var.deny_list_length > 0 && var.allow_list_length > 0
-  invalid_config_case_2        = var.allow_list_length + var.deny_list_length > 0 && var.enforce != null
-  invalid_config               = var.policy_type == "list" && local.invalid_config_case_1 || local.invalid_config_case_2
+
+  // We use var.enforce here because allow/deny lists can not be used together with enforce flag
+  invalid_config_case_2 = var.allow_list_length + var.deny_list_length > 0 && var.enforce != null
+  invalid_config        = var.policy_type == "list" && local.invalid_config_case_1 || local.invalid_config_case_2
 }
 
 /******************************************

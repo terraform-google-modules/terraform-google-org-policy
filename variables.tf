@@ -84,7 +84,7 @@ variable "allow_list_length" {
 }
 
 variable "deny_list_length" {
-  description = "The number of elements in the allow list"
+  description = "The number of elements in the deny list"
   type        = number
   default     = 0
 }
