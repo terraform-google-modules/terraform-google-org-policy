@@ -58,7 +58,6 @@ module "org-policy-boolean-project" {
   policy_for  = "project"
   constraint  = "$PROJECT_CONSTRAINT"
   project_id  = "$PROJECT_ID"
-  enforce     = "true"
   policy_type = "boolean"
 }
 module "org-policy-boolean-folder" {

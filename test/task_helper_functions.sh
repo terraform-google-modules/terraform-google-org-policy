@@ -17,16 +17,20 @@
 test_list_constraints() {
   source_test_env
   init_credentials
+  # shellcheck disable=SC2164
   cd test/integration/list_constraints
   bash launch.sh
+  # shellcheck disable=SC2164
   cd -
 }
 
 test_boolean_constraints() {
   source_test_env
   init_credentials
+  # shellcheck disable=SC2164
   cd test/integration/boolean_constraints
   bash launch.sh
+  # shellcheck disable=SC2164
   cd -
 }
 

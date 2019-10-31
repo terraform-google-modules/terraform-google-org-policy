@@ -35,11 +35,11 @@ To control module's behavior, change variables' values regarding the following:
 - `exclude_folders`: a list of folder IDs to be excluded from this policy. These folders must be lower in the hierarchy than the policy root.
 - `exclude_projects`: a list of project IDs to be excluded from this policy. They must be lower in the hierarchy than the policy root.
 - Boolean policies (with `policy_type: "boolean"`) can set the following variables:
-  - `enforce`: if "true" the policy is enforced at the root, if "false" the policy is not enforced at the root. (default `true`)
+  - `enforce`: if `true` or `null` then the policy is enforced at the root; if `false` then policy is not enforced at the root. (default `null`)
 - List policies (with `policy_type: "list"`) can set **one of** the following variables. Only one may be set.
-  - `enforce`: if "true" policy will deny all, if "false" policy will allow all (default `true`)
-  - `allow`: list of values to include in the policy with ALLOW behavior
-  - `deny`: list of values to include in the policy with DENY behavior
+  - `enforce`: if `true` or `null` then policy will deny all; if `false` then policy will allow all (default `null`)
+  - `allow`: list of values to include in the policy with ALLOW behavior. Set `enforce` to `null` to use it.
+  - `deny`: list of values to include in the policy with DENY behavior. Set `enforce` to `null` to use it.
 - List policies with allow or deny values require the length to be set (a workaround for [this terraform issue](https://github.com/hashicorp/terraform/issues/10857))
   - `allow_list_length`
   - `deny_list_length`
@@ -53,7 +53,7 @@ To control module's behavior, change variables' values regarding the following:
 | allow\_list\_length | The number of elements in the allow list | number | `"0"` | no |
 | constraint | The constraint to be applied | string | n/a | yes |
 | deny | (Only for list constraints) List of values which should be denied | list(string) | `<list>` | no |
-| deny\_list\_length | The number of elements in the allow list | number | `"0"` | no |
+| deny\_list\_length | The number of elements in the deny list | number | `"0"` | no |
 | enforce | If boolean constraint, whether the policy is enforced at the root; if list constraint, whether to deny all (true) or allow all | bool | `"null"` | no |
 | exclude\_folders | List of folders to exclude from the policy | list(string) | `<list>` | no |
 | exclude\_projects | List of projects to exclude from the policy | list(string) | `<list>` | no |

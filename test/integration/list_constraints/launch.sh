@@ -62,7 +62,6 @@ module "org-policy-list-project" {
   policy_for  = "project"
   constraint  = "$PROJECT_CONSTRAINT_DENY_ALL"
   project_id  = "$PROJECT_ID"
-  enforce     = "true"
   policy_type = "list"
 }
 module "org-policy-list-folder" {
