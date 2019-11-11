@@ -8,7 +8,6 @@ It disables enforcement of the `compute.disableSerialPortAccess` constraint on t
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| credentials\_file\_path | Service account json auth path | string | n/a | yes |
 | project\_id | The project ID to apply the policy to | string | n/a | yes |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

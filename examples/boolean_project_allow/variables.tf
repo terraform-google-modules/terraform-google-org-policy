@@ -14,13 +14,7 @@
  * limitations under the License.
  */
 
-variable "credentials_file_path" {
-  description = "Service account json auth path"
-  type        = string
-}
-
 variable "project_id" {
   description = "The project ID to apply the policy to"
   type        = string
 }
-

@@ -1,0 +1,50 @@
+
+# Copyright 2019 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+---
+provisioner:
+  name: terraform
+
+platforms:
+  - name: local
+
+verifier:
+  name: terraform
+  color: false
+  systems:
+    - name: system
+      backend: local
+
+suites:
+  - name: boolean_org_exclude
+    driver:
+      name: terraform
+      command_timeout: 1800
+      root_module_directory: test/fixtures/boolean_org_exclude
+  - name: boolean_project_allow
+    driver:
+      name: terraform
+      command_timeout: 1800
+      root_module_directory: test/fixtures/boolean_project_allow
+  - name: list_folder_deny
+    driver:
+      name: terraform
+      command_timeout: 1800
+      root_module_directory: test/fixtures/list_folder_deny
+  - name: list_org_exclude
+    driver:
+      name: terraform
+      command_timeout: 1800
+      root_module_directory: test/fixtures/list_org_exclude

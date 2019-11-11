@@ -1,0 +1,9 @@
+
+name: boolean_org_exclude
+attributes:
+  - name: org_id
+    required: true
+    type: string
+  - name: folder_id
+    required: true
+    type: string

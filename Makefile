@@ -55,6 +55,15 @@ docker_test_cleanup:
 		$(REGISTRY_URL)/${DOCKER_IMAGE_DEVELOPER_TOOLS}:${DOCKER_TAG_VERSION_DEVELOPER_TOOLS} \
 		/usr/local/bin/execute_with_credentials.sh cleanup_environment
 
+# Execute integration tests within the docker container
+.PHONY: docker_test_integration
+docker_test_integration:
+	docker run --rm -it \
+		-e SERVICE_ACCOUNT_JSON \
+		-v $(CURDIR):/workspace \
+		$(REGISTRY_URL)/${DOCKER_IMAGE_DEVELOPER_TOOLS}:${DOCKER_TAG_VERSION_DEVELOPER_TOOLS} \
+		/usr/local/bin/test_integration.sh
+
 # Execute lint tests within the docker container
 .PHONY: docker_test_lint
 docker_test_lint:
@@ -62,21 +71,6 @@ docker_test_lint:
 		-v $(CURDIR):/workspace \
 		$(REGISTRY_URL)/${DOCKER_IMAGE_DEVELOPER_TOOLS}:${DOCKER_TAG_VERSION_DEVELOPER_TOOLS} \
 		/usr/local/bin/test_lint.sh
-
-# Execute integration tests within the docker container
-.PHONY: docker_test_integration
-docker_test_integration:
-	docker run --rm -it \
-		-e SERVICE_ACCOUNT_JSON \
-		-e FOLDER_ID \
-		-e FOLDER_2_ID \
-		-e PROJECT_ID \
-		-e PROJECT_EXCLUDE \
-		-e GOOGLE_CREDENTIALS \
-		-e GOOGLE_APPLICATION_CREDENTIALS \
-		-v $(CURDIR):/workspace \
-		$(REGISTRY_URL)/${DOCKER_IMAGE_DEVELOPER_TOOLS}:${DOCKER_TAG_VERSION_DEVELOPER_TOOLS} \
-		/usr/local/bin/test_integration.sh
 
 # Generate documentation
 .PHONY: docker_generate_docs

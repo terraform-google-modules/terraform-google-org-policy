@@ -14,19 +14,8 @@
  * limitations under the License.
  */
 
-output "org_id" {
-  value = var.org_id
-}
+module "list-folder-deny" {
+  source = "../../../examples/list_folder_deny"
 
-output "project_id" {
-  value = module.project.project_id
-}
-
-output "folder_id" {
-  value = var.folder_id
-}
-
-output "sa_key" {
-  value     = google_service_account_key.int_test.private_key
-  sensitive = true
+  folder_id = var.folder_id
 }

@@ -14,19 +14,8 @@
  * limitations under the License.
  */
 
-output "org_id" {
-  value = var.org_id
-}
+module "boolean-project-allow" {
+  source = "../../../examples/boolean_project_allow"
 
-output "project_id" {
-  value = module.project.project_id
-}
-
-output "folder_id" {
-  value = var.folder_id
-}
-
-output "sa_key" {
-  value     = google_service_account_key.int_test.private_key
-  sensitive = true
+  project_id = var.project_id
 }

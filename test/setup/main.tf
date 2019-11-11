@@ -16,7 +16,7 @@
 
 module "project" {
   source  = "terraform-google-modules/project-factory/google"
-  version = "~> 3.0"
+  version = "~> 5.0"
 
   name              = "ci-org-policy"
   random_project_id = true
@@ -30,46 +30,3 @@ module "project" {
     "serviceusage.googleapis.com"
   ]
 }
-
-module "project_exclude" {
-  source  = "terraform-google-modules/project-factory/google"
-  version = "~> 3.0"
-
-  name              = "ci-org-policy-exclude"
-  random_project_id = true
-  org_id            = var.org_id
-  folder_id         = var.folder_id
-  billing_account   = var.billing_account
-
-  activate_apis = [
-    "cloudresourcemanager.googleapis.com",
-    "storage-api.googleapis.com",
-    "serviceusage.googleapis.com"
-  ]
-}
-
-resource "random_id" "folders" {
-  byte_length = 8
-}
-
-resource "google_folder" "org_policy_1" {
-  display_name = "test-folder-1-${random_id.folders.hex}"
-  parent       = "folders/${var.folder_id}"
-}
-
-resource "google_folder" "org_policy_2" {
-  display_name = "test-folder-2-${random_id.folders.hex}"
-  parent       = "folders/${var.folder_id}"
-}
-
-resource "null_resource" "wait_apis" {
-  # Adding a pause as a workaround for of the provider issue
-  # https://github.com/terraform-providers/terraform-provider-google/issues/1131
-  provisioner "local-exec" {
-    command = "echo sleep 30s for APIs to get enabled; sleep 30"
-  }
-  depends_on = [module.project.project_id,
-    module.project_exclude.project_id
-  ]
-}
-

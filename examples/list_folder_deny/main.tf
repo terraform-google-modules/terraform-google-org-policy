@@ -18,8 +18,7 @@
   Provider configuration
  *****************************************/
 provider "google" {
-  version     = "~> 2.5.0"
-  credentials = file(var.credentials_file_path)
+  version = "~> 2.5.0"
 }
 
 /******************************************
@@ -34,4 +33,3 @@ module "org-policy" {
   deny             = ["deploymentmanager.googleapis.com"]
   deny_list_length = 1
 }
-

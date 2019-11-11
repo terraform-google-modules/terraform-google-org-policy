@@ -9,7 +9,6 @@ Specifically, it sets a restricted domain policy so only users from a specified 
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| credentials\_file\_path | Service account json auth path | string | n/a | yes |
 | domain\_to\_allow | The domain to allow users from | string | n/a | yes |
 | organization\_id | The organization id the policy is applied to | string | n/a | yes |
 

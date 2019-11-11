@@ -14,19 +14,9 @@
  * limitations under the License.
  */
 
-output "org_id" {
-  value = var.org_id
-}
+module "list-org-exclude" {
+  source = "../../../examples/list_org_exclude"
 
-output "project_id" {
-  value = module.project.project_id
-}
-
-output "folder_id" {
-  value = var.folder_id
-}
-
-output "sa_key" {
-  value     = google_service_account_key.int_test.private_key
-  sensitive = true
+  organization_id  = var.org_id
+  image_project_id = var.project_id
 }

@@ -1,0 +1,6 @@
+
+name: list_folder_deny
+attributes:
+  - name: folder_id
+    required: true
+    type: string

@@ -36,5 +36,10 @@ crash.log
 # example.tfvars
 
 # Files used for testing
-sa-key.json
-terraform.tfvars
+**/terraform.tfvars
+
+# Secrets
+credentials.json
+
+# Test files
+.kitchen/

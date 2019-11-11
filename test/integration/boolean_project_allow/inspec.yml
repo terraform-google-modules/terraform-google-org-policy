@@ -1,0 +1,6 @@
+
+name: boolean_project_allow
+attributes:
+  - name: project_id
+    required: true
+    type: string
