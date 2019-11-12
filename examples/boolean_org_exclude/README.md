@@ -20,7 +20,6 @@ module "folder-disable-serial-port-access-enforce-with-excludes" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| credentials\_file\_path | Service account json auth path | string | n/a | yes |
 | excluded\_folder\_id | ID of a folder to exclude from the policy | string | n/a | yes |
 | organization\_id | The organization id for putting the policy | string | n/a | yes |
 

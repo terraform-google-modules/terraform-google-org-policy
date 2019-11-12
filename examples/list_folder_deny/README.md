@@ -6,7 +6,6 @@ This example shows how a list constraint can be applied to disallow certain serv
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| credentials\_file\_path | Service account json auth path | string | n/a | yes |
 | folder\_id | The folder id for putting the policy | string | n/a | yes |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

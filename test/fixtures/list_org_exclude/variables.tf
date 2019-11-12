@@ -14,19 +14,10 @@
  * limitations under the License.
  */
 
-output "org_id" {
-  value = var.org_id
+variable "org_id" {
+  type = string
 }
 
-output "project_id" {
-  value = module.project.project_id
-}
-
-output "folder_id" {
-  value = var.folder_id
-}
-
-output "sa_key" {
-  value     = google_service_account_key.int_test.private_key
-  sensitive = true
+variable "project_id" {
+  type = string
 }

@@ -14,7 +14,7 @@ Please add new unreleased features here.
 
 - The logic controlling the interaction bentween the variables `enforce`, `allow`, and `deny`. [#12]
 
-## [3.0.0] - 2019-10-17 
+## [3.0.0] - 2019-10-17
 v3.0.0 is a backwards-incompatible release. Please see the [upgrading guide](./docs/upgrading_to_v3.0.md).
 ### Changed
 

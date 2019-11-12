@@ -18,8 +18,7 @@
   Provider configuration
  *****************************************/
 provider "google" {
-  version     = "~> 2.5.0"
-  credentials = file(var.credentials_file_path)
+  version = "~> 2.5.0"
 }
 
 /******************************************

@@ -18,8 +18,7 @@
   Provider configuration
  *****************************************/
 provider "google" {
-  version     = "~> 2.5.0"
-  credentials = file(var.credentials_file_path)
+  version = "~> 2.5.0"
 }
 
 /******************************************
@@ -38,4 +37,3 @@ module "org-policy" {
   allow             = [data.google_organization.org.directory_customer_id]
   allow_list_length = "1"
 }
-
