@@ -1,6 +1,6 @@
 # Restrict Domain Constraint
 
-This example shows how to set a list constraint on an org level.
+This example shows how to set a list constraint on a folder level.
 
 Specifically, it sets a restricted domain policy so only users from a specified domains can be added to IAM policies.
 
@@ -9,7 +9,7 @@ Specifically, it sets a restricted domain policy so only users from a specified 
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| domain\_to\_allow | The domain to allow users from | string | n/a | yes |
-| organization\_id | The organization id the policy is applied to | string | n/a | yes |
+| domains\_to\_allow | The list of domains to allow users from | list(string) | n/a | yes |
+| folder\_id | The folder id for putting the policy | string | n/a | yes |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
