@@ -37,11 +37,6 @@ variable "project_id" {
   default     = null
 }
 
-variable "domains_to_allow" {
-  description = "The list of domains to allow users from"
-  type        = list(string)
-}
-
 variable "exclude_folders" {
   description = "List of folders to exclude from the policy"
   type        = list(string)

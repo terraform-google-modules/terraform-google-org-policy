@@ -1,13 +1,12 @@
-# Domain Restricted Sharing Module
+# Bucket Policy Only Module
 
-This Terraform module allows to set a `Domain Restricted Sharing` [Organization Policy](https://cloud.google.com/resource-manager/docs/organization-policy/restricting-domains) for a list of domains. The policy may be applied on organization, folder or project level.
+This Terraform module allows to set a `Skip Default Network Creation` [Organization Policy](https://cloud.google.com/resource-manager/docs/organization-policy/org-policy-constraints). The policy may be applied on organization, folder or project level.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| domains\_to\_allow | The list of domains to allow users from | list(string) | n/a | yes |
 | exclude\_folders | List of folders to exclude from the policy | list(string) | `<list>` | no |
 | exclude\_projects | List of projects to exclude from the policy | list(string) | `<list>` | no |
 | folder\_id | The folder id for putting the policy | string | `"null"` | no |
