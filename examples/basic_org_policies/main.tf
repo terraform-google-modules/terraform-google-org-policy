@@ -14,9 +14,28 @@
  * limitations under the License.
  */
 
-module "org-policy" {
+module "domain-restricted-sharing" {
   source           = "../../modules/domain_restricted_sharing"
-  policy_for       = "folder"
-  folder_id        = var.folder_id
+  policy_for       = "organization"
+  organization_id  = var.organization_id
   domains_to_allow = var.domains_to_allow
+}
+
+module "skip-default-network" {
+  source          = "../../modules/skip_default_network"
+  policy_for      = "organization"
+  organization_id = var.organization_id
+}
+
+module "bucket-policy-only" {
+  source          = "../../modules/bucket_policy_only"
+  policy_for      = "organization"
+  organization_id = var.organization_id
+}
+
+module "restrict-vm-external-ips" {
+  source          = "../../modules/restrict_vm_external_ips"
+  policy_for      = "organization"
+  organization_id = var.organization_id
+  vms_to_allow    = var.vms_to_allow
 }
