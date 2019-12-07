@@ -1,4 +1,4 @@
-# Bucket Policy Only Constraint
+# Recommended Starting Constraints
 
 This example shows how to set a basic list of [organization policies](https://cloud.google.com/resource-manager/docs/organization-policy/org-policy-constraints) including:
 - Bucket Policy Only (uniform bucket-level access)

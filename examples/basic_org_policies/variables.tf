@@ -29,15 +29,3 @@ variable "vms_to_allow" {
   type        = list(string)
   default     = []
 }
-
-variable "exclude_folders" {
-  description = "List of folders to exclude from the policy"
-  type        = list(string)
-  default     = [""]
-}
-
-variable "exclude_projects" {
-  description = "List of projects to exclude from the policy"
-  type        = list(string)
-  default     = [""]
-}
