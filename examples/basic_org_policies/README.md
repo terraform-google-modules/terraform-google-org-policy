@@ -12,8 +12,6 @@ This example shows how to set a basic list of [organization policies](https://cl
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | domains\_to\_allow | The list of domains to allow users from | list(string) | n/a | yes |
-| exclude\_folders | List of folders to exclude from the policy | list(string) | `<list>` | no |
-| exclude\_projects | List of projects to exclude from the policy | list(string) | `<list>` | no |
 | organization\_id | The organization id for putting the policy | string | n/a | yes |
 | vms\_to\_allow | The list of VMs are allowed to use external IP, every element of the list must be identified by the VM instance name, in the form: projects/PROJECT_ID/zones/ZONE/instances/INSTANCE | list(string) | `<list>` | no |
 
