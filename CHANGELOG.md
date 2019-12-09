@@ -8,6 +8,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Please add new unreleased features here.
 
+## [3.1.0] - 2019-12-05
+
+### Added
+
+- submodules `bucket_policy_only`, `domain_restricted_sharing`, `restrict_vm_external_ips`, `skip_default_network` [#15]
+
 ## [3.0.1] - 2019-10-31 :jack_o_lantern:
 
 ### Fixed
@@ -30,7 +36,8 @@ v3.0.0 is a backwards-incompatible release. Please see the [upgrading guide](./d
 
 This is the initial release of the module, with full support for org policy management.
 
-[Unreleased]: https://github.com/terraform-google-modules/terraform-google-org-policy/compare/v3.0.1...HEAD
+[Unreleased]: https://github.com/terraform-google-modules/terraform-google-org-policy/compare/v3.1.0...HEAD
+[3.1.0]: https://github.com/terraform-google-modules/terraform-google-org-policy/compare/v3.0.1...v3.1.0
 [3.0.1]: https://github.com/terraform-google-modules/terraform-google-org-policy/compare/v3.0.0...v3.0.1
 [3.0.0]: https://github.com/terraform-google-modules/terraform-google-org-policy/compare/v2.0.0...v3.0.0
 [2.0.0]: https://github.com/terraform-google-modules/terraform-google-org-policy/compare/v1.0.0...v2.0.0
@@ -40,3 +47,4 @@ This is the initial release of the module, with full support for org policy mana
 [#11]: https://github.com/terraform-google-modules/terraform-google-org-policy/pull/11
 [#18]: https://github.com/terraform-google-modules/terraform-google-org-policy/pull/18
 [#19]: https://github.com/terraform-google-modules/terraform-google-org-policy/pull/19
+[#15]: https://github.com/terraform-google-modules/terraform-google-org-policy/issues/15
