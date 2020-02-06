@@ -1,4 +1,4 @@
-# Domain Restricted Sharing Module
+# Allowed External IPs for VM instances Module
 
 This Terraform module allows to set an `Allowed External IPs for VM instances` [Organization Policy](https://cloud.google.com/resource-manager/docs/organization-policy/org-policy-constraints). The policy may be applied on organization, folder or project level.
 

@@ -1,4 +1,4 @@
-# Bucket Policy Only Module
+# Skip Default Network Creation Module
 
 This Terraform module allows to set a `Skip Default Network Creation` [Organization Policy](https://cloud.google.com/resource-manager/docs/organization-policy/org-policy-constraints). The policy may be applied on organization, folder or project level.
 
