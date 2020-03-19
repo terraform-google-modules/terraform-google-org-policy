@@ -55,8 +55,8 @@ To control module's behavior, change variables' values regarding the following:
 | deny | (Only for list constraints) List of values which should be denied | list(string) | `<list>` | no |
 | deny\_list\_length | The number of elements in the deny list | number | `"0"` | no |
 | enforce | If boolean constraint, whether the policy is enforced at the root; if list constraint, whether to deny all (true) or allow all | bool | `"null"` | no |
-| exclude\_folders | List of folders to exclude from the policy | list(string) | `<list>` | no |
-| exclude\_projects | List of projects to exclude from the policy | list(string) | `<list>` | no |
+| exclude\_folders | Set of folders to exclude from the policy | set(string) | `<list>` | no |
+| exclude\_projects | Set of projects to exclude from the policy | set(string) | `<list>` | no |
 | folder\_id | The folder id for putting the policy | string | `"null"` | no |
 | organization\_id | The organization id for putting the policy | string | `"null"` | no |
 | policy\_for | Resource hierarchy node to apply the policy to: can be one of `organization`, `folder`, or `project`. | string | n/a | yes |
