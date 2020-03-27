@@ -57,13 +57,13 @@ variable "deny" {
 variable "exclude_folders" {
   description = "Set of folders to exclude from the policy"
   type        = set(string)
-  default     = [""]
+  default     = []
 }
 
 variable "exclude_projects" {
   description = "Set of projects to exclude from the policy"
   type        = set(string)
-  default     = [""]
+  default     = []
 }
 
 variable "constraint" {
