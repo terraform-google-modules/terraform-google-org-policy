@@ -8,7 +8,7 @@ need a Terraform 0.11.x-compatible version of this module, the last released ver
 is [1.0.0](https://github.com/terraform-google-modules/terraform-google-org-policy/releases/tag/v1.0.0).
 
 ## Usage
-Many examples are included in the [examples](./examples/) folder, but simle usage is as follows:
+Many examples are included in the [examples](./examples/) folder, but simple usage is as follows:
 
 ```hcl
 module "org-policy" {
