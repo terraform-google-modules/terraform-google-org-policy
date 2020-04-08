@@ -1,6 +1,6 @@
 # Google Cloud Organization Policy Terraform Module
 
-This Terraform module makes it easier to manage to manage [organization policies](https://cloud.google.com/resource-manager/docs/organization-policy/overview) for your Google Cloud environment, particularly when you want to have exclusion rules. This module will allow you to set a top-level org policy and then disable it on individual projects or folders easily.
+This Terraform module makes it easier to manage [organization policies](https://cloud.google.com/resource-manager/docs/organization-policy/overview) for your Google Cloud environment, particularly when you want to have exclusion rules. This module will allow you to set a top-level org policy and then disable it on individual projects or folders easily.
 
 ## Compatibility
 This module is meant for use with Terraform 0.12. If you haven't [upgraded](https://www.terraform.io/upgrade-guides/0-12.html) and
@@ -8,7 +8,7 @@ need a Terraform 0.11.x-compatible version of this module, the last released ver
 is [1.0.0](https://github.com/terraform-google-modules/terraform-google-org-policy/releases/tag/v1.0.0).
 
 ## Usage
-Many examples are included in the [examples](./examples/) folder, but simle usage is as follows:
+Many examples are included in the [examples](./examples/) folder, but simple usage is as follows:
 
 ```hcl
 module "org-policy" {
