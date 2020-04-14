@@ -55,15 +55,15 @@ variable "deny" {
 }
 
 variable "exclude_folders" {
-  description = "List of folders to exclude from the policy"
-  type        = list(string)
-  default     = [""]
+  description = "Set of folders to exclude from the policy"
+  type        = set(string)
+  default     = []
 }
 
 variable "exclude_projects" {
-  description = "List of projects to exclude from the policy"
-  type        = list(string)
-  default     = [""]
+  description = "Set of projects to exclude from the policy"
+  type        = set(string)
+  default     = []
 }
 
 variable "constraint" {
