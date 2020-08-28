@@ -33,18 +33,22 @@ suites:
       name: terraform
       command_timeout: 1800
       root_module_directory: test/fixtures/boolean_org_exclude
+      verify_version: false
   - name: boolean_project_allow
     driver:
       name: terraform
       command_timeout: 1800
       root_module_directory: test/fixtures/boolean_project_allow
+      verify_version: false
   - name: list_folder_deny
     driver:
       name: terraform
       command_timeout: 1800
       root_module_directory: test/fixtures/list_folder_deny
+      verify_version: false
   - name: list_org_exclude
     driver:
       name: terraform
       command_timeout: 1800
       root_module_directory: test/fixtures/list_org_exclude
+      verify_version: false
