@@ -13,7 +13,8 @@ Many examples are included in the [examples](./examples/) folder, but simple usa
 ```hcl
 module "org-policy" {
   source            = "terraform-google-modules/org-policy/google"
-
+  version           = "~> 3.0.2"
+  
   constraint        = "constraints/serviceuser.services"
   policy_type       = "list"
   organization_id   = "123456789"
