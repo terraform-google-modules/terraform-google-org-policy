@@ -5,7 +5,11 @@ This example shows how a list constraint can be applied to disallow certain serv
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| folder\_id | The folder id for putting the policy | string | n/a | yes |
+|------|-------------|------|---------|:--------:|
+| folder\_id | The folder id for putting the policy | `string` | n/a | yes |
+
+## Outputs
+
+No output.
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

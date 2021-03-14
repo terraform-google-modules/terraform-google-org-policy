@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Google LLC
+ * Copyright 2021 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,21 +14,18 @@
  * limitations under the License.
  */
 
-/******************************************
-  Provider configuration
- *****************************************/
-provider "google" {
-  version = "~> 3.53"
-}
+terraform {
+  required_version = ">= 0.13"
+  required_providers {
 
-/******************************************
-  Apply the constraint using the module
- *****************************************/
-module "org-policy" {
-  source      = "../../"
-  policy_for  = "project"
-  project_id  = var.project_id
-  constraint  = "compute.disableSerialPortAccess"
-  policy_type = "boolean"
-  enforce     = false
+    google = {
+      source  = "hashicorp/google"
+      version = "~> 3.53"
+    }
+  }
+
+  provider_meta "google" {
+    module_name = "blueprints/terraform/terraform-google-org-policy:skip_default_network/v1.0.0"
+  }
+
 }
