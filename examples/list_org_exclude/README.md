@@ -8,8 +8,12 @@ Specifically, it sets a trusted image policy so only images from a trusted image
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| image\_project\_id | The ID of a project to trust images from | string | n/a | yes |
-| organization\_id | The organization id for putting the policy | string | n/a | yes |
+|------|-------------|------|---------|:--------:|
+| image\_project\_id | The ID of a project to trust images from | `string` | n/a | yes |
+| organization\_id | The organization id for putting the policy | `string` | n/a | yes |
+
+## Outputs
+
+No output.
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

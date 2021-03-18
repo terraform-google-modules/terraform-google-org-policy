@@ -19,8 +19,12 @@ module "folder-disable-serial-port-access-enforce-with-excludes" {
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| excluded\_folder\_id | ID of a folder to exclude from the policy | string | n/a | yes |
-| organization\_id | The organization id for putting the policy | string | n/a | yes |
+|------|-------------|------|---------|:--------:|
+| excluded\_folder\_id | ID of a folder to exclude from the policy | `string` | n/a | yes |
+| organization\_id | The organization id for putting the policy | `string` | n/a | yes |
+
+## Outputs
+
+No output.
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
