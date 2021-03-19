@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.0.0](https://www.github.com/terraform-google-modules/terraform-google-org-policy/compare/v4.0.0...v5.0.0) (2021-03-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* add Terraform 0.13 constraint and module attribution (#43)
+
+### Features
+
+* add Terraform 0.13 constraint and module attribution ([#43](https://www.github.com/terraform-google-modules/terraform-google-org-policy/issues/43)) ([61cd430](https://www.github.com/terraform-google-modules/terraform-google-org-policy/commit/61cd4309985c32707e19e5de9016e6feec6ecefa))
+
+
+### Bug Fixes
+
+* Change exclusion variables in submodules to accept sets ([#44](https://www.github.com/terraform-google-modules/terraform-google-org-policy/issues/44)) ([20b6a30](https://www.github.com/terraform-google-modules/terraform-google-org-policy/commit/20b6a30f0d6590b3d70c20d5c024d6c39adab722))
+
 ## [4.0.0](https://www.github.com/terraform-google-modules/terraform-google-org-policy/compare/v3.0.2...v4.0.0) (2020-12-08)
 
 

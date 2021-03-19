@@ -25,7 +25,7 @@ terraform {
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-org-policy/v1.0.0"
+    module_name = "blueprints/terraform/terraform-google-org-policy/v5.0.0"
   }
 
 }
