@@ -7,7 +7,11 @@ It disables enforcement of the `compute.disableSerialPortAccess` constraint on t
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| project\_id | The project ID to apply the policy to | string | n/a | yes |
+|------|-------------|------|---------|:--------:|
+| project\_id | The project ID to apply the policy to | `string` | n/a | yes |
+
+## Outputs
+
+No output.
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
