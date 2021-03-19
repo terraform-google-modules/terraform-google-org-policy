@@ -6,12 +6,16 @@ This Terraform module allows to set a `Uniform Bucket-level Access` [Organizatio
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| exclude\_folders | Set of folders to exclude from the policy | set(string) | `<list>` | no |
-| exclude\_projects | Set of projects to exclude from the policy | set(string) | `<list>` | no |
-| folder\_id | The folder id for putting the policy | string | `"null"` | no |
-| organization\_id | The organization id for putting the policy | string | `"null"` | no |
-| policy\_for | Resource hierarchy node to apply the policy to: can be one of `organization`, `folder`, or `project`. | string | n/a | yes |
-| project\_id | The project id for putting the policy | string | `"null"` | no |
+|------|-------------|------|---------|:--------:|
+| exclude\_folders | Set of folders to exclude from the policy | `set(string)` | `[]` | no |
+| exclude\_projects | Set of projects to exclude from the policy | `set(string)` | `[]` | no |
+| folder\_id | The folder id for putting the policy | `string` | `null` | no |
+| organization\_id | The organization id for putting the policy | `string` | `null` | no |
+| policy\_for | Resource hierarchy node to apply the policy to: can be one of `organization`, `folder`, or `project`. | `string` | n/a | yes |
+| project\_id | The project id for putting the policy | `string` | `null` | no |
+
+## Outputs
+
+No output.
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
