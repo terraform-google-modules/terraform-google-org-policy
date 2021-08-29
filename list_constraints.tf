@@ -210,7 +210,7 @@ resource "google_project_organization_policy" "project_policy_list_allow_values"
   Exclude folders from policy (list constraint)
  *****************************************/
 resource "google_folder_organization_policy" "folder_policy_list_exclude_folders" {
-  for_each = (local.list_policy && ! local.project) ? var.exclude_folders : []
+  for_each = (local.list_policy && !local.project) ? var.exclude_folders : []
 
   folder     = each.value
   constraint = var.constraint
@@ -224,7 +224,7 @@ resource "google_folder_organization_policy" "folder_policy_list_exclude_folders
   Exclude projects from policy (list constraint)
  *****************************************/
 resource "google_project_organization_policy" "project_policy_list_exclude_projects" {
-  for_each = (local.list_policy && ! local.project) ? var.exclude_projects : []
+  for_each = (local.list_policy && !local.project) ? var.exclude_projects : []
 
   project    = each.value
   constraint = var.constraint
