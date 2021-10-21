@@ -60,7 +60,7 @@ To control module's behavior, change variables' values regarding the following:
 | exclude\_folders | Set of folders to exclude from the policy | `set(string)` | `[]` | no |
 | exclude\_projects | Set of projects to exclude from the policy | `set(string)` | `[]` | no |
 | folder\_id | The folder id for putting the policy | `string` | `null` | no |
-| organization\_id | The organization id for putting the policy | `string` | `null` | no |
+| organization\_id | The organization id for putting the policy | `string` | n/a | yes |
 | policy\_for | Resource hierarchy node to apply the policy to: can be one of `organization`, `folder`, or `project`. | `string` | n/a | yes |
 | policy\_type | The constraint type to work with (either 'boolean' or 'list') | `string` | `"list"` | no |
 | project\_id | The project id for putting the policy | `string` | `null` | no |
