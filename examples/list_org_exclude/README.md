@@ -9,8 +9,8 @@ Specifically, it sets a trusted image policy so only images from a trusted image
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| image\_project\_id | The ID of a project to trust images from | `string` | n/a | yes |
 | organization\_id | The organization id for putting the policy | `string` | n/a | yes |
+| shared\_reservation\_project\_id | The ID of a project that are allowed to create and own shared reservations in the org | `string` | n/a | yes |
 
 ## Outputs
 

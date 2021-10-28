@@ -20,6 +20,6 @@ variable "organization_id" {
 }
 
 variable "shared_reservation_project_id" {
-  description = "The ID of a project to trust images from"
+  description = "The ID of a project that are allowed to create and own shared reservations in the org"
   type        = string
 }
