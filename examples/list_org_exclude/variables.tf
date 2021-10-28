@@ -19,7 +19,7 @@ variable "organization_id" {
   type        = string
 }
 
-variable "image_project_id" {
+variable "shared_reservation_project_id" {
   description = "The ID of a project to trust images from"
   type        = string
 }

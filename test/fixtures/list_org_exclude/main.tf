@@ -18,5 +18,5 @@ module "list-org-exclude" {
   source = "../../../examples/list_org_exclude"
 
   organization_id  = var.org_id
-  image_project_id = var.project_id
+  shared_reservation_project_id = var.project_id
 }
