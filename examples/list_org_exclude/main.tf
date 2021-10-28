@@ -28,7 +28,7 @@ module "org-policy" {
   source            = "../../"
   policy_for        = "organization"
   organization_id   = var.organization_id
-  constraint        = "compute.trustedImageProjects"
+  constraint        = "compute.sharedReservationsOwnerProjects"
   policy_type       = "list"
   allow             = ["projects/${var.image_project_id}"]
   allow_list_length = "1"
