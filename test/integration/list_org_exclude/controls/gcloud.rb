@@ -27,13 +27,13 @@ control 'list-org-exclude' do
 
     let(:data) do
       if subject.exit_status == 0
-        JSON.parse(subject.stdout).select{|x| x['constraint'] == 'constraints/compute.trustedImageProjects'}[0]
+        JSON.parse(subject.stdout).select{|x| x['constraint'] == 'constraints/compute.sharedReservationsOwnerProjects'}[0]
       else
         {}
       end
     end
 
-    describe "list exclude org policy compute.trustedImageProjects"  do
+    describe "list exclude org policy compute.sharedReservationsOwnerProjects"  do
       it "should exist" do
         expect(data).to_not be_empty
       end
