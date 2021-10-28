@@ -22,7 +22,7 @@ locals {
   folder         = var.policy_for == "folder"
   project        = var.policy_for == "project"
   boolean_policy = var.policy_type == "boolean"
-  list_policy    = var.policy_type == "list" && ! local.invalid_config
+  list_policy    = var.policy_type == "list" && !local.invalid_config
 
   // If allow/deny list empty and enforce is not set, enforce is set to true
   enforce               = var.allow_list_length > 0 || var.deny_list_length > 0 ? null : var.enforce != false

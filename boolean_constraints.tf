@@ -60,7 +60,7 @@ resource "google_project_organization_policy" "project_policy_boolean" {
   Exclude folders from policy (boolean constraint)
  *****************************************/
 resource "google_folder_organization_policy" "policy_boolean_exclude_folders" {
-  for_each = (local.boolean_policy && ! local.project) ? var.exclude_folders : []
+  for_each = (local.boolean_policy && !local.project) ? var.exclude_folders : []
 
   folder     = each.value
   constraint = var.constraint
@@ -74,7 +74,7 @@ resource "google_folder_organization_policy" "policy_boolean_exclude_folders" {
   Exclude projects from policy (boolean constraint)
  *****************************************/
 resource "google_project_organization_policy" "policy_boolean_exclude_projects" {
-  for_each = (local.boolean_policy && ! local.project) ? var.exclude_projects : []
+  for_each = (local.boolean_policy && !local.project) ? var.exclude_projects : []
 
   project    = each.value
   constraint = var.constraint
