@@ -15,13 +15,6 @@
  */
 
 /******************************************
-  Provider configuration
- *****************************************/
-provider "google" {
-  version = "~> 3.53"
-}
-
-/******************************************
   Apply the constraint using the module
  *****************************************/
 module "org-disable-serial-port-access-deny-all-with-excludes" {
