@@ -26,6 +26,11 @@ locals {
 
   // If allow/deny list empty and enforce is not set, enforce is set to true
   enforce               = var.allow_list_length > 0 || var.deny_list_length > 0 ? null : var.enforce != false
+  // variables set for use of google_org_policy_policy resource
+  enforce_v2 = local.enforce == true ? "TRUE" : local.enforce == false ? "FALSE" : null
+  parent_root = local.organization ? "organizations" : local.folder ? "folders" : "projects"
+  policy_for_id = local.organization ? var.organization_id : local.folder ? var.folder_id : var.folder_id
+
   invalid_config_case_1 = var.deny_list_length > 0 && var.allow_list_length > 0
 
   // We use var.enforce here because allow/deny lists can not be used together with enforce flag

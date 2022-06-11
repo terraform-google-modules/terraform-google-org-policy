@@ -47,13 +47,13 @@ To control module's behavior, change variables' values regarding the following:
   - `allow_list_length`
   - `deny_list_length`
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | allow | (Only for list constraints) List of values which should be allowed | `list(string)` | <pre>[<br>  ""<br>]</pre> | no |
 | allow\_list\_length | The number of elements in the allow list | `number` | `0` | no |
+| conditions | List of conditions to be imposed into the constraint. | <pre>set(object({<br>    description = string<br>    expression  = string<br>    location    = string<br>    title       = string<br>  }))</pre> | `[]` | no |
 | constraint | The constraint to be applied | `string` | n/a | yes |
 | deny | (Only for list constraints) List of values which should be denied | `list(string)` | <pre>[<br>  ""<br>]</pre> | no |
 | deny\_list\_length | The number of elements in the deny list | `number` | `0` | no |
@@ -65,12 +65,11 @@ To control module's behavior, change variables' values regarding the following:
 | policy\_for | Resource hierarchy node to apply the policy to: can be one of `organization`, `folder`, or `project`. | `string` | n/a | yes |
 | policy\_type | The constraint type to work with (either 'boolean' or 'list') | `string` | `"list"` | no |
 | project\_id | The project id for putting the policy | `string` | `null` | no |
+| use\_google\_org\_policy\_policy | Use google\_org\_policy\_policy instead of the google\_organization\_policy\_\* resources (V2 API). https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/org_policy_policy | `bool` | `false` | no |
 
 ## Outputs
 
 No output.
-
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Requirements
 ### Terraform plugins

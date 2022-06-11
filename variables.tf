@@ -89,3 +89,20 @@ variable "deny_list_length" {
   default     = 0
 }
 
+variable "conditions" {
+  description = "List of conditions to be imposed into the constraint."
+  type = set(object({
+    description = string
+    expression  = string
+    location    = string
+    title       = string
+  }))
+  default = []
+}
+
+variable "use_google_org_policy_policy" {
+  description = "Use google_org_policy_policy instead of the google_organization_policy_* resources (V2 API). https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/org_policy_policy"
+  type = bool
+  default = false
+}
+
