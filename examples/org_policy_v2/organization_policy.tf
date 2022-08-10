@@ -20,7 +20,7 @@
 locals {
   org_policies = {
     for k, v in var.org_policies : k => merge(v, { rules = [for k1, v1 in v.rules :
-      merge(v1, { allow_list_length = length(v1.allow), deny_list_length = length(v1.deny), enforcement = length(v1.allow) > 0 || length(v1.deny) > 0 ? null : v1.enforcement, values = [ {allow = v1.allow, deny = v1.deny} ] })
+      merge(v1, { allow_list_length = length(v1.allow), deny_list_length = length(v1.deny), enforcement = length(v1.allow) > 0 || length(v1.deny) > 0 ? null : v1.enforcement, values = [{ allow = v1.allow, deny = v1.deny }] })
     ] })
   }
 }
@@ -30,7 +30,7 @@ locals {
  *****************************************/
 module "gcp_org_policy" {
   source = "../../modules/org_policy_v2"
-  
+
   for_each = local.org_policies
 
   constraint  = "constraints/${each.value.constraint}"

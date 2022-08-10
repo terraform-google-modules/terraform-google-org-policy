@@ -37,12 +37,12 @@ resource "google_org_policy_policy" "organization_policy" {
           }
         }
         allow_all = rules.value.enforcement == false ? "TRUE" : null
-        deny_all = rules.value.enforcement == true ? "TRUE" : null 
+        deny_all  = rules.value.enforcement == true ? "TRUE" : null
         dynamic "values" {
           for_each = rules.value.allow_list_length > 0 || rules.value.deny_list_length > 0 ? rules.value.values : []
           content {
             allowed_values = rules.value.allow_list_length > 0 && rules.value.deny_list_length == 0 ? values.value.allow : null
-            denied_values = rules.value.deny_list_length > 0 && rules.value.allow_list_length == 0 ? values.value.deny : null
+            denied_values  = rules.value.deny_list_length > 0 && rules.value.allow_list_length == 0 ? values.value.deny : null
           }
         }
       }
@@ -73,12 +73,12 @@ resource "google_org_policy_policy" "folder_policy" {
           }
         }
         allow_all = rules.value.enforcement == false ? "TRUE" : null
-        deny_all = rules.value.enforcement == true ? "TRUE" : null 
+        deny_all  = rules.value.enforcement == true ? "TRUE" : null
         dynamic "values" {
           for_each = rules.value.allow_list_length > 0 || rules.value.deny_list_length > 0 ? rules.value.values : []
           content {
             allowed_values = rules.value.allow_list_length > 0 && rules.value.deny_list_length == 0 ? values.value.allow : null
-            denied_values = rules.value.deny_list_length > 0 && rules.value.allow_list_length == 0 ? values.value.deny : null
+            denied_values  = rules.value.deny_list_length > 0 && rules.value.allow_list_length == 0 ? values.value.deny : null
           }
         }
       }
@@ -109,12 +109,12 @@ resource "google_org_policy_policy" "project_policy" {
           }
         }
         allow_all = rules.value.enforcement == false ? "TRUE" : null
-        deny_all = rules.value.enforcement == true ? "TRUE" : null 
+        deny_all  = rules.value.enforcement == true ? "TRUE" : null
         dynamic "values" {
           for_each = rules.value.allow_list_length > 0 || rules.value.deny_list_length > 0 ? rules.value.values : []
           content {
             allowed_values = rules.value.allow_list_length > 0 && rules.value.deny_list_length == 0 ? values.value.allow : null
-            denied_values = rules.value.deny_list_length > 0 && rules.value.allow_list_length == 0 ? values.value.deny : null
+            denied_values  = rules.value.deny_list_length > 0 && rules.value.allow_list_length == 0 ? values.value.deny : null
           }
         }
       }
