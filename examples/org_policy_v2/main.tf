@@ -22,4 +22,3 @@ module "gcp_org_policy_v2" {
 
   org_policies = var.org_policies
 }
-
