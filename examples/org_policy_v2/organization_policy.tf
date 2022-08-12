@@ -47,3 +47,4 @@ module "gcp_org_policy" {
   exclude_folders  = each.value.exclude_folders
   exclude_projects = each.value.exclude_projects
 }
+
