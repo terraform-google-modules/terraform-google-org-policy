@@ -14,7 +14,12 @@
  * limitations under the License.
  */
 
-# List of organization policies
-variable "org_policies" {
-  type = map(any)
+/******************************************
+  Invoke the org_policy_v2 module
+ *****************************************/
+module "gcp_org_policy_v2" {
+  source = "../../modules/org_policy_v2"
+
+  org_policies = var.org_policies
 }
+

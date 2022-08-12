@@ -14,7 +14,13 @@
  * limitations under the License.
  */
 
-# List of organization policies
-variable "org_policies" {
-  type = map(any)
+/******************************************
+  Locals configuration for module logic
+ *****************************************/
+locals {
+  organization   = var.policy_for == "organization"
+  folder         = var.policy_for == "folder"
+  project        = var.policy_for == "project"
+  boolean_policy = var.policy_type == "boolean"
+  list_policy    = var.policy_type == "list"
 }

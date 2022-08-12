@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-module "gcp_org_policy" {
+module "gcp_org_policy_v2" {
   source = "../../../examples/org_policy_v2"
   org_policies = {
-    "gcp-org-policy-list-01" = {
+    /*"gcp-org-policy-list-01" = {
       constraint      = "compute.vmExternalIpAccess"
       type            = "list"
       organization_id = var.org_id
@@ -35,7 +35,7 @@ module "gcp_org_policy" {
       ]
       exclude_folders  = []
       exclude_projects = []
-    },
+    },*/
     "gcp-org-policy-bool-01" = {
       constraint      = "compute.requireOsLogin"
       type            = "boolean"
