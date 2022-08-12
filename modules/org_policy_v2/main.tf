@@ -29,7 +29,7 @@ locals {
   Invoke org-policy-v2 module
  *****************************************/
 module "gcp_org_policy" {
-  source = "modules/constraints"
+  source = "./modules/constraints"
 
   for_each = local.org_policies
 
