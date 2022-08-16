@@ -49,7 +49,7 @@ func TestOrgPolicyVersion2(t *testing.T) {
 
             op := gcloud.Run(t, "beta resource-manager org-policies list", gcOps).Array()[0]
             contraint_implemented := op.Get("constraint").String()
-            assert.Equal(contraint_name, contraint_implemented, "Org policy is created and exists")
+            assert.Contains(contraint_implemented, contraint_name, "Org policy is created and exists")
         })
     orgPolicyv2T.Test()
 }
