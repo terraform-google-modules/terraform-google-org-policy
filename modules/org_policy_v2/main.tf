@@ -26,7 +26,7 @@ locals {
 }
 
 /******************************************
-  Invoke org-policy-v2 module
+  Invoke constraints module
  *****************************************/
 module "gcp_org_policy" {
   source = "./modules/constraints"

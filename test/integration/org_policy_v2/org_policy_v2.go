@@ -29,7 +29,7 @@ func TestOrgPolicyVersion2(t *testing.T) {
 
     orgPolicyv2T.DefineVerify(
         func(assert *assert.Assertions) {
-            contraint_name := orgPolicyv2T.GetStringOutput("org_policies")
+            contraint_name := orgPolicyv2T.GetStringOutput("constraint_names")
 
             /*organization_id := orgPolicyv2T.Get("org_policies").Get("organization_id")
             project_id := orgPolicyv2T.Get("org_policies").Get("project_id")

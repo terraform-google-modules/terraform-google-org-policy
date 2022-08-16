@@ -13,3 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+output "policy_root" {
+  value = var.policy_for
+}
+
+output "organization_id" {
+  value = var.organization_id
+}
+
+output "folder_id" {
+  value = var.folder_id
+}
+
+output "project_id" {
+  value = var.project_id
+}
+
+output "constraint_name" {
+  value = var.constraint
+}

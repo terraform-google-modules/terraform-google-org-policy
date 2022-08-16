@@ -14,6 +14,22 @@
  * limitations under the License.
  */
 
-output "org_policies" {
-  value = var.org_policies
+output "policy_roots" {
+  value = module.gcp_org_policy_v2.policy_roots
+}
+
+output "organization_ids" {
+  value = module.gcp_org_policy_v2.organization_ids
+}
+
+output "folder_ids" {
+  value = module.gcp_org_policy_v2.folder_ids
+}
+
+output "project_ids" {
+  value = module.gcp_org_policy_v2.project_ids
+}
+
+output "constraint_names" {
+  value = module.gcp_org_policy_v2.constraint_names
 }
