@@ -29,27 +29,9 @@ func TestOrgPolicyVersion2(t *testing.T) {
 
     orgPolicyv2T.DefineVerify(
         func(assert *assert.Assertions) {
-            contraint_name := orgPolicyv2T.GetMap("org_policies").Get("constraint").String()
-            organization_id := orgPolicyv2T.GetMap("org_policies").Get("organization_id")
-            project_id := orgPolicyv2T.GetMap("org_policies").Get("project_id")
-            folder_id := orgPolicyv2T.GetMap("org_policies").Get("folder_id")
-            org_id := orgPolicyv2T.GetMap("org_id")
+            contraint_name := orgPolicyv2T.GetStringOutput("org_policies")
+            fmt.Print(contraint_name)
 
-            if organization_id != 'null' {
-                 label := "organization"
-                 label_value := organization_id
-            } else if folder_id != 'null' {
-                 label := "folder"
-                 label_value := folder_id
-            } else if project_id != 'null' {
-                 label := "project"
-                 label_value := project_id
-            }
-            gcOps := gcloud.WithCommonArgs([]string{label, label_value, "--format", "json"})
-
-            op := gcloud.Run(t, "beta resource-manager org-policies list", gcOps).Array()[0]
-            contraint_implemented := op.Get("constraint").String()
-            assert.Contains(contraint_implemented, contraint_name, "Org policy is created and exists")
         })
     orgPolicyv2T.Test()
 }
