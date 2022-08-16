@@ -29,19 +29,19 @@ func TestOrgPolicyVersion2(t *testing.T) {
 
     orgPolicyv2T.DefineVerify(
         func(assert *assert.Assertions) {
-            contraint_name := cloudRun.GetMapOutput("org_policies").Get("constraint")
-            organization_id := cloudRun.GetMapOutput("org_policies").Get("organization_id")
-            project_id := cloudRun.GetMapOutput("org_policies").Get("project_id")
-            folder_id := cloudRun.GetMapOutput("org_policies").Get("folder_id")
-            org_id := cloudRun.GetStringOutput("org_id")
+            contraint_name := orgPolicyv2T.GetMap("org_policies").Get("constraint").String()
+            organization_id := orgPolicyv2T.GetMap("org_policies").Get("organization_id")
+            project_id := orgPolicyv2T.GetMap("org_policies").Get("project_id")
+            folder_id := orgPolicyv2T.GetMap("org_policies").Get("folder_id")
+            org_id := orgPolicyv2T.GetMap("org_id")
 
-            if organization_id != null {
+            if organization_id != 'null' {
                  label := "organization"
                  label_value := organization_id
-            } else if folder_id != null {
+            } else if folder_id != 'null' {
                  label := "folder"
                  label_value := folder_id
-            } else if project_id != null {
+            } else if project_id != 'null' {
                  label := "project"
                  label_value := project_id
             }

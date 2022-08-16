@@ -1,4 +1,4 @@
-module github.com/terraform-google-modules/terraform-google-sql-db/test/integration
+module github.com/prabhu34/terraform-google-org-policy/tree/feat/org-v2
 
 go 1.17
 
