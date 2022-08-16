@@ -17,4 +17,23 @@
 # List of organization policies
 variable "org_policies" {
   type = map(any)
+  default = {
+    "gcp-org-policy-bool-01" = {
+      constraint      = "compute.requireOsLogin"
+      type            = "boolean"
+      organization_id = var.org_id
+      folder_id       = null
+      project_id      = null
+      rules = [
+        {
+          enforcement = true
+          allow       = []
+          deny        = []
+          conditions  = []
+        }
+      ]
+      exclude_folders  = []
+      exclude_projects = []
+    }
+  }
 }
