@@ -14,6 +14,6 @@
  * limitations under the License.
  */
 
-output "org_id" {
-  value = var.org_id
+output "org_policies" {
+  value = module.gcp_org_policy_v2.org_policies
 }
