@@ -1,4 +1,4 @@
-module github.com/prabhu34/terraform-google-org-policy/tree/feat/org-v2
+module github.com/prabhu34/terraform-google-org-policy/test/integration
 
 go 1.17
 

@@ -21,7 +21,7 @@ variable "org_policies" {
     "gcp-org-policy-bool-01" = {
       constraint      = "compute.requireOsLogin"
       type            = "boolean"
-      organization_id = var.org_id
+      organization_id = "407684723642" 
       folder_id       = null
       project_id      = null
       rules = [

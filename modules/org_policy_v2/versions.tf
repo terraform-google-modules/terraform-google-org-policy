@@ -1,5 +1,5 @@
 /**
- * Copyright 2022 Google LLC
+ * Copyright 2021 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,26 +14,19 @@
  * limitations under the License.
  */
 
-# List of organization policies
-variable "org_policies" {
-  type = map(any)
-  default = {
-  "gcp-org-policy-bool-01" = {
-      constraint      = "compute.requireOsLogin"
-      type            = "boolean"
-      organization_id = "407684723642" 
-      folder_id       = null
-      project_id      = null
-      rules = [
-        {
-          enforcement = true
-          allow       = []
-          deny        = []
-          conditions  = []
-        }
-      ]
-      exclude_folders  = []
-      exclude_projects = []
+terraform {
+  required_version = ">= 0.13"
+  required_providers {
+
+    google = {
+      source  = "hashicorp/google"
+      version = ">= 3.53, < 5.0"
     }
   }
+
+  provider_meta "google" {
+    module_name = "blueprints/terraform/terraform-google-org-policy:restrict_vm_external_ips/v5.1.0"
+  }
+
 }
+

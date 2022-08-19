@@ -15,21 +15,22 @@
  */
 
 output "policy_roots" {
-  value = module.gcp_org_policy_v2[0].policy_roots
+  value = module.gcp_org_policy_v2.policy_roots[0] != null ? module.gcp_org_policy_v2.policy_roots[0] : null
 }
 
 output "organization_ids" {
-  value = module.gcp_org_policy_v2[0].organization_ids
+  value = module.gcp_org_policy_v2.organization_ids[0] != null ? module.gcp_org_policy_v2.organization_ids[0] : null
 }
 
 output "folder_ids" {
-  value = module.gcp_org_policy_v2[0].folder_ids
+  value = module.gcp_org_policy_v2.folder_ids[0] != null ? module.gcp_org_policy_v2.folder_ids[0] : "" 
 }
 
 output "project_ids" {
-  value = module.gcp_org_policy_v2[0].project_ids
+  value = module.gcp_org_policy_v2.project_ids[0] != null ? module.gcp_org_policy_v2.project_ids[0] : ""
 }
 
 output "constraint_names" {
-  value = module.gcp_org_policy_v2[0].constraint_names
+  value = module.gcp_org_policy_v2.constraint_names[0] != null ? module.gcp_org_policy_v2.constraint_names[0] : null
 }
+
