@@ -36,7 +36,6 @@ func TestOrgPolicyVersion2(t *testing.T) {
             var label string = ""
             var label_value string = ""
             var constraint_implemented string = ""
-            
             if policy_root == "organization" {
                  label = "--organization"
                  label_value = organization_id
@@ -47,27 +46,17 @@ func TestOrgPolicyVersion2(t *testing.T) {
                  label = "--project"
                  label_value = project_id
             }
-            
             gcOps := gcloud.WithCommonArgs([]string{label, label_value, "--format", "json"})
             op := gcloud.Run(t, "beta resource-manager org-policies list", gcOps)
-            t.Log("pikachu")
             for i := 0; i < len(op.Array()); i++ {
             	//t.Log(op.Array()[i].Get("constraint"))
             	if op.Array()[i].Get("constraint").String() == constraint_name {
             		constraint_implemented = op.Array()[i].Get("constraint").String()
             	}
             }
-            t.Log(constraint_implemented)
-            
+            //t.Log(constraint_implemented)
             assert.Equal(constraint_implemented, constraint_name, "Org policy is created and exists")
-            
-	    //gcOps := gcloud.WithCommonArgs([]string{constraint_name, label, label_value, "--format", "json"})
-	    //op := gcloud.Run(t, "beta resource-manager org-policies describe", gcOps).Array()[0]
-            //constraint_implemented := op.Get("constraint").String()
-            
-            //is_implemented := op.Get("booleanPolicy.enforced").Bool()
-            //assert.Contains(constraint_implemented, constraint_name, "Org policy is created and exists")
-	    //assert.True(is_implemented, "Org policy is created and exists")
         })
     orgPolicyv2T.Test()
 }
+

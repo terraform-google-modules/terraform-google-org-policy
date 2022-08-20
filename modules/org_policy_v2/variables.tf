@@ -18,10 +18,10 @@
 variable "org_policies" {
   type = map(any)
   default = {
-  "gcp-org-policy-bool-01" = {
+    "gcp-org-policy-bool-01" = {
       constraint      = "compute.requireOsLogin"
       type            = "boolean"
-      organization_id = "407684723642" 
+      organization_id = "407684723642"
       folder_id       = null
       project_id      = null
       rules = [
@@ -37,3 +37,4 @@ variable "org_policies" {
     }
   }
 }
+

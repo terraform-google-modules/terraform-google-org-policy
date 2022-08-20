@@ -23,7 +23,7 @@ output "organization_ids" {
 }
 
 output "folder_ids" {
-  value = module.gcp_org_policy_v2.folder_ids[0] != null ? module.gcp_org_policy_v2.folder_ids[0] : "" 
+  value = module.gcp_org_policy_v2.folder_ids[0] != null ? module.gcp_org_policy_v2.folder_ids[0] : ""
 }
 
 output "project_ids" {
