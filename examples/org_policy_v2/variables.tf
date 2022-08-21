@@ -24,10 +24,10 @@ variable "org_policies" {
   type = map(any)
   default = {
     "gcp-org-policy-bool-01" = {
-      constraint      = "compute.requireOsLogin"
-      type            = "boolean"
-      folder_id       = null
-      project_id      = null
+      constraint = "compute.requireOsLogin"
+      type       = "boolean"
+      folder_id  = null
+      project_id = null
       rules = [
         {
           enforcement = true
