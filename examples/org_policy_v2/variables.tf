@@ -14,6 +14,11 @@
  * limitations under the License.
  */
 
+variable "organization_id" {
+  description = "The organization id for putting the policy"
+  type        = string
+}
+
 # List of organization policies
 variable "org_policies" {
   type = map(any)
@@ -21,7 +26,6 @@ variable "org_policies" {
     "gcp-org-policy-bool-01" = {
       constraint      = "compute.requireOsLogin"
       type            = "boolean"
-      organization_id = "407684723642"
       folder_id       = null
       project_id      = null
       rules = [

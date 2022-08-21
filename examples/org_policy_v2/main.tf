@@ -21,4 +21,8 @@ module "gcp_org_policy_v2" {
   source = "../../modules/org_policy_v2"
 
   org_policies = var.org_policies
+  org_policies = {
+    for policy, policy_config in var.org_policies : policy => merge(policy_config, { organization_id = var.organization_id })
+  }
 }
+
