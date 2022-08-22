@@ -28,11 +28,11 @@ func TestVersion2BooleanOrgEnforce(t *testing.T) {
 
     orgPolicyv2T.DefineVerify(
     func(assert *assert.Assertions) {
-            constraint_name := orgPolicyv2T.GetStringOutput("constraint_names")
-            organization_id := orgPolicyv2T.GetStringOutput("organization_ids")
-            folder_id := orgPolicyv2T.GetStringOutput("folder_ids")
-            project_id := orgPolicyv2T.GetStringOutput("project_ids")
-            policy_root := orgPolicyv2T.GetStringOutput("policy_roots")
+            constraint_name := orgPolicyv2T.GetStringOutput("constraint_name")
+            organization_id := orgPolicyv2T.GetStringOutput("organization_id")
+            folder_id := orgPolicyv2T.GetStringOutput("folder_id")
+            project_id := orgPolicyv2T.GetStringOutput("project_id")
+            policy_root := orgPolicyv2T.GetStringOutput("policy_root")
             var label string = ""
             var label_value string = ""
             var constraint_implemented string = ""

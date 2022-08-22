@@ -19,22 +19,22 @@ output "policy_root" {
   value       = module.gcp_org_policy_v2.policy_roots[0] != null ? module.gcp_org_policy_v2.policy_roots[0] : null
 }
 
-output "organization_ids" {
+output "organization_id" {
   description = "Organization ID if policy applied at org level"
   value       = module.gcp_org_policy_v2.organization_ids[0] != null ? module.gcp_org_policy_v2.organization_ids[0] : null
 }
 
-output "folder_ids" {
+output "folder_id" {
   description = "Folder ID if policy applied at folder level"
   value       = module.gcp_org_policy_v2.folder_ids[0] != null ? module.gcp_org_policy_v2.folder_ids[0] : ""
 }
 
-output "project_ids" {
+output "project_id" {
   description = "Project ID if policy applied at project level"
   value       = module.gcp_org_policy_v2.project_ids[0] != null ? module.gcp_org_policy_v2.project_ids[0] : ""
 }
 
-output "constraint_names" {
+output "constraint_name" {
   description = "Policy Constraint Identifier"
   value       = module.gcp_org_policy_v2.constraint_names[0] != null ? module.gcp_org_policy_v2.constraint_names[0] : null
 }
