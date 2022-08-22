@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-variable "organization_id" {
+variable "org_id" {
   description = "The organization id for putting the policy"
   type        = string
 }
