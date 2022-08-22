@@ -21,13 +21,6 @@ steps:
   - 'TF_VAR_org_id=$_ORG_ID'
   - 'TF_VAR_folder_id=$_FOLDER_ID'
   - 'TF_VAR_billing_account=$_BILLING_ACCOUNT'
-# Sometimes API activation can be bit flaky therefor ensure that at least 3 mins (180s) are passed between
-# prepare_environment and the first terraform apply (init-all runs parallel to reduce waste of time)
-- id: wait for api activation
-  waitFor:
-    - prepare
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['sleep', '30']
 # Ruby Test Framework - org policy v1 APIs
 - id: create
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
