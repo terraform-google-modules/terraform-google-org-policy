@@ -54,7 +54,6 @@ func TestVersion2BooleanOrgEnforce(t *testing.T) {
             		constraint_implemented = op.Array()[i].Get("constraint").String()
             	}
             }
-            //t.Log(constraint_implemented)
             assert.Equal(constraint_implemented, constraint_name, "Org policy is created and exists")
         })
     orgPolicyv2T.Test()
