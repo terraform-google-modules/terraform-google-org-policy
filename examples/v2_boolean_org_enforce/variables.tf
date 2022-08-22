@@ -21,7 +21,7 @@ variable "org_id" {
 
 # List of organization policies
 variable "org_policies" {
-  type = map(any)
+  type        = map(any)
   description = "Map of organization policies to be implemented at organization level"
   default = {
     "gcp-org-policy-bool-01" = {
