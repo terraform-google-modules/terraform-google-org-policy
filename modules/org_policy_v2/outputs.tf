@@ -15,30 +15,35 @@
  */
 
 output "policy_roots" {
+  description = "Policy Root in the hierarchy for the policies"
   value = {
     for k, v in module.gcp_org_policy : index(keys(module.gcp_org_policy), k) => v.policy_root
   }
 }
 
 output "organization_ids" {
+  description = "Organization IDs if policy applied at org level"
   value = {
     for k, v in module.gcp_org_policy : index(keys(module.gcp_org_policy), k) => v.organization_id
   }
 }
 
 output "folder_ids" {
+  description = "Folder IDs if policy applied at folder level"
   value = {
     for k, v in module.gcp_org_policy : index(keys(module.gcp_org_policy), k) => v.folder_id
   }
 }
 
 output "project_ids" {
+  description = "Project IDs if policy applied at project level"
   value = {
     for k, v in module.gcp_org_policy : index(keys(module.gcp_org_policy), k) => v.project_id
   }
 }
 
 output "constraint_names" {
+  description = "Policy Constraint Identifiers"
   value = {
     for k, v in module.gcp_org_policy : index(keys(module.gcp_org_policy), k) => v.constraint_name
   }

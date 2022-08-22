@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-/******************************************
-  Invoke the org_policy_v2 module
- *****************************************/
+/********************************************************
+  Invoke the org_policy_v2 module with sample org policy
+ *******************************************************/
 module "gcp_org_policy_v2" {
   source = "../../modules/org_policy_v2"
 

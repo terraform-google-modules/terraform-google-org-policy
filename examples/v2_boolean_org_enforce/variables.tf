@@ -15,13 +15,14 @@
  */
 
 variable "org_id" {
-  description = "The organization id for putting the policy"
+  description = "Organization id for applying the policy at org level"
   type        = string
 }
 
 # List of organization policies
 variable "org_policies" {
   type = map(any)
+  description = "Map of organization policies to be implemented at organization level"
   default = {
     "gcp-org-policy-bool-01" = {
       constraint = "compute.requireOsLogin"
