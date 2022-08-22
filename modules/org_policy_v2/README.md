@@ -1,6 +1,6 @@
 # Google Cloud Organization Policy Terraform Module
 
-This Terraform module makes it easier to manage [organization policies](https://cloud.google.com/resource-manager/docs/organization-policy/overview) for your Google Cloud environment, particularly when you want to have exclusion rules. This module will allow you to set a top-level org policy and then disable it on individual projects or folders easily. This module allows _conditional policy enforcements based on the version 2_ of the organization policies API.
+This Terraform module makes it easier to manage [organization policies](https://cloud.google.com/resource-manager/docs/organization-policy/overview) for your Google Cloud environment, particularly when you want to have exclusion rules. This module will allow you to set a top-level org policy and then disable it on individual projects or folders easily. This module allows **_conditional policy enforcements based on the latest version_** of the organization policies API.
 
 Organization Policies are of two types `boolean` and `list`. See the documentation below for more information on:
  - [Customizing policies for boolean constraints](https://cloud.google.com/resource-manager/docs/organization-policy/creating-managing-policies#boolean_constraints)
@@ -20,7 +20,7 @@ Example usage is included in the [examples](./examples/org_policy_v2) folder, bu
 module "gcp_org_policy" {
   source            = "terraform-google-modules/org-policy/google//modules/org_policy_v2"
   version           = "~> 4.0.0"
-  
+
   org_policies = {
     "gcp-org-policy-list-01" = {
       constraint       = "constraint name" # constraint identifier without constriants/ prefix
@@ -49,12 +49,12 @@ module "gcp_org_policy" {
   }
 }
 ```
-  
+
 ### Variables
 To control module's behavior, change variables' values regarding the following:
 
 - `constraint`: set this variable with the [constraint value](https://cloud.google.com/resource-manager/docs/organization-policy/org-policy-constraints#available_constraints) in the form `{constraint identifier}`. For example, `serviceuser.services`
-- `type`: Specify either `boolean` for boolean policies or `list` for list policies. 
+- `type`: Specify either `boolean` for boolean policies or `list` for list policies.
 - Policy Root: set one of the following values to determine where the policy is applied. Only one needs to be specified, others should be null for a given policy.
   - `organization_id`
   - `project_id`
@@ -78,7 +78,7 @@ To control module's behavior, change variables' values regarding the following:
   	- There must be one and only one Policy Rule where condition is unset.
   	- Boolean Policy Rules with conditions must set enforced to the opposite of the PolicyRule without a condition.
   	- During policy evaluation, Policy Rules with conditions that are true for a target resource take precedence.
-  
+
 - List policies (with `type: "list"`) can set `allow` and `deny` with a list of resources to allow or deny. For `enforcement` you can set it as follows:
   - set `enforcement` = false for `allow all`
   - set `enforcement` = true for `deny all`
