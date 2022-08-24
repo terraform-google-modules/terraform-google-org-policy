@@ -1,52 +1,47 @@
-# Google Cloud Organization Policy Terraform Module
+# Google Cloud Organization Policy v2 Terraform Module
 
-This Terraform module makes it easier to manage [organization policies](https://cloud.google.com/resource-manager/docs/organization-policy/overview) for your Google Cloud environment, particularly when you want to have exclusion rules. This module will allow you to set a top-level org policy and then disable it on individual projects or folders easily. This module allows **_conditional policy enforcements based on the latest version_** of the organization policies API.
+This Terraform module makes it easier to manage [organization policies](https://cloud.google.com/resource-manager/docs/organization-policy/overview) for your Google Cloud environment, particularly when you want to have exclusion rules. This module will allow you to set a top-level org policy and then disable it on individual projects or folders easily. This module allows **_conditional policy enforcements based on the latest API version_** of the organization policies API.
 
-Organization Policies are of two types `boolean` and `list`. See the documentation below for more information on:
- - [Customizing policies for boolean constraints](https://cloud.google.com/resource-manager/docs/organization-policy/creating-managing-policies#boolean_constraints)
+Organization Policies are of two types `boolean` and `list`.
 
-
-## Compatibility
-This module is meant for use with Terraform 0.13+ and tested using Terraform 1.0+. If you find incompatibilities using Terraform >=0.13, please open an issue.
- If you haven't
-[upgraded](https://www.terraform.io/upgrade-guides/0-13.html) and need a Terraform
-0.12.x-compatible version of this module, the last released version
-intended for Terraform 0.12.x is [v4.0.0](https://registry.terraform.io/modules/terraform-google-modules/-org-policy/google/v4.0.0).
+---
 
 ## Usage
 Example usage is included in the [examples](./examples/org_policy_v2) folder, but simple usage is as follows:
 
 ```hcl
-module "gcp_org_policy" {
-  source            = "terraform-google-modules/org-policy/google//modules/org_policy_v2"
-  version           = "~> 4.0.0"
+module "gcp_org_policy_v2" {
+  source           = "terraform-google-modules/org-policy/google//modules/org_policy_v2"
+  version          = "~> 5.2.0"
 
-  org_policies = {
-    "gcp-org-policy-list-01" = {
-      constraint       = "constraint name" # constraint identifier without constriants/ prefix
-      type             = "list"
-      organization_id  = "123456789"       # either of org id, folder id or project id
-      folder_id        = null
-      project_id       = null
-      rules            = [
-        {
-          enforcement = true
-          allow       = []
-          deny        = []
-          conditions  = [
-            {
-              description = "description of the condition"
-              expression  = "resource.matchTagId('tagKeys/123456789', 'tagValues/123456789') && resource.matchTag('123456789/1234', 'abcd')"
-              location    = "sample-location.log"
-              title       = "Title of the condition"
-            }
-          ]
-        },
-      ]
-      exclude_folders  = []
-      exclude_projects = []
+  policy_root      = "organization"    # either of organization, folder or project
+  policy_root_id   = "123456789"       # either of org id, folder id or project id
+  constraint       = "constraint name"    # constraint identifier without constriants/ prefix. Example "compute.requireOsLogin"
+  policy_type      = "boolean"            # either of list or boolean
+  exclude_folders  = []
+  exclude_projects = []
+
+  rules = [
+    # Rule 1
+    {
+      enforcement = true
+      allow       = []
+      deny        = []
+      conditions  = []
     },
-  }
+    # Rule 2
+    {
+      enforcement = true
+      allow       = []
+      deny        = []
+      conditions  = [{
+        description = "description of the condition"
+        expression  = "resource.matchTagId('tagKeys/123456789', 'tagValues/123456789') && resource.matchTag('123456789/1234', 'abcd')"
+        location    = "sample-location.log"
+        title       = "Title of the condition"
+      }]
+    },
+  ]
 }
 ```
 
@@ -54,11 +49,15 @@ module "gcp_org_policy" {
 To control module's behavior, change variables' values regarding the following:
 
 - `constraint`: set this variable with the [constraint value](https://cloud.google.com/resource-manager/docs/organization-policy/org-policy-constraints#available_constraints) in the form `{constraint identifier}`. For example, `serviceuser.services`
-- `type`: Specify either `boolean` for boolean policies or `list` for list policies.
-- Policy Root: set one of the following values to determine where the policy is applied. Only one needs to be specified, others should be null for a given policy.
-  - `organization_id`
-  - `project_id`
-  - `folder_id`
+- `policy_type`: Specify either `boolean` for boolean policies or `list` for list policies.
+- `policy_root`: set one of the following values to determine where the policy is applied. Values should be either one of the below.
+  - organization
+  - project
+  - folder
+- `policy_root_id`: set one of the following values to determine where the policy is applied. Based on `policy_root`, either one of the below IDs should be provided.
+  - organization_id
+  - project_id
+  - folder_id
 - `exclude_folders`: a list of folder IDs to be excluded from this policy. These folders must be lower in the hierarchy than the policy root.
 - `exclude_projects`: a list of project IDs to be excluded from this policy. They must be lower in the hierarchy than the policy root.
 - `rules`: Specify policy rules and conditions. Rules contain the following parameters:
@@ -70,6 +69,8 @@ To control module's behavior, change variables' values regarding the following:
     - `expression`: Common Expression Language, or CEL, is the expression language used to specify conditional expressions. A conditional expression consists of one or more statements that are joined using logical operators (&&, ||, or !). For more information, see the [CEL spec](https://github.com/google/cel-spec) and its [language definition](https://github.com/google/cel-spec/blob/master/doc/langdef.md).
     - `location`: Log location
     - `title`: Title of the condition
+
+---
 
 ### IMPORTANT
 - Boolean policies (with `type: "boolean"`) can set the following variables:
@@ -84,24 +85,39 @@ To control module's behavior, change variables' values regarding the following:
   - set `enforcement` = true for `deny all`
 - Each policy can have [maximum of 10 rules](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/org_policy_policy#rules)
 
+---
+
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| org\_policies | Map of organization policies to be implemented at org/folder/project level | `map(any)` | <pre>{<br>  "gcp-org-policy-bool-01": {<br>    "constraint": "compute.requireOsLogin",<br>    "exclude_folders": [],<br>    "exclude_projects": [],<br>    "folder_id": null,<br>    "organization_id": "407684723642",<br>    "project_id": null,<br>    "rules": [<br>      {<br>        "allow": [],<br>        "conditions": [],<br>        "deny": [],<br>        "enforcement": true<br>      }<br>    ],<br>    "type": "boolean"<br>  }<br>}</pre> | no |
+| constraint | The constraint to be applied | `string` | n/a | yes |
+| exclude\_folders | Set of folders to exclude from the policy | `set(string)` | `[]` | no |
+| exclude\_projects | Set of projects to exclude from the policy | `set(string)` | `[]` | no |
+| policy\_root | Resource hierarchy node to apply the policy to: can be one of `organization`, `folder`, or `project`. | `string` | `"organization"` | no |
+| policy\_root\_id | The policy root id, either of organization\_id, folder\_id or project\_id | `string` | `null` | no |
+| policy\_type | The constraint type to work with (either 'boolean' or 'list') | `string` | `"list"` | no |
+| rules | List of rules per policy. Upto 10. | `list(any)` | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| constraint\_names | Policy Constraint Identifiers |
-| folder\_ids | Folder IDs if policy applied at folder level |
-| organization\_ids | Organization IDs if policy applied at org level |
-| policy\_roots | Policy Root in the hierarchy for the policies |
-| project\_ids | Project IDs if policy applied at project level |
+| constraint | Policy Constraint Identifier without constraints/ prefix |
+| policy\_root | Policy Root in the hierarchy for the given policy |
+| policy\_root\_id | Project Root ID at which the policy is applied |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+
+---
+
+## Compatibility
+This module is meant for use with Terraform 0.13+ and tested using Terraform 1.0+. If you find incompatibilities using Terraform >=0.13, please open an issue.
+ If you haven't
+[upgraded](https://www.terraform.io/upgrade-guides/0-13.html) and need a Terraform
+0.12.x-compatible version of this module, the last released version
+intended for Terraform 0.12.x is [v4.0.0](https://registry.terraform.io/modules/terraform-google-modules/-org-policy/google/v4.0.0).
 
 ## Requirements
 ### Terraform plugins

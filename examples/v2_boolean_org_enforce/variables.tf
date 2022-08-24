@@ -14,31 +14,10 @@
  * limitations under the License.
  */
 
-variable "org_id" {
-  description = "Organization id for applying the policy at org level"
+# Organization ID for this example
+# It could be Folder or Project ID
+variable "organization_id" {
+  description = "The organization id for applying the policy"
   type        = string
-}
-
-# List of organization policies
-variable "org_policies" {
-  type        = map(any)
-  description = "Map of organization policies to be implemented at organization level"
-  default = {
-    "gcp-org-policy-bool-01" = {
-      constraint = "compute.requireOsLogin"
-      type       = "boolean"
-      folder_id  = null
-      project_id = null
-      rules = [
-        {
-          enforcement = true
-          allow       = []
-          deny        = []
-          conditions  = []
-        }
-      ]
-      exclude_folders  = []
-      exclude_projects = []
-    }
-  }
+  default     = null
 }

@@ -15,13 +15,19 @@
  */
 
 /********************************************************
-  Invoke the org_policy_v2 module with sample org policy
+  Apply the sample constraint using the org_policy_v2 module
  *******************************************************/
 module "gcp_org_policy_v2" {
   source = "../../modules/org_policy_v2"
 
-  org_policies = {
-    for policy, policy_config in var.org_policies : policy => merge(policy_config, { organization_id = var.org_id })
-  }
+  policy_root    = "organization"
+  policy_root_id = var.organization_id
+  rules = [{
+    enforcement = true
+    allow       = []
+    deny        = []
+    conditions  = []
+  }]
+  constraint  = "compute.requireOsLogin"
+  policy_type = "boolean"
 }
-

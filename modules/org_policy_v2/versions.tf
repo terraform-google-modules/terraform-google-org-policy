@@ -1,5 +1,5 @@
 /**
- * Copyright 2021 Google LLC
+ * Copyright 2022 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,8 +25,7 @@ terraform {
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-org-policy:restrict_vm_external_ips/v5.1.0"
+    module_name = "blueprints/terraform/terraform-google-org-policy/v5.1.0"
   }
 
 }
-

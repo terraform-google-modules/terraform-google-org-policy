@@ -1,5 +1,5 @@
 /**
- * Copyright 2022 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,28 +14,42 @@
  * limitations under the License.
  */
 
-# List of organization policies
-variable "org_policies" {
-  type        = map(any)
-  description = "Map of organization policies to be implemented at org/folder/project level"
-  default = {
-    "gcp-org-policy-bool-01" = {
-      constraint      = "compute.requireOsLogin"
-      type            = "boolean"
-      organization_id = "407684723642"
-      folder_id       = null
-      project_id      = null
-      rules = [
-        {
-          enforcement = true
-          allow       = []
-          deny        = []
-          conditions  = []
-        }
-      ]
-      exclude_folders  = []
-      exclude_projects = []
-    }
-  }
+variable "policy_root" {
+  description = "Resource hierarchy node to apply the policy to: can be one of `organization`, `folder`, or `project`."
+  type        = string
+  default     = "organization"
 }
 
+variable "policy_root_id" {
+  description = "The policy root id, either of organization_id, folder_id or project_id"
+  type        = string
+  default     = null
+}
+
+variable "exclude_folders" {
+  description = "Set of folders to exclude from the policy"
+  type        = set(string)
+  default     = []
+}
+
+variable "exclude_projects" {
+  description = "Set of projects to exclude from the policy"
+  type        = set(string)
+  default     = []
+}
+
+variable "constraint" {
+  description = "The constraint to be applied"
+  type        = string
+}
+
+variable "policy_type" {
+  description = "The constraint type to work with (either 'boolean' or 'list')"
+  type        = string
+  default     = "list"
+}
+
+variable "rules" {
+  description = "List of rules per policy. Upto 10."
+  type        = list(any)
+}

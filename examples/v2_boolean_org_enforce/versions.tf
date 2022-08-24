@@ -23,10 +23,4 @@ terraform {
       version = ">= 3.53, < 5.0"
     }
   }
-
-  provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-org-policy:restrict_vm_external_ips/v5.1.0"
-  }
-
 }
-

@@ -19,6 +19,7 @@ import (
 
     "github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test/pkg/gcloud"
     "github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test/pkg/tft"
+    "github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test/pkg/utils"
     "github.com/stretchr/testify/assert"
 )
 
@@ -28,34 +29,16 @@ func TestVersion2BooleanOrgEnforce(t *testing.T) {
 
     orgPolicyv2T.DefineVerify(
     func(assert *assert.Assertions) {
-            constraint_name := orgPolicyv2T.GetStringOutput("constraint_name")
-            organization_id := orgPolicyv2T.GetStringOutput("organization_id")
-            folder_id := orgPolicyv2T.GetStringOutput("folder_id")
-            project_id := orgPolicyv2T.GetStringOutput("project_id")
-            policy_root := orgPolicyv2T.GetStringOutput("policy_root")
-            var label string = ""
-            var label_value string = ""
-            var constraint_implemented string = ""
-            if policy_root == "organization" {
-                 label = "--organization"
-                 label_value = organization_id
-            } else if policy_root == "folder" {
-                 label = "--folder"
-                 label_value = folder_id
-            } else if policy_root == "project" {
-                 label = "--project"
-                 label_value = project_id
-            }
-            gcOps := gcloud.WithCommonArgs([]string{label, label_value, "--format", "json"})
-            op := gcloud.Run(t, "beta resource-manager org-policies list", gcOps)
-            for i := 0; i < len(op.Array()); i++ {
-            	//t.Log(op.Array()[i].Get("constraint"))
-            	if op.Array()[i].Get("constraint").String() == constraint_name {
-            		constraint_implemented = op.Array()[i].Get("constraint").String()
-            	}
-            }
-            assert.Equal(constraint_implemented, constraint_name, "Org policy is created and exists")
+            constraintName := "constraints/" + orgPolicyv2T.GetStringOutput("constraint")
+            policyRoot := "--" + orgPolicyv2T.GetStringOutput("policy_root")
+            policyRootId := orgPolicyv2T.GetStringOutput("policy_root_id")
+
+            gcOps := gcloud.WithCommonArgs([]string{policyRoot, policyRootId, "--format", "json"})
+            op := gcloud.Run(t, "beta resource-manager org-policies list", gcOps).Array()
+
+            constraintImplemented := utils.GetFirstMatchResult(t, op, "constraint", constraintName).Get("constraint").String()
+            //t.Log(constraintImplemented)
+            assert.Equal(constraintImplemented, constraintName, "Org policy is created and exists")
         })
     orgPolicyv2T.Test()
 }
-

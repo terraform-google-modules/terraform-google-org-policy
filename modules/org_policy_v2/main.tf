@@ -18,33 +18,26 @@
   Locals configuration for module logic
  *****************************************/
 locals {
-  org_policies = {
-    for k, v in var.org_policies : k => merge(v, { rules = [for k1, v1 in v.rules :
-      merge(v1, { allow_list_length = length(v1.allow), deny_list_length = length(v1.deny), enforcement = length(v1.allow) > 0 || length(v1.deny) > 0 ? null : v1.enforcement, values = [{ allow = v1.allow, deny = v1.deny }] })
-    ] })
-  }
+  organization = var.policy_root == "organization"
+  folder       = var.policy_root == "folder"
+  project      = var.policy_root == "project"
+  # Making the policy roots as plural with additional 's' in the end - organizations, folders, projects
+  policy_root = format("%s%s", var.policy_root, "s")
+
+  boolean_policy = var.policy_type == "boolean"
+  list_policy    = var.policy_type == "list"
+
+  # Appends the rules variable with additional details
+  # allow and deny list length
+  # enforcement (true or false)
+  # values with allow and deny list items
+  rules = [
+    for k, v in var.rules :
+    merge(v, {
+      allow_list_length = length(v.allow),
+      deny_list_length  = length(v.deny),
+      enforcement       = length(v.allow) > 0 || length(v.deny) > 0 ? null : v.enforcement,
+      values            = [{ allow = v.allow, deny = v.deny }]
+    })
+  ]
 }
-
-/******************************************
-  Invoke constraints module
- *****************************************/
-module "gcp_org_policy" {
-  source = "./modules/constraints"
-
-  for_each = local.org_policies
-
-  constraint  = "constraints/${each.value.constraint}"
-  policy_type = each.value.type
-
-  organization_id = each.value.organization_id
-  folder_id       = each.value.folder_id
-  project_id      = each.value.project_id
-
-  policy_for = each.value.organization_id != null ? "organization" : each.value.folder_id != null ? "folder" : "project"
-
-  rules = each.value.rules
-
-  exclude_folders  = each.value.exclude_folders
-  exclude_projects = each.value.exclude_projects
-}
-
