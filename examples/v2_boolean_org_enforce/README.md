@@ -9,7 +9,7 @@ This boolean constraint, when set to true, enables OS Login on all newly created
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| organization\_id | The organization id for applying the policy | `string` | `null` | no |
+| org\_id | The organization id for applying the policy | `string` | `null` | no |
 
 ## Outputs
 
