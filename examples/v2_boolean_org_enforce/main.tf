@@ -21,7 +21,7 @@ module "gcp_org_policy_v2" {
   source = "../../modules/org_policy_v2"
 
   policy_root    = "organization"
-  policy_root_id = var.organization_id
+  policy_root_id = var.org_id
   rules = [{
     enforcement = true
     allow       = []
