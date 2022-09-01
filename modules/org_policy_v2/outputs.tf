@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 Google LLC
+ * Copyright 2022 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,20 +14,17 @@
  * limitations under the License.
  */
 
-module "project" {
-  source  = "terraform-google-modules/project-factory/google"
-  version = "~> 10.0"
+output "policy_root" {
+  description = "Policy Root in the hierarchy for the given policy"
+  value       = var.policy_root
+}
 
-  name              = "ci-org-policy"
-  random_project_id = true
-  org_id            = var.org_id
-  folder_id         = var.folder_id
-  billing_account   = var.billing_account
+output "policy_root_id" {
+  description = "Project Root ID at which the policy is applied"
+  value       = var.policy_root_id
+}
 
-  activate_apis = [
-    "cloudresourcemanager.googleapis.com",
-    "storage-api.googleapis.com",
-    "serviceusage.googleapis.com",
-    "orgpolicy.googleapis.com",
-  ]
+output "constraint" {
+  description = "Policy Constraint Identifier without constraints/ prefix"
+  value       = var.constraint
 }

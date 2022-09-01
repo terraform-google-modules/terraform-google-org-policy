@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 Google LLC
+ * Copyright 2022 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,20 +14,20 @@
  * limitations under the License.
  */
 
-module "project" {
-  source  = "terraform-google-modules/project-factory/google"
-  version = "~> 10.0"
+/********************************************************
+  Apply the sample constraint using the org_policy_v2 module
+ *******************************************************/
+module "gcp_org_policy_v2" {
+  source = "../../modules/org_policy_v2"
 
-  name              = "ci-org-policy"
-  random_project_id = true
-  org_id            = var.org_id
-  folder_id         = var.folder_id
-  billing_account   = var.billing_account
-
-  activate_apis = [
-    "cloudresourcemanager.googleapis.com",
-    "storage-api.googleapis.com",
-    "serviceusage.googleapis.com",
-    "orgpolicy.googleapis.com",
-  ]
+  policy_root    = "organization"
+  policy_root_id = var.org_id
+  rules = [{
+    enforcement = true
+    allow       = []
+    deny        = []
+    conditions  = []
+  }]
+  constraint  = "compute.requireOsLogin"
+  policy_type = "boolean"
 }

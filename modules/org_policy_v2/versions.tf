@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 Google LLC
+ * Copyright 2022 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,20 +14,18 @@
  * limitations under the License.
  */
 
-module "project" {
-  source  = "terraform-google-modules/project-factory/google"
-  version = "~> 10.0"
+terraform {
+  required_version = ">= 0.13"
+  required_providers {
 
-  name              = "ci-org-policy"
-  random_project_id = true
-  org_id            = var.org_id
-  folder_id         = var.folder_id
-  billing_account   = var.billing_account
+    google = {
+      source  = "hashicorp/google"
+      version = ">= 3.53, < 5.0"
+    }
+  }
 
-  activate_apis = [
-    "cloudresourcemanager.googleapis.com",
-    "storage-api.googleapis.com",
-    "serviceusage.googleapis.com",
-    "orgpolicy.googleapis.com",
-  ]
+  provider_meta "google" {
+    module_name = "blueprints/terraform/terraform-google-org-policy:org_policy_v2/v5.1.0"
+  }
+
 }

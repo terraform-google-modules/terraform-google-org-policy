@@ -14,20 +14,18 @@
  * limitations under the License.
  */
 
-module "project" {
-  source  = "terraform-google-modules/project-factory/google"
-  version = "~> 10.0"
-
-  name              = "ci-org-policy"
-  random_project_id = true
-  org_id            = var.org_id
-  folder_id         = var.folder_id
-  billing_account   = var.billing_account
-
-  activate_apis = [
-    "cloudresourcemanager.googleapis.com",
-    "storage-api.googleapis.com",
-    "serviceusage.googleapis.com",
-    "orgpolicy.googleapis.com",
-  ]
+output "policy_root" {
+  description = "Policy Root in the hierarchy for the given policy"
+  value       = module.gcp_org_policy_v2.policy_root
 }
+
+output "policy_root_id" {
+  description = "Project Root ID at which the policy is applied"
+  value       = module.gcp_org_policy_v2.policy_root_id
+}
+
+output "constraint" {
+  description = "Policy Constraint Identifier"
+  value       = module.gcp_org_policy_v2.constraint
+}
+
