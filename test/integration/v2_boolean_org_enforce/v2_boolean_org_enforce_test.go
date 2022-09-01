@@ -37,7 +37,6 @@ func TestVersion2BooleanOrgEnforce(t *testing.T) {
             op := gcloud.Run(t, "beta resource-manager org-policies list", gcOps).Array()
 
             constraintImplemented := utils.GetFirstMatchResult(t, op, "constraint", constraintName).Get("constraint").String()
-            //t.Log(constraintImplemented)
             assert.Equal(constraintImplemented, constraintName, "Org policy is created and exists")
         })
     orgPolicyv2T.Test()
