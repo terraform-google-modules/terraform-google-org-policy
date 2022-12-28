@@ -128,8 +128,9 @@ resource "google_org_policy_policy" "project_policy" {
 resource "google_org_policy_policy" "folder_policy_list_exclude_folders" {
   for_each = (local.list_policy && !local.project) ? var.exclude_folders : []
 
-  name   = "${local.policy_root}/${var.policy_root_id}/policies/${var.constraint}"
-  parent = "${local.policy_root}/${var.policy_root_id}"
+  name   = "folders/${each.value}/policies/${var.constraint}"
+  parent = "folders/${each.value}"
+
 
   spec {
     reset = true
@@ -142,8 +143,8 @@ resource "google_org_policy_policy" "folder_policy_list_exclude_folders" {
 resource "google_org_policy_policy" "project_policy_list_exclude_projects" {
   for_each = (local.list_policy && !local.project) ? var.exclude_projects : []
 
-  name   = "${local.policy_root}/${var.policy_root_id}/policies/${var.constraint}"
-  parent = "${local.policy_root}/${var.policy_root_id}"
+  name   = "projects/${each.value}/policies/${var.constraint}"
+  parent = "projects/${each.value}"
 
   spec {
     reset = true
