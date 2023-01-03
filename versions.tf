@@ -22,10 +22,14 @@ terraform {
       source  = "hashicorp/google"
       version = ">= 3.53, < 5.0"
     }
+    null = {
+      source  = "hashicorp/null"
+      version = "~> 3.2"
+    }
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-org-policy/v5.2.0"
+    module_name = "blueprints/terraform/terraform-google-org-policy/v5.2.1"
   }
 
 }
