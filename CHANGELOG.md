@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.2.2](https://github.com/terraform-google-modules/terraform-google-org-policy/compare/v5.2.1...v5.2.2) (2023-01-04)
+
+
+### Bug Fixes
+
+* relax null provider constraint ([#79](https://github.com/terraform-google-modules/terraform-google-org-policy/issues/79)) ([0ba6c56](https://github.com/terraform-google-modules/terraform-google-org-policy/commit/0ba6c56303ec8d92762e41662a609e52a038af30))
+* specify rules variable type in org_policy_v2 ([#73](https://github.com/terraform-google-modules/terraform-google-org-policy/issues/73)) ([8ef6e1f](https://github.com/terraform-google-modules/terraform-google-org-policy/commit/8ef6e1fb6a4028cb9b69c07fd0f92cb5bfda2cc0))
+
 ## [5.2.1](https://github.com/terraform-google-modules/terraform-google-org-policy/compare/v5.2.0...v5.2.1) (2022-12-29)
 
 
