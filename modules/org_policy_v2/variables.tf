@@ -50,6 +50,20 @@ variable "policy_type" {
 }
 
 variable "rules" {
-  description = "List of rules per policy. Upto 10."
-  type        = list(any)
+  description = "List of rules per policy. Up to 10."
+  type = list(object(
+    {
+      enforcement = bool
+      allow       = list(string)
+      deny        = list(string)
+      conditions = list(object(
+        {
+          description = string
+          expression  = string
+          title       = string
+          location    = string
+        }
+      ))
+    }
+  ))
 }
