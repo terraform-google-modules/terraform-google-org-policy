@@ -17,6 +17,6 @@ This Terraform module allows to set a `Domain Restricted Sharing` [Organization 
 
 ## Outputs
 
-No output.
+No outputs.
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

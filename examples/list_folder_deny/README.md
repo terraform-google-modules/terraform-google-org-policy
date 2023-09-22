@@ -10,6 +10,6 @@ This example shows how a list constraint can be applied to disallow certain serv
 
 ## Outputs
 
-No output.
+No outputs.
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

@@ -16,6 +16,6 @@ This Terraform module allows to set a `Skip Default Network Creation` [Organizat
 
 ## Outputs
 
-No output.
+No outputs.
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

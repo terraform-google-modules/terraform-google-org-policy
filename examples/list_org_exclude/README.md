@@ -14,6 +14,6 @@ Specifically, it sets a trusted image policy so only images from a trusted image
 
 ## Outputs
 
-No output.
+No outputs.
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

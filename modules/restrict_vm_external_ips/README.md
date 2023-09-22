@@ -17,6 +17,6 @@ This Terraform module allows to set an `Allowed External IPs for VM instances` [
 
 ## Outputs
 
-No output.
+No outputs.
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

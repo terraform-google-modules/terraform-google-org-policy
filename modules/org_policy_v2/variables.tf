@@ -49,6 +49,12 @@ variable "policy_type" {
   default     = "list"
 }
 
+variable "inherit_from_parent" {
+  description = "Determines the inheritance behavior for this policy (only supported on list constraints)"
+  type        = bool
+  default     = "false"
+}
+
 variable "rules" {
   description = "List of rules per policy. Up to 10."
   type = list(object(
