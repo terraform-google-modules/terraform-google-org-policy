@@ -24,6 +24,7 @@ resource "google_org_policy_policy" "organization_policy" {
   parent = "${local.policy_root}/${var.policy_root_id}"
 
   spec {
+    inherit_from_parent = var.inherit_from_parent
     dynamic "rules" {
       for_each = local.rules
       content {
@@ -60,6 +61,7 @@ resource "google_org_policy_policy" "folder_policy" {
   parent = "${local.policy_root}/${var.policy_root_id}"
 
   spec {
+    inherit_from_parent = var.inherit_from_parent
     dynamic "rules" {
       for_each = local.rules
       content {
@@ -96,6 +98,7 @@ resource "google_org_policy_policy" "project_policy" {
   parent = "${local.policy_root}/${var.policy_root_id}"
 
   spec {
+    inherit_from_parent = var.inherit_from_parent
     dynamic "rules" {
       for_each = local.rules
       content {

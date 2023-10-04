@@ -95,6 +95,7 @@ To control module's behavior, change variables' values regarding the following:
 | constraint | The constraint to be applied | `string` | n/a | yes |
 | exclude\_folders | Set of folders to exclude from the policy | `set(string)` | `[]` | no |
 | exclude\_projects | Set of projects to exclude from the policy | `set(string)` | `[]` | no |
+| inherit\_from\_parent | Determines the inheritance behavior for this policy (only supported on list constraints) | `bool` | `"false"` | no |
 | policy\_root | Resource hierarchy node to apply the policy to: can be one of `organization`, `folder`, or `project`. | `string` | `"organization"` | no |
 | policy\_root\_id | The policy root id, either of organization\_id, folder\_id or project\_id | `string` | `null` | no |
 | policy\_type | The constraint type to work with (either 'boolean' or 'list') | `string` | `"list"` | no |

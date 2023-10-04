@@ -68,7 +68,7 @@ To control module's behavior, change variables' values regarding the following:
 
 ## Outputs
 
-No output.
+No outputs.
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 

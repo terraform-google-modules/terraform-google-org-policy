@@ -17,6 +17,6 @@ This example shows how to set a basic list of [organization policies](https://cl
 
 ## Outputs
 
-No output.
+No outputs.
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

@@ -16,6 +16,6 @@ This Terraform module allows to set a `Uniform Bucket-level Access` [Organizatio
 
 ## Outputs
 
-No output.
+No outputs.
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

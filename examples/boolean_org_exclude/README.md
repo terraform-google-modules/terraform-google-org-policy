@@ -25,6 +25,6 @@ module "folder-disable-serial-port-access-enforce-with-excludes" {
 
 ## Outputs
 
-No output.
+No outputs.
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
