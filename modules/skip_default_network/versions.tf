@@ -25,7 +25,7 @@ terraform {
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-org-policy:skip_default_network/v5.2.2"
+    module_name = "blueprints/terraform/terraform-google-org-policy:skip_default_network/v5.3.0"
   }
 
 }

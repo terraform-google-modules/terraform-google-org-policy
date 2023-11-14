@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.3.0](https://github.com/terraform-google-modules/terraform-google-org-policy/compare/v5.2.2...v5.3.0) (2023-11-14)
+
+
+### Features
+
+* support inheritance for list constraints on v2 module ([#104](https://github.com/terraform-google-modules/terraform-google-org-policy/issues/104)) ([c4c4663](https://github.com/terraform-google-modules/terraform-google-org-policy/commit/c4c4663aa56bacd72b19354747a117848f0ec955))
+
+
+### Bug Fixes
+
+* upgraded versions.tf to include minor bumps from tpg v5 ([#106](https://github.com/terraform-google-modules/terraform-google-org-policy/issues/106)) ([d482c74](https://github.com/terraform-google-modules/terraform-google-org-policy/commit/d482c743950df6b1d23285fdee4027f782c8e818))
+
 ## [5.2.2](https://github.com/terraform-google-modules/terraform-google-org-policy/compare/v5.2.1...v5.2.2) (2023-01-04)
 
 
