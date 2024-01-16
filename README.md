@@ -17,6 +17,7 @@ module "org-policy" {
   source            = "terraform-google-modules/org-policy/google"
   version           = "~> 3.0.2"
 
+  policy_for        = "organization"
   constraint        = "constraints/serviceuser.services"
   policy_type       = "list"
   organization_id   = "123456789"
@@ -31,7 +32,7 @@ To control module's behavior, change variables' values regarding the following:
 
 - `constraint`: set this variable with the [constraint value](https://cloud.google.com/resource-manager/docs/organization-policy/org-policy-constraints#available_constraints) in the form `constraints/{constraint identifier}`. For example, `constraints/serviceuser.services`
 - `policy_type`: Specify either `boolean` for boolean policies or `list` for list policies. (default `list`)
-- Policy Root: set one of the following values to determine where the policy is applied:
+- `policy_for`: set one of the following values to determine where the policy is applied:
   - `organization_id`
   - `project_id`
   - `folder_id`
