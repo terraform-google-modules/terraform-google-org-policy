@@ -9,8 +9,10 @@ Organization Policies are of two types `boolean` and `list`.
 ## Usage
 Example usage is included in the [examples](./examples/org_policy_v2) folder, but simple usage is as follows:
 
+- Bool organization policy
+
 ```hcl
-module "gcp_org_policy_v2" {
+module "gcp_org_policy_v2_bool" {
   source           = "terraform-google-modules/org-policy/google//modules/org_policy_v2"
   version          = "~> 5.2.0"
 
@@ -25,15 +27,10 @@ module "gcp_org_policy_v2" {
     # Rule 1
     {
       enforcement = true
-      allow       = []
-      deny        = []
-      conditions  = []
     },
     # Rule 2
     {
       enforcement = true
-      allow       = []
-      deny        = []
       conditions  = [{
         description = "description of the condition"
         expression  = "resource.matchTagId('tagKeys/123456789', 'tagValues/123456789') && resource.matchTag('123456789/1234', 'abcd')"
@@ -41,6 +38,28 @@ module "gcp_org_policy_v2" {
         title       = "Title of the condition"
       }]
     },
+  ]
+}
+```
+
+- List organization policy
+
+```hcl
+module "gcp_org_policy_v2_list" {
+  source  = "terraform-google-modules/org-policy/google//modules/org_policy_v2"
+  version = "~> 5.0"
+
+  policy_root    = "organization"
+  policy_root_id = var.org_id
+  constraint     = "gcp.resourceLocations"
+  policy_type    = "list"
+
+  rules = [
+    # Rule 1
+    {
+      enforcement = true
+      allow       = ["in:us-locations"]
+    }
   ]
 }
 ```
@@ -99,7 +118,7 @@ To control module's behavior, change variables' values regarding the following:
 | policy\_root | Resource hierarchy node to apply the policy to: can be one of `organization`, `folder`, or `project`. | `string` | `"organization"` | no |
 | policy\_root\_id | The policy root id, either of organization\_id, folder\_id or project\_id | `string` | `null` | no |
 | policy\_type | The constraint type to work with (either 'boolean' or 'list') | `string` | `"list"` | no |
-| rules | List of rules per policy. Up to 10. | <pre>list(object(<br>    {<br>      enforcement = bool<br>      allow       = list(string)<br>      deny        = list(string)<br>      conditions = list(object(<br>        {<br>          description = string<br>          expression  = string<br>          title       = string<br>          location    = string<br>        }<br>      ))<br>    }<br>  ))</pre> | n/a | yes |
+| rules | List of rules per policy. Up to 10. | <pre>list(object(<br>    {<br>      enforcement = bool<br>      allow       = optional(list(string))<br>      deny        = optional(list(string))<br>      conditions = optional(list(object(<br>        {<br>          description = string<br>          expression  = string<br>          title       = string<br>          location    = string<br>        }<br>      )))<br>    }<br>  ))</pre> | n/a | yes |
 
 ## Outputs
 
@@ -114,7 +133,7 @@ To control module's behavior, change variables' values regarding the following:
 ---
 
 ## Compatibility
-This module is meant for use with Terraform 0.13+ and tested using Terraform 1.0+. If you find incompatibilities using Terraform >=0.13, please open an issue.
+This module is meant for use with Terraform 1.3+ and tested using Terraform 1.0+. If you find incompatibilities using Terraform >=1.3, please open an issue.
  If you haven't
 [upgraded](https://www.terraform.io/upgrade-guides/0-13.html) and need a Terraform
 0.12.x-compatible version of this module, the last released version
@@ -122,7 +141,7 @@ intended for Terraform 0.12.x is [v4.0.0](https://registry.terraform.io/modules/
 
 ## Requirements
 ### Terraform plugins
-- [Terraform](https://www.terraform.io/downloads.html) >= 0.13.0
+- [Terraform](https://www.terraform.io/downloads.html) >= 1.3.0
 - [terraform-provider-google](https://github.com/terraform-providers/terraform-provider-google) >= v2.5.0
 
 ### Permissions

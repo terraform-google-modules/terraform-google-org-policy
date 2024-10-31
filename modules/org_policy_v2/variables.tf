@@ -64,16 +64,16 @@ variable "rules" {
   type = list(object(
     {
       enforcement = bool
-      allow       = list(string)
-      deny        = list(string)
-      conditions = list(object(
+      allow       = optional(list(string))
+      deny        = optional(list(string))
+      conditions = optional(list(object(
         {
           description = string
           expression  = string
           title       = string
           location    = string
         }
-      ))
+      )))
     }
   ))
 }
