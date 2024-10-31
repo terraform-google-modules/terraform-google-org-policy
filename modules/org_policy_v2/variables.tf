@@ -18,6 +18,10 @@ variable "policy_root" {
   description = "Resource hierarchy node to apply the policy to: can be one of `organization`, `folder`, or `project`."
   type        = string
   default     = "organization"
+  validation {
+    condition     = contains(["organization", "folder", "project"], var.policy_root)
+    error_message = "policy_root should be one of organization, folder, or project"
+  }
 }
 
 variable "policy_root_id" {
