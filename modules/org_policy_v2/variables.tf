@@ -64,8 +64,8 @@ variable "rules" {
   type = list(object(
     {
       enforcement = bool
-      allow       = optional(list(string))
-      deny        = optional(list(string))
+      allow       = optional(list(string), [])
+      deny        = optional(list(string), [])
       conditions = optional(list(object(
         {
           description = string
@@ -73,7 +73,7 @@ variable "rules" {
           title       = string
           location    = string
         }
-      )))
+      )), [])
     }
   ))
 }
