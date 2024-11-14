@@ -25,9 +25,6 @@ module "gcp_org_policy_v2" {
   policy_root_id = var.org_id
   rules = [{
     enforcement = true
-    allow       = []
-    deny        = []
-    conditions  = []
   }]
   constraint  = "compute.requireOsLogin"
   policy_type = "boolean"
