@@ -23,7 +23,7 @@ spec:
   source:
     repo: https://github.com/terraform-google-modules/terraform-google-org-policy.git
     sourceType: git
-  version: 5.4.0
+  version: 5.5.0
   actuationTool:
     type: Terraform
     version: '>= 0.13'
