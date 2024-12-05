@@ -18,8 +18,8 @@ module "gcp_org_policy_v2_bool" {
 
   policy_root      = "organization"    # either of organization, folder or project
   policy_root_id   = "123456789"       # either of org id, folder id or project id
-  constraint       = "constraint name"    # constraint identifier without constriants/ prefix. Example "compute.requireOsLogin"
-  policy_type      = "boolean"            # either of list or boolean
+  constraint       = "constraint name" # constraint identifier without constraints/ prefix. Example "compute.requireOsLogin"
+  policy_type      = "boolean"         # either of list or boolean
   exclude_folders  = []
   exclude_projects = []
 
