@@ -29,7 +29,7 @@ terraform {
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-org-policy/v5.4.0"
+    module_name = "blueprints/terraform/terraform-google-org-policy/v5.5.0"
   }
 
 }

@@ -47,7 +47,7 @@ module "gcp_org_policy_v2_bool" {
 ```hcl
 module "gcp_org_policy_v2_list" {
   source  = "terraform-google-modules/org-policy/google//modules/org_policy_v2"
-  version = "~> 5.0"
+  version = "~> 5.5"
 
   policy_root    = "organization"
   policy_root_id = var.org_id
