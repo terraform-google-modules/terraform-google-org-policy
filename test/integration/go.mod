@@ -2,7 +2,7 @@ module github.com/prabhu34/terraform-google-org-policy/test/integration
 
 go 1.22.7
 
-toolchain go1.22.9
+toolchain go1.23.4
 
 require (
 	github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test v0.17.0
