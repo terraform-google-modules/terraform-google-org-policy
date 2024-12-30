@@ -1,4 +1,4 @@
-# Copyright 2022 Google LLC
+# Copyright 2022-2024 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,109 +19,108 @@ metadata:
   annotations:
     config.kubernetes.io/local-config: "true"
 spec:
-  title: Google Cloud Organization Policy Terraform Module
-  source:
-    repo: https://github.com/terraform-google-modules/terraform-google-org-policy.git
-    sourceType: git
-  version: 5.4.0
-  actuationTool:
-    type: Terraform
-    version: '>= 0.13'
-  subBlueprints:
-  - name: bucket_policy_only
-    location: modules/bucket_policy_only
-  - name: domain_restricted_sharing
-    location: modules/domain_restricted_sharing
-  - name: org_policy_v2
-    location: modules/org_policy_v2
-  - name: restrict_vm_external_ips
-    location: modules/restrict_vm_external_ips
-  - name: skip_default_network
-    location: modules/skip_default_network
-  examples:
-  - name: basic_org_policies
-    location: examples/basic_org_policies
-  - name: boolean_org_exclude
-    location: examples/boolean_org_exclude
-  - name: boolean_project_allow
-    location: examples/boolean_project_allow
-  - name: list_folder_deny
-    location: examples/list_folder_deny
-  - name: list_org_exclude
-    location: examples/list_org_exclude
-  - name: v2_boolean_org_enforce
-    location: examples/v2_boolean_org_enforce
-  variables:
-  - name: allow
-    description: (Only for list constraints) List of values which should be allowed
-    type: list(string)
-    default:
-    - ""
-    required: false
-  - name: allow_list_length
-    description: The number of elements in the allow list
-    type: number
-    default: 0
-    required: false
-  - name: constraint
-    description: The constraint to be applied
-    type: string
-    required: true
-  - name: deny
-    description: (Only for list constraints) List of values which should be denied
-    type: list(string)
-    default:
-    - ""
-    required: false
-  - name: deny_list_length
-    description: The number of elements in the deny list
-    type: number
-    default: 0
-    required: false
-  - name: enforce
-    description: If boolean constraint, whether the policy is enforced at the root; if list constraint, whether to deny all (true) or allow all
-    type: bool
-    required: false
-  - name: exclude_folders
-    description: Set of folders to exclude from the policy
-    type: set(string)
-    default: []
-    required: false
-  - name: exclude_projects
-    description: Set of projects to exclude from the policy
-    type: set(string)
-    default: []
-    required: false
-  - name: folder_id
-    description: The folder id for putting the policy
-    type: string
-    required: false
-  - name: organization_id
-    description: The organization id for putting the policy
-    type: string
-    required: false
-  - name: policy_for
-    description: 'Resource hierarchy node to apply the policy to: can be one of `organization`, `folder`, or `project`.'
-    type: string
-    required: true
-  - name: policy_type
-    description: The constraint type to work with (either 'boolean' or 'list')
-    type: string
-    default: list
-    required: false
-  - name: project_id
-    description: The project id for putting the policy
-    type: string
-    required: false
-  roles:
-  - level: Project
+  info:
+    title: Google Cloud Organization Policy Terraform Module
+    source:
+      repo: https://github.com/terraform-google-modules/terraform-google-org-policy.git
+      sourceType: git
+    version: 5.4.0
+    actuationTool:
+      flavor: Terraform
+      version: ">= 1.3"
+    description: {}
+  content:
+    subBlueprints:
+      - name: bucket_policy_only
+        location: modules/bucket_policy_only
+      - name: domain_restricted_sharing
+        location: modules/domain_restricted_sharing
+      - name: org_policy_v2
+        location: modules/org_policy_v2
+      - name: restrict_vm_external_ips
+        location: modules/restrict_vm_external_ips
+      - name: skip_default_network
+        location: modules/skip_default_network
+    examples:
+      - name: basic_org_policies
+        location: examples/basic_org_policies
+      - name: boolean_org_exclude
+        location: examples/boolean_org_exclude
+      - name: boolean_project_allow
+        location: examples/boolean_project_allow
+      - name: list_folder_deny
+        location: examples/list_folder_deny
+      - name: list_org_exclude
+        location: examples/list_org_exclude
+      - name: v2_boolean_org_enforce
+        location: examples/v2_boolean_org_enforce
+  interfaces:
+    variables:
+      - name: policy_for
+        description: "Resource hierarchy node to apply the policy to: can be one of `organization`, `folder`, or `project`."
+        varType: string
+        required: true
+      - name: organization_id
+        description: The organization id for putting the policy
+        varType: string
+      - name: folder_id
+        description: The folder id for putting the policy
+        varType: string
+      - name: project_id
+        description: The project id for putting the policy
+        varType: string
+      - name: enforce
+        description: If boolean constraint, whether the policy is enforced at the root; if list constraint, whether to deny all (true) or allow all
+        varType: bool
+      - name: allow
+        description: (Only for list constraints) List of values which should be allowed
+        varType: list(string)
+        defaultValue:
+          - ""
+      - name: deny
+        description: (Only for list constraints) List of values which should be denied
+        varType: list(string)
+        defaultValue:
+          - ""
+      - name: exclude_folders
+        description: Set of folders to exclude from the policy
+        varType: set(string)
+        defaultValue: []
+      - name: exclude_projects
+        description: Set of projects to exclude from the policy
+        varType: set(string)
+        defaultValue: []
+      - name: constraint
+        description: The constraint to be applied
+        varType: string
+        required: true
+      - name: policy_type
+        description: The constraint type to work with (either 'boolean' or 'list')
+        varType: string
+        defaultValue: list
+      - name: allow_list_length
+        description: The number of elements in the allow list
+        varType: number
+        defaultValue: 0
+      - name: deny_list_length
+        description: The number of elements in the deny list
+        varType: number
+        defaultValue: 0
+  requirements:
     roles:
-    - roles/orgpolicy.policyAdmin
-  - level: Project
-    roles:
-    - roles/owner
-  services:
-  - cloudresourcemanager.googleapis.com
-  - storage-api.googleapis.com
-  - serviceusage.googleapis.com
-  - orgpolicy.googleapis.com
+      - level: Project
+        roles:
+          - roles/orgpolicy.policyAdmin
+      - level: Project
+        roles:
+          - roles/owner
+    services:
+      - cloudresourcemanager.googleapis.com
+      - storage-api.googleapis.com
+      - serviceusage.googleapis.com
+      - orgpolicy.googleapis.com
+    providerVersions:
+      - source: hashicorp/google
+        version: ">= 3.53, < 7"
+      - source: hashicorp/null
+        version: ">= 2.1"
