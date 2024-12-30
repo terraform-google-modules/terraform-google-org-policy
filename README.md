@@ -3,7 +3,7 @@
 This Terraform module makes it easier to manage [organization policies](https://cloud.google.com/resource-manager/docs/organization-policy/overview) for your Google Cloud environment, particularly when you want to have exclusion rules. This module will allow you to set a top-level org policy and then disable it on individual projects or folders easily.
 
 ## Compatibility
-This module is meant for use with Terraform 0.13+ and tested using Terraform 1.0+. If you find incompatibilities using Terraform >=0.13, please open an issue.
+This module is meant for use with Terraform 1.3+ and tested using Terraform 1.10+. If you find incompatibilities using Terraform >=1.3, please open an issue.
  If you haven't
 [upgraded](https://www.terraform.io/upgrade-guides/0-13.html) and need a Terraform
 0.12.x-compatible version of this module, the last released version
@@ -79,20 +79,20 @@ No outputs.
 
 ## Requirements
 ### Terraform plugins
-- [Terraform](https://www.terraform.io/downloads.html) >= 0.13.0
-- [terraform-provider-google](https://github.com/terraform-providers/terraform-provider-google) >= v2.5.0
+- [Terraform](https://www.terraform.io/downloads.html) >= 1.3
+- [terraform-provider-google](https://github.com/terraform-providers/terraform-provider-google) >= v3.53
 
 ### Permissions
 In order to execute this module, the Service Account you run as must have the **Organization Policy Administrator** (`roles/orgpolicy.PolicyAdmin`) role.
 
 ## Install
 ### Terraform
-Be sure you have the correct Terraform version (0.12.x), you can choose the binary here:
+Be sure you have the correct Terraform version (>= 1.3.x), you can choose the binary here:
 - https://releases.hashicorp.com/terraform/
 
 ### Terraform plugins
 
-- [terraform-provider-google](https://github.com/terraform-providers/terraform-provider-google) >= v2.5.0
+- [terraform-provider-google](https://github.com/terraform-providers/terraform-provider-google) >= v3.53
 
 
 ### Fast install (optional)
