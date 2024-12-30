@@ -102,7 +102,6 @@ To control module's behavior, change variables' values regarding the following:
 - List policies (with `type: "list"`) can set `allow` and `deny` with a list of resources to allow or deny. For `enforcement` you can set it as follows:
   - set `enforcement` = false for `allow all`
   - set `enforcement` = true for `deny all`
-- Each policy can have [maximum of 10 rules](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/org_policy_policy#rules)
 
 ---
 
