@@ -53,7 +53,7 @@ steps:
  # Boolean Org Enforce Example Test
 - id: create all
   waitFor:
-    - sleep
+    - create
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/bin/bash', '-c', 'cft test run TestVersion2BooleanOrgEnforce --test-dir test/integration --stage init --verbose']
 - id: converge org-policy-v2
@@ -76,4 +76,4 @@ tags:
 - 'integration'
 substitutions:
   _DOCKER_IMAGE_DEVELOPER_TOOLS: 'cft/developer-tools'
-  _DOCKER_TAG_VERSION_DEVELOPER_TOOLS: '1.22'
+  _DOCKER_TAG_VERSION_DEVELOPER_TOOLS: '1.23'
