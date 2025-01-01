@@ -1,4 +1,4 @@
-# Copyright 2022 Google LLC
+# Copyright 2022-2024 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,76 +19,99 @@ metadata:
   annotations:
     config.kubernetes.io/local-config: "true"
 spec:
-  title: Google Cloud Organization Policy v2 Terraform Module
-  source:
-    repo: https://github.com/terraform-google-modules/terraform-google-org-policy.git
-    sourceType: git
-  version: 5.4.0
-  actuationTool:
-    type: Terraform
-    version: '>= 0.13'
-  examples:
-  - name: basic_org_policies
-    location: examples/basic_org_policies
-  - name: boolean_org_exclude
-    location: examples/boolean_org_exclude
-  - name: boolean_project_allow
-    location: examples/boolean_project_allow
-  - name: list_folder_deny
-    location: examples/list_folder_deny
-  - name: list_org_exclude
-    location: examples/list_org_exclude
-  - name: v2_boolean_org_enforce
-    location: examples/v2_boolean_org_enforce
-  variables:
-  - name: constraint
-    description: The constraint to be applied
-    type: string
-    required: true
-  - name: exclude_folders
-    description: Set of folders to exclude from the policy
-    type: set(string)
-    default: []
-    required: false
-  - name: exclude_projects
-    description: Set of projects to exclude from the policy
-    type: set(string)
-    default: []
-    required: false
-  - name: policy_root
-    description: 'Resource hierarchy node to apply the policy to: can be one of `organization`, `folder`, or `project`.'
-    type: string
-    default: organization
-    required: false
-  - name: policy_root_id
-    description: The policy root id, either of organization_id, folder_id or project_id
-    type: string
-    required: false
-  - name: policy_type
-    description: The constraint type to work with (either 'boolean' or 'list')
-    type: string
-    default: list
-    required: false
-  - name: rules
-    description: List of rules per policy. Upto 10.
-    type: list(any)
-    required: true
-  outputs:
-  - name: constraint
-    description: Policy Constraint Identifier without constraints/ prefix
-  - name: policy_root
-    description: Policy Root in the hierarchy for the given policy
-  - name: policy_root_id
-    description: Project Root ID at which the policy is applied
-  roles:
-  - level: Project
+  info:
+    title: Google Cloud Organization Policy v2 Terraform Module
+    source:
+      repo: https://github.com/terraform-google-modules/terraform-google-org-policy.git
+      sourceType: git
+      dir: /modules/org_policy_v2
+    version: 5.4.0
+    actuationTool:
+      flavor: Terraform
+      version: ">= 1.3"
+    description: {}
+  content:
+    examples:
+      - name: basic_org_policies
+        location: examples/basic_org_policies
+      - name: boolean_org_exclude
+        location: examples/boolean_org_exclude
+      - name: boolean_project_allow
+        location: examples/boolean_project_allow
+      - name: list_folder_deny
+        location: examples/list_folder_deny
+      - name: list_org_exclude
+        location: examples/list_org_exclude
+      - name: v2_boolean_org_enforce
+        location: examples/v2_boolean_org_enforce
+  interfaces:
+    variables:
+      - name: policy_root
+        description: "Resource hierarchy node to apply the policy to: can be one of `organization`, `folder`, or `project`."
+        varType: string
+        defaultValue: organization
+      - name: policy_root_id
+        description: The policy root id, either of organization_id, folder_id or project_id
+        varType: string
+      - name: exclude_folders
+        description: Set of folders to exclude from the policy
+        varType: set(string)
+        defaultValue: []
+      - name: exclude_projects
+        description: Set of projects to exclude from the policy
+        varType: set(string)
+        defaultValue: []
+      - name: constraint
+        description: The constraint to be applied
+        varType: string
+        required: true
+      - name: policy_type
+        description: The constraint type to work with (either 'boolean' or 'list')
+        varType: string
+        defaultValue: list
+      - name: inherit_from_parent
+        description: Determines the inheritance behavior for this policy (only supported on list constraints)
+        varType: bool
+        defaultValue: "false"
+      - name: rules
+        description: List of rules per policy.
+        varType: |-
+          list(object(
+              {
+                enforcement = bool
+                allow       = optional(list(string), [])
+                deny        = optional(list(string), [])
+                conditions = optional(list(object(
+                  {
+                    description = string
+                    expression  = string
+                    title       = string
+                    location    = string
+                  }
+                )), [])
+              }
+            ))
+        required: true
+    outputs:
+      - name: constraint
+        description: Policy Constraint Identifier without constraints/ prefix
+      - name: policy_root
+        description: Policy Root in the hierarchy for the given policy
+      - name: policy_root_id
+        description: Project Root ID at which the policy is applied
+  requirements:
     roles:
-    - roles/owner
-  - level: Project
-    roles:
-    - roles/orgpolicy.policyAdmin
-  services:
-  - cloudresourcemanager.googleapis.com
-  - storage-api.googleapis.com
-  - serviceusage.googleapis.com
-  - orgpolicy.googleapis.com
+      - level: Project
+        roles:
+          - roles/orgpolicy.policyAdmin
+      - level: Project
+        roles:
+          - roles/owner
+    services:
+      - cloudresourcemanager.googleapis.com
+      - storage-api.googleapis.com
+      - serviceusage.googleapis.com
+      - orgpolicy.googleapis.com
+    providerVersions:
+      - source: hashicorp/google
+        version: ">= 3.53, < 7"
