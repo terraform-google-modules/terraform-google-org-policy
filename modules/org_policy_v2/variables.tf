@@ -60,7 +60,7 @@ variable "inherit_from_parent" {
 }
 
 variable "rules" {
-  description = "List of rules per policy. Up to 10."
+  description = "List of rules per policy."
   type = list(object(
     {
       enforcement = bool
