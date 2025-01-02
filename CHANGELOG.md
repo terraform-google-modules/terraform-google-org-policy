@@ -4,6 +4,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [6.0.0](https://github.com/terraform-google-modules/terraform-google-org-policy/compare/v5.4.0...v6.0.0) (2025-01-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* **TF>=1.3:** update terraform & metadata ([#156](https://github.com/terraform-google-modules/terraform-google-org-policy/issues/156))
+
+### Features
+
+* add variable validation in org policy v2 ([#149](https://github.com/terraform-google-modules/terraform-google-org-policy/issues/149)) ([4fc5fc5](https://github.com/terraform-google-modules/terraform-google-org-policy/commit/4fc5fc5255344c6e9e3bc77d352c87eaa1618a3e))
+
+
+### Bug Fixes
+
+* **docs:** Input policy rule limit change from documentation ([#157](https://github.com/terraform-google-modules/terraform-google-org-policy/issues/157)) ([f90dd34](https://github.com/terraform-google-modules/terraform-google-org-policy/commit/f90dd342100ef220dba47a57f67021a5f1a14130))
+* **TF>=1.3:** update terraform & metadata ([#156](https://github.com/terraform-google-modules/terraform-google-org-policy/issues/156)) ([4bb7b4a](https://github.com/terraform-google-modules/terraform-google-org-policy/commit/4bb7b4a4bfb21bfe284b575b2688570bf3b5a22c))
+
 ## [5.4.0](https://github.com/terraform-google-modules/terraform-google-org-policy/compare/v5.3.0...v5.4.0) (2024-08-29)
 
 
