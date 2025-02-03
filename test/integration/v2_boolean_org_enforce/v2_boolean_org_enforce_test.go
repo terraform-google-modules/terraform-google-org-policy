@@ -38,6 +38,10 @@ func TestVersion2BooleanOrgEnforce(t *testing.T) {
 
             constraintImplemented := utils.GetFirstMatchResult(t, op, "constraint", constraintName).Get("constraint").String()
             assert.Equal(constraintImplemented, constraintName, "Org policy is created and exists")
+
+	    parameterizedConstraintName := "constraints/" + orgPolicyv2T.GetStringOutput("parameterized_constraint")
+	    parameterizedConstraintImplemented := utils.GetFirstMatchResult(t, op, "constraint", parameterizedConstraintName).Get("constraint").String()
+	    assert.Equal(parameterizedConstraintImplemented, parameterizedConstraintName, "Org policy is created and exists")
         })
     orgPolicyv2T.Test()
 }

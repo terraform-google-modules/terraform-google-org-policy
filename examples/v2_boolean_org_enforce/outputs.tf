@@ -29,3 +29,7 @@ output "constraint" {
   value       = module.gcp_org_policy_v2.constraint
 }
 
+output "parameterized_constraint" {
+  description = "Policy with parameters for Managed Constraint Identifier"
+  value       = module.parameterized_org_policy_v2.constraint
+}

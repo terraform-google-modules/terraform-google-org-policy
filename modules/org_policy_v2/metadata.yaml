@@ -79,6 +79,7 @@ spec:
           list(object(
               {
                 enforcement = bool
+                parameters  = optional(string, null)
                 allow       = optional(list(string), [])
                 deny        = optional(list(string), [])
                 conditions = optional(list(object(
@@ -114,4 +115,4 @@ spec:
       - orgpolicy.googleapis.com
     providerVersions:
       - source: hashicorp/google
-        version: ">= 3.53, < 7"
+        version: ">= 6.14, < 7"

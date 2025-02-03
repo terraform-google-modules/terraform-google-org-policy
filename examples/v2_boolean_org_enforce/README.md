@@ -16,6 +16,7 @@ This boolean constraint, when set to true, enables OS Login on all newly created
 | Name | Description |
 |------|-------------|
 | constraint | Policy Constraint Identifier |
+| parameterized\_constraint | Policy with parameters for Managed Constraint Identifier |
 | policy\_root | Policy Root in the hierarchy for the given policy |
 | policy\_root\_id | Project Root ID at which the policy is applied |
 

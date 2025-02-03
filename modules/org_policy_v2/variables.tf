@@ -64,6 +64,7 @@ variable "rules" {
   type = list(object(
     {
       enforcement = bool
+      parameters  = optional(string, null)
       allow       = optional(list(string), [])
       deny        = optional(list(string), [])
       conditions = optional(list(object(
