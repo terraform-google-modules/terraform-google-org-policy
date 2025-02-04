@@ -29,3 +29,17 @@ module "gcp_org_policy_v2" {
   constraint  = "compute.requireOsLogin"
   policy_type = "boolean"
 }
+
+module "parameterized_org_policy_v2" {
+  source  = "terraform-google-modules/org-policy/google//modules/org_policy_v2"
+  version = "~> 7.0"
+
+  policy_root    = "organization"
+  policy_root_id = var.org_id
+  rules = [{
+    enforcement = true
+    parameters  = jsonencode({"allowedDomains" : ["@abc.com"]})
+  }]
+  constraint  = "essentialcontacts.managed.allowedContactDomains"
+  policy_type = "boolean"
+}

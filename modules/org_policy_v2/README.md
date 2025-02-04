@@ -42,6 +42,40 @@ module "gcp_org_policy_v2_bool" {
 }
 ```
 
+- Parameterized Bool organization policy
+
+```hcl
+module "parameterized_org_policy_v2_bool" {
+  source           = "terraform-google-modules/org-policy/google//modules/org_policy_v2"
+  version          = "~> 7.0"
+
+  policy_root      = "organization"    # either of organization, folder or project
+  policy_root_id   = "123456789"       # either of org id, folder id or project id
+  constraint       = "constraint name" # constraint identifier without constraints/ prefix. Example "compute.requireOsLogin"
+  policy_type      = "boolean"         # either of list or boolean
+  exclude_folders  = []
+  exclude_projects = []
+
+  rules = [
+    # Rule 1
+    {
+      enforcement = false
+    },
+    # Rule 2
+    {
+      enforcement = true
+      parameters  = jsonencode({"allowedDomains" : ["@abc.com"]})
+      conditions  = [{
+        description = "description of the condition"
+        expression  = "resource.matchTagId('tagKeys/123456789', 'tagValues/123456789') && resource.matchTag('123456789/1234', 'abcd')"
+        location    = "sample-location.log"
+        title       = "Title of the condition"
+      }]
+    },
+  ]
+}
+```
+
 - List organization policy
 
 ```hcl
@@ -81,6 +115,7 @@ To control module's behavior, change variables' values regarding the following:
 - `exclude_projects`: a list of project IDs to be excluded from this policy. They must be lower in the hierarchy than the policy root.
 - `rules`: Specify policy rules and conditions. Rules contain the following parameters:
   - `enforcement`: if `true` or `null`then policy will `deny_all`; if `false` then policy will `allow_all`. Applies for `boolean` based policies.
+  - `parameters`: Applies for `boolean` type policies for `managed` constraints, if constraint has parameters defined. Pass parameter values when policy enforcement is enabled. Ensure that parameter value types match those defined in the constraint definition. For example: `{"allowedLocations" : ["us-east1", "us-west1"], "allowAll" : true }`
   - `allow`: list of values to include in the policy with ALLOW behavior. Set `enforce` to `null` to use it.
   - `deny`: list of values to include in the policy with DENY behavior. Set `enforce` to `null` to use it.
   - `conditions`: [Organization tags](https://cloud.google.com/resource-manager/docs/organization-policy/tags-organization-policy) provides a way to conditionally allow or deny policies based on whether a resource has a specific tag. You can use tags and conditional enforcement of organization policies to provide centralized control of the resources in your hierarchy. Each condition has the following properties:
@@ -117,7 +152,7 @@ To control module's behavior, change variables' values regarding the following:
 | policy\_root | Resource hierarchy node to apply the policy to: can be one of `organization`, `folder`, or `project`. | `string` | `"organization"` | no |
 | policy\_root\_id | The policy root id, either of organization\_id, folder\_id or project\_id | `string` | `null` | no |
 | policy\_type | The constraint type to work with (either 'boolean' or 'list') | `string` | `"list"` | no |
-| rules | List of rules per policy. | <pre>list(object(<br>    {<br>      enforcement = bool<br>      allow       = optional(list(string), [])<br>      deny        = optional(list(string), [])<br>      conditions = optional(list(object(<br>        {<br>          description = string<br>          expression  = string<br>          title       = string<br>          location    = string<br>        }<br>      )), [])<br>    }<br>  ))</pre> | n/a | yes |
+| rules | List of rules per policy. | <pre>list(object(<br>    {<br>      enforcement = bool<br>      parameters  = optional(string, null)<br>      allow       = optional(list(string), [])<br>      deny        = optional(list(string), [])<br>      conditions = optional(list(object(<br>        {<br>          description = string<br>          expression  = string<br>          title       = string<br>          location    = string<br>        }<br>      )), [])<br>    }<br>  ))</pre> | n/a | yes |
 
 ## Outputs
 

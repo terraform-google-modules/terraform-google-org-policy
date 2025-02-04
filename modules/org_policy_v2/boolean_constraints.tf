@@ -27,7 +27,8 @@ resource "google_org_policy_policy" "org_policy_boolean" {
     dynamic "rules" {
       for_each = local.rules
       content {
-        enforce = rules.value.enforcement != false ? "TRUE" : "FALSE"
+        enforce    = rules.value.enforcement != false ? "TRUE" : "FALSE"
+        parameters = rules.value.parameters
         dynamic "condition" {
           for_each = { for k, v in rules.value.conditions : k => v if length(rules.value.conditions) > 0 }
           content {
@@ -55,7 +56,8 @@ resource "google_org_policy_policy" "folder_policy_boolean" {
     dynamic "rules" {
       for_each = local.rules
       content {
-        enforce = rules.value.enforcement != false ? "TRUE" : "FALSE"
+        enforce    = rules.value.enforcement != false ? "TRUE" : "FALSE"
+        parameters = rules.value.parameters
         dynamic "condition" {
           for_each = { for k, v in rules.value.conditions : k => v if length(rules.value.conditions) > 0 }
           content {
@@ -83,7 +85,8 @@ resource "google_org_policy_policy" "project_policy_boolean" {
     dynamic "rules" {
       for_each = local.rules
       content {
-        enforce = rules.value.enforcement != false ? "TRUE" : "FALSE"
+        enforce    = rules.value.enforcement != false ? "TRUE" : "FALSE"
+        parameters = rules.value.parameters
         dynamic "condition" {
           for_each = { for k, v in rules.value.conditions : k => v if length(rules.value.conditions) > 0 }
           content {
