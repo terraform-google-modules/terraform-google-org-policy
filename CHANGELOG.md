@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [7.0.0](https://github.com/terraform-google-modules/terraform-google-org-policy/compare/v6.0.0...v7.0.0) (2025-02-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* **TPG>=6.14:** add parameter field support into org policy ([#163](https://github.com/terraform-google-modules/terraform-google-org-policy/issues/163))
+
+### Features
+
+* **TPG>=6.14:** add parameter field support into org policy ([#163](https://github.com/terraform-google-modules/terraform-google-org-policy/issues/163)) ([974d1c0](https://github.com/terraform-google-modules/terraform-google-org-policy/commit/974d1c09e3a886e99ed5eecbd438177522445299))
+
 ## [6.0.0](https://github.com/terraform-google-modules/terraform-google-org-policy/compare/v5.4.0...v6.0.0) (2025-01-08)
 
 
