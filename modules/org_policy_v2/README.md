@@ -51,7 +51,7 @@ module "parameterized_org_policy_v2_bool" {
 
   policy_root      = "organization"    # either of organization, folder or project
   policy_root_id   = "123456789"       # either of org id, folder id or project id
-  constraint       = "constraint name" # constraint identifier without constraints/ prefix. Example "compute.requireOsLogin"
+  constraint       = "constraint name" # constraint identifier without constraints/ prefix. Example "essentialcontacts.managed.allowedContactDomains"
   policy_type      = "boolean"         # either of list or boolean
   exclude_folders  = []
   exclude_projects = []
@@ -64,8 +64,7 @@ module "parameterized_org_policy_v2_bool" {
     # Rule 2
     {
       enforcement = true
-      parameters  = jsonencode({"parameter1" : ["value1", "value2"],
-      "parameter2" : true})
+      parameters  = jsonencode({"parameter1" : ["value1", "value2"], "parameter2" : true})
       conditions  = [{
         description = "description of the condition"
         expression  = "resource.matchTagId('tagKeys/123456789', 'tagValues/123456789') && resource.matchTag('123456789/env', 'prod')"
@@ -82,11 +81,11 @@ module "parameterized_org_policy_v2_bool" {
 ```hcl
 module "gcp_org_policy_v2_list" {
   source  = "terraform-google-modules/org-policy/google//modules/org_policy_v2"
-  version = "~> 6.0"
+  version = "~> 7.0"
 
-  policy_root    = "organization"
-  policy_root_id = var.org_id
-  constraint     = "gcp.resourceLocations"
+  policy_root    = "organization"    # either of organization, folder or project
+  policy_root_id = "123456789"       # either of org id, folder id or project id
+  constraint     = "constraint name" # constraint identifier without constraints/ prefix. Example "gcp.resourceLocations"
   policy_type    = "list"
 
   rules = [
@@ -119,7 +118,7 @@ To control module's behavior, change variables' values regarding the following:
   - `parameters`: Applies for `boolean` type policies for `managed` constraints, if constraint has parameters defined. Pass parameter values when policy enforcement is enabled. Ensure that parameter value types match those defined in the constraint definition. For example: `{"allowedLocations" : ["us-east1", "us-west1"], "allowAll" : true }`
   - `allow`: list of values to include in the policy with ALLOW behavior. Set `enforce` to `null` to use it.
   - `deny`: list of values to include in the policy with DENY behavior. Set `enforce` to `null` to use it.
-  - `conditions`: A condition which determines whether this rule is used in the evaluation of the policy. When set, the expression field in the `Expr' must include from 1 to 10 subexpressions, joined by the "||" or "&&" operators. Each subexpression must be of the form "resource.matchTag('/tag_key_short_name, 'tag_value_short_name')". or "resource.matchTagId('tagKeys/key_id', 'tagValues/value_id')". where key_name and value_name are the resource names for Label Keys and Values. These names are available from the Tag Manager Service. An example expression is: "resource.matchTag('123456789/environment, 'prod')". or "resource.matchTagId('tagKeys/123', 'tagValues/456')". Each condition has the following properties:
+  - `conditions`: A condition which determines whether this rule is used in the evaluation of the policy. When set, the expression field in the `Expr` must include from 1 to 10 subexpressions, joined by the "||" or "&&" operators. Each subexpression must be of the form "resource.matchTag('/tag_key_short_name, 'tag_value_short_name')". or "resource.matchTagId('tagKeys/key_id', 'tagValues/value_id')". where key_name and value_name are the resource names for Label Keys and Values. These names are available from the Tag Manager Service. An example expression is: "resource.matchTag('123456789/environment, 'prod')". or "resource.matchTagId('tagKeys/123', 'tagValues/456')". Each condition has the following properties:
     - `description`: Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
     - `expression`: Common Expression Language, or CEL, is the expression language used to specify conditional expressions. A conditional expression consists of one or more statements that are joined using logical operators (&&, ||, or !). For more information, see the [CEL spec](https://github.com/google/cel-spec) and its [language definition](https://github.com/google/cel-spec/blob/master/doc/langdef.md).
     - `location`: String indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
