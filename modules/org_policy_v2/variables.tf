@@ -64,6 +64,7 @@ variable "rules" {
   type = list(object(
     {
       enforcement = bool
+      dry_run     = optional(bool, false)
       parameters  = optional(string, null)
       allow       = optional(list(string), [])
       deny        = optional(list(string), [])

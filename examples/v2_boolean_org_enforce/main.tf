@@ -19,7 +19,7 @@
  *******************************************************/
 module "gcp_org_policy_v2" {
   source  = "terraform-google-modules/org-policy/google//modules/org_policy_v2"
-  version = "~> 6.0"
+  version = "~> 7.0"
 
   policy_root    = "organization"
   policy_root_id = var.org_id
@@ -38,8 +38,26 @@ module "parameterized_org_policy_v2" {
   policy_root_id = var.org_id
   rules = [{
     enforcement = true
-    parameters  = jsonencode({"allowedDomains" : ["@abc.com"]})
+    parameters  = jsonencode({ "allowedDomains" : ["@abc.com"] })
   }]
   constraint  = "essentialcontacts.managed.allowedContactDomains"
+  policy_type = "boolean"
+}
+
+/********************************************************************************
+  Apply the sample constraint using the org_policy_v2 module in Dry Run mode
+ *******************************************************************************/
+
+module "dry_run_gcp_org_policy_v2" {
+  source  = "terraform-google-modules/org-policy/google//modules/org_policy_v2"
+  version = "~> 7.0"
+
+  policy_root    = "organization"
+  policy_root_id = var.org_id
+  rules = [{
+    enforcement = true
+    dry_run     = true
+  }]
+  constraint  = "iam.managed.disableServiceAccountKeyUpload"
   policy_type = "boolean"
 }

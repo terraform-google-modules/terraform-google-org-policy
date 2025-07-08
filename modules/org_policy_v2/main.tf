@@ -38,6 +38,16 @@ locals {
       deny_list_length  = length(v.deny),
       enforcement       = length(v.allow) > 0 || length(v.deny) > 0 ? null : v.enforcement,
       values            = [{ allow = v.allow, deny = v.deny }]
-    })
+    }) if v.dry_run == false
+  ]
+
+  rules_dry_run = [
+    for k, v in var.rules :
+    merge(v, {
+      allow_list_length = length(v.allow),
+      deny_list_length  = length(v.deny),
+      enforcement       = length(v.allow) > 0 || length(v.deny) > 0 ? null : v.enforcement,
+      values            = [{ allow = v.allow, deny = v.deny }]
+    }) if v.dry_run == true
   ]
 }

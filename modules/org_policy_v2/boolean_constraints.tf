@@ -23,24 +23,50 @@ resource "google_org_policy_policy" "org_policy_boolean" {
   name   = "${local.policy_root}/${var.policy_root_id}/policies/${var.constraint}"
   parent = "${local.policy_root}/${var.policy_root_id}"
 
-  spec {
-    dynamic "rules" {
-      for_each = local.rules
-      content {
-        enforce    = rules.value.enforcement != false ? "TRUE" : "FALSE"
-        parameters = rules.value.parameters
-        dynamic "condition" {
-          for_each = { for k, v in rules.value.conditions : k => v if length(rules.value.conditions) > 0 }
-          content {
-            description = condition.value.description
-            expression  = condition.value.expression
-            location    = condition.value.location
-            title       = condition.value.title
+  dynamic "spec" {
+    for_each = length(local.rules) > 0 ? ["rules"] : []
+    content {
+      dynamic "rules" {
+        for_each = local.rules
+        content {
+          enforce    = rules.value.enforcement != false ? "TRUE" : "FALSE"
+          parameters = rules.value.parameters
+          dynamic "condition" {
+            for_each = { for k, v in rules.value.conditions : k => v if length(rules.value.conditions) > 0 }
+            content {
+              description = condition.value.description
+              expression  = condition.value.expression
+              location    = condition.value.location
+              title       = condition.value.title
+            }
           }
         }
       }
     }
   }
+
+  dynamic "dry_run_spec" {
+    for_each = length(local.rules_dry_run) > 0 ? ["dry_run_rules"] : []
+    content {
+      dynamic "rules" {
+        for_each = local.rules_dry_run
+        content {
+          enforce    = rules.value.enforcement != false ? "TRUE" : "FALSE"
+          parameters = rules.value.parameters
+          dynamic "condition" {
+            for_each = { for k, v in rules.value.conditions : k => v if length(rules.value.conditions) > 0 }
+            content {
+              description = condition.value.description
+              expression  = condition.value.expression
+              location    = condition.value.location
+              title       = condition.value.title
+            }
+          }
+        }
+      }
+    }
+  }
+
 }
 
 /******************************************
@@ -52,24 +78,50 @@ resource "google_org_policy_policy" "folder_policy_boolean" {
   name   = "${local.policy_root}/${var.policy_root_id}/policies/${var.constraint}"
   parent = "${local.policy_root}/${var.policy_root_id}"
 
-  spec {
-    dynamic "rules" {
-      for_each = local.rules
-      content {
-        enforce    = rules.value.enforcement != false ? "TRUE" : "FALSE"
-        parameters = rules.value.parameters
-        dynamic "condition" {
-          for_each = { for k, v in rules.value.conditions : k => v if length(rules.value.conditions) > 0 }
-          content {
-            description = condition.value.description
-            expression  = condition.value.expression
-            location    = condition.value.location
-            title       = condition.value.title
+  dynamic "spec" {
+    for_each = length(local.rules) > 0 ? ["rules"] : []
+    content {
+      dynamic "rules" {
+        for_each = local.rules
+        content {
+          enforce    = rules.value.enforcement != false ? "TRUE" : "FALSE"
+          parameters = rules.value.parameters
+          dynamic "condition" {
+            for_each = { for k, v in rules.value.conditions : k => v if length(rules.value.conditions) > 0 }
+            content {
+              description = condition.value.description
+              expression  = condition.value.expression
+              location    = condition.value.location
+              title       = condition.value.title
+            }
           }
         }
       }
     }
   }
+
+  dynamic "dry_run_spec" {
+    for_each = length(local.rules_dry_run) > 0 ? ["dry_run_rules"] : []
+    content {
+      dynamic "rules" {
+        for_each = local.rules_dry_run
+        content {
+          enforce    = rules.value.enforcement != false ? "TRUE" : "FALSE"
+          parameters = rules.value.parameters
+          dynamic "condition" {
+            for_each = { for k, v in rules.value.conditions : k => v if length(rules.value.conditions) > 0 }
+            content {
+              description = condition.value.description
+              expression  = condition.value.expression
+              location    = condition.value.location
+              title       = condition.value.title
+            }
+          }
+        }
+      }
+    }
+  }
+
 }
 
 /******************************************
@@ -81,24 +133,50 @@ resource "google_org_policy_policy" "project_policy_boolean" {
   name   = "${local.policy_root}/${var.policy_root_id}/policies/${var.constraint}"
   parent = "${local.policy_root}/${var.policy_root_id}"
 
-  spec {
-    dynamic "rules" {
-      for_each = local.rules
-      content {
-        enforce    = rules.value.enforcement != false ? "TRUE" : "FALSE"
-        parameters = rules.value.parameters
-        dynamic "condition" {
-          for_each = { for k, v in rules.value.conditions : k => v if length(rules.value.conditions) > 0 }
-          content {
-            description = condition.value.description
-            expression  = condition.value.expression
-            location    = condition.value.location
-            title       = condition.value.title
+  dynamic "spec" {
+    for_each = length(local.rules) > 0 ? ["rules"] : []
+    content {
+      dynamic "rules" {
+        for_each = local.rules
+        content {
+          enforce    = rules.value.enforcement != false ? "TRUE" : "FALSE"
+          parameters = rules.value.parameters
+          dynamic "condition" {
+            for_each = { for k, v in rules.value.conditions : k => v if length(rules.value.conditions) > 0 }
+            content {
+              description = condition.value.description
+              expression  = condition.value.expression
+              location    = condition.value.location
+              title       = condition.value.title
+            }
           }
         }
       }
     }
   }
+
+  dynamic "dry_run_spec" {
+    for_each = length(local.rules_dry_run) > 0 ? ["dry_run_rules"] : []
+    content {
+      dynamic "rules" {
+        for_each = local.rules_dry_run
+        content {
+          enforce    = rules.value.enforcement != false ? "TRUE" : "FALSE"
+          parameters = rules.value.parameters
+          dynamic "condition" {
+            for_each = { for k, v in rules.value.conditions : k => v if length(rules.value.conditions) > 0 }
+            content {
+              description = condition.value.description
+              expression  = condition.value.expression
+              location    = condition.value.location
+              title       = condition.value.title
+            }
+          }
+        }
+      }
+    }
+  }
+
 }
 
 /******************************************

@@ -152,7 +152,7 @@ To control module's behavior, change variables' values regarding the following:
 | policy\_root | Resource hierarchy node to apply the policy to: can be one of `organization`, `folder`, or `project`. | `string` | `"organization"` | no |
 | policy\_root\_id | The policy root id, either of organization\_id, folder\_id or project\_id | `string` | `null` | no |
 | policy\_type | The constraint type to work with (either 'boolean' or 'list') | `string` | `"list"` | no |
-| rules | List of rules per policy. | <pre>list(object(<br>    {<br>      enforcement = bool<br>      parameters  = optional(string, null)<br>      allow       = optional(list(string), [])<br>      deny        = optional(list(string), [])<br>      conditions = optional(list(object(<br>        {<br>          description = string<br>          expression  = string<br>          title       = string<br>          location    = string<br>        }<br>      )), [])<br>    }<br>  ))</pre> | n/a | yes |
+| rules | List of rules per policy. | <pre>list(object(<br>    {<br>      enforcement = bool<br>      dry_run     = optional(bool, false)<br>      parameters  = optional(string, null)<br>      allow       = optional(list(string), [])<br>      deny        = optional(list(string), [])<br>      conditions = optional(list(object(<br>        {<br>          description = string<br>          expression  = string<br>          title       = string<br>          location    = string<br>        }<br>      )), [])<br>    }<br>  ))</pre> | n/a | yes |
 
 ## Outputs
 
