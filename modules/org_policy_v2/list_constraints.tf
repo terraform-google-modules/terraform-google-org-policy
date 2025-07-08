@@ -1,5 +1,5 @@
 /**
- * Copyright 2022 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -54,7 +54,7 @@ resource "google_org_policy_policy" "organization_policy" {
   }
 
   dynamic "dry_run_spec" {
-    for_each = length(local.rules) > 0 ? ["dry_run_rules"] : []
+    for_each = length(local.rules_dry_run) > 0 ? ["dry_run_rules"] : []
     content {
       inherit_from_parent = var.inherit_from_parent
       dynamic "rules" {
@@ -126,7 +126,7 @@ resource "google_org_policy_policy" "folder_policy" {
   }
 
   dynamic "dry_run_spec" {
-    for_each = length(local.rules) > 0 ? ["dry_run_rules"] : []
+    for_each = length(local.rules_dry_run) > 0 ? ["dry_run_rules"] : []
     content {
       inherit_from_parent = var.inherit_from_parent
       dynamic "rules" {
@@ -197,7 +197,7 @@ resource "google_org_policy_policy" "project_policy" {
   }
 
   dynamic "dry_run_spec" {
-    for_each = length(local.rules) > 0 ? ["dry_run_rules"] : []
+    for_each = length(local.rules_dry_run) > 0 ? ["dry_run_rules"] : []
     content {
       inherit_from_parent = var.inherit_from_parent
       dynamic "rules" {

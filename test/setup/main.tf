@@ -23,6 +23,7 @@ module "project" {
   org_id            = var.org_id
   folder_id         = var.folder_id
   billing_account   = var.billing_account
+  deletion_policy   = "DELETE"
 
   activate_apis = [
     "cloudresourcemanager.googleapis.com",
@@ -30,4 +31,15 @@ module "project" {
     "serviceusage.googleapis.com",
     "orgpolicy.googleapis.com",
   ]
+}
+
+resource "random_id" "suffix" {
+  byte_length = 4
+}
+
+resource "google_folder" "test_folder" {
+  provider            = google-beta
+  display_name        = "ci-org-policy-folder-${random_id.suffix.hex}"
+  parent              = "folders/${var.folder_id}"
+  deletion_protection = false
 }

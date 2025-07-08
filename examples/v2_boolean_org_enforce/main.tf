@@ -1,5 +1,5 @@
 /**
- * Copyright 2022 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,20 +44,51 @@ module "parameterized_org_policy_v2" {
   policy_type = "boolean"
 }
 
+module "dry_run_list_folder_policy_v2" {
+  source  = "terraform-google-modules/org-policy/google//modules/org_policy_v2"
+  version = "~> 7.0"
+
+  policy_root    = "folder"
+  policy_root_id = var.test_folder_id
+  rules = [
+    {
+      enforcement = true
+      allow       = ["in:us-locations"]
+    }
+  ]
+  constraint  = "gcp.resourceLocations"
+  policy_type = "list"
+}
+
 /********************************************************************************
   Apply the sample constraint using the org_policy_v2 module in Dry Run mode
  *******************************************************************************/
 
-module "dry_run_gcp_org_policy_v2" {
+module "dry_run_gcp_folder_policy_v2" {
   source  = "terraform-google-modules/org-policy/google//modules/org_policy_v2"
   version = "~> 7.0"
 
-  policy_root    = "organization"
-  policy_root_id = var.org_id
+  policy_root    = "folder"
+  policy_root_id = var.test_folder_id
   rules = [{
     enforcement = true
     dry_run     = true
   }]
   constraint  = "iam.managed.disableServiceAccountKeyUpload"
+  policy_type = "boolean"
+}
+
+module "dry_run_parameterized_folder_policy_v2" {
+  source  = "terraform-google-modules/org-policy/google//modules/org_policy_v2"
+  version = "~> 7.0"
+
+  policy_root    = "folder"
+  policy_root_id = var.test_folder_id
+  rules = [{
+    enforcement = true
+    dry_run     = true
+    parameters  = jsonencode({ "allowedSchemes" : ["INTERNAL"] })
+  }]
+  constraint  = "compute.managed.restrictProtocolForwardingCreationForTypes"
   policy_type = "boolean"
 }
