@@ -14,7 +14,7 @@ Example usage is included in the [examples](./examples/org_policy_v2) folder, bu
 ```hcl
 module "gcp_org_policy_v2_bool" {
   source           = "terraform-google-modules/org-policy/google//modules/org_policy_v2"
-  version          = "~> 5.2.0"
+  version          = "~> 7.0"
 
   policy_root      = "organization"    # either of organization, folder or project
   policy_root_id   = "123456789"       # either of org id, folder id or project id
@@ -27,6 +27,7 @@ module "gcp_org_policy_v2_bool" {
     # Rule 1
     {
       enforcement = true
+      dry_run     = true
     },
     # Rule 2
     {
@@ -64,6 +65,7 @@ module "parameterized_org_policy_v2_bool" {
     # Rule 2
     {
       enforcement = true
+      dry_run     = true
       parameters  = jsonencode({"parameter1" : ["value1", "value2"], "parameter2" : true})
       conditions  = [{
         description = "description of the condition"
@@ -152,7 +154,7 @@ To control module's behavior, change variables' values regarding the following:
 | policy\_root | Resource hierarchy node to apply the policy to: can be one of `organization`, `folder`, or `project`. | `string` | `"organization"` | no |
 | policy\_root\_id | The policy root id, either of organization\_id, folder\_id or project\_id | `string` | `null` | no |
 | policy\_type | The constraint type to work with (either 'boolean' or 'list') | `string` | `"list"` | no |
-| rules | List of rules per policy. | <pre>list(object(<br>    {<br>      enforcement = bool<br>      parameters  = optional(string, null)<br>      allow       = optional(list(string), [])<br>      deny        = optional(list(string), [])<br>      conditions = optional(list(object(<br>        {<br>          description = string<br>          expression  = string<br>          title       = string<br>          location    = string<br>        }<br>      )), [])<br>    }<br>  ))</pre> | n/a | yes |
+| rules | List of rules per policy. | <pre>list(object(<br>    {<br>      enforcement = bool<br>      dry_run     = optional(bool, false)<br>      parameters  = optional(string, null)<br>      allow       = optional(list(string), [])<br>      deny        = optional(list(string), [])<br>      conditions = optional(list(object(<br>        {<br>          description = string<br>          expression  = string<br>          title       = string<br>          location    = string<br>        }<br>      )), [])<br>    }<br>  ))</pre> | n/a | yes |
 
 ## Outputs
 
@@ -168,25 +170,10 @@ To control module's behavior, change variables' values regarding the following:
 
 ## Compatibility
 This module is meant for use with Terraform 1.3+ and tested using Terraform 1.0+. If you find incompatibilities using Terraform >=1.3, please open an issue.
- If you haven't
-[upgraded](https://www.terraform.io/upgrade-guides/0-13.html) and need a Terraform
-0.12.x-compatible version of this module, the last released version
-intended for Terraform 0.12.x is [v4.0.0](https://registry.terraform.io/modules/terraform-google-modules/-org-policy/google/v4.0.0).
 
 ## Requirements
 ### Terraform plugins
 - [Terraform](https://www.terraform.io/downloads.html) >= 1.3.0
-- [terraform-provider-google](https://github.com/terraform-providers/terraform-provider-google) >= v2.5.0
 
 ### Permissions
 In order to execute this module, the Service Account you run as must have the **Organization Policy Administrator** (`roles/orgpolicy.PolicyAdmin`) role.
-
-## Install
-### Terraform
-Be sure you have the correct Terraform version (0.12.x), you can choose the binary here:
-- https://releases.hashicorp.com/terraform/
-
-### Terraform plugins
-
-- [terraform-provider-google](https://github.com/terraform-providers/terraform-provider-google) >= v2.5.0
-

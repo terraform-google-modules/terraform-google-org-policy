@@ -4,10 +4,6 @@ This Terraform module makes it easier to manage [organization policies](https://
 
 ## Compatibility
 This module is meant for use with Terraform 1.3+ and tested using Terraform 1.10+. If you find incompatibilities using Terraform >=1.3, please open an issue.
- If you haven't
-[upgraded](https://www.terraform.io/upgrade-guides/0-13.html) and need a Terraform
-0.12.x-compatible version of this module, the last released version
-intended for Terraform 0.12.x is [v4.0.0](https://registry.terraform.io/modules/terraform-google-modules/-org-policy/google/v4.0.0).
 
 ## Usage
 Many examples are included in the [examples](./examples/) folder, but simple usage is as follows:
@@ -15,7 +11,7 @@ Many examples are included in the [examples](./examples/) folder, but simple usa
 ```hcl
 module "org-policy" {
   source            = "terraform-google-modules/org-policy/google"
-  version           = "~> 3.0.2"
+  version           = "~> 7.0"
 
   policy_for        = "organization"
   constraint        = "constraints/serviceuser.services"
@@ -80,24 +76,6 @@ No outputs.
 ## Requirements
 ### Terraform plugins
 - [Terraform](https://www.terraform.io/downloads.html) >= 1.3
-- [terraform-provider-google](https://github.com/terraform-providers/terraform-provider-google) >= v3.53
 
 ### Permissions
 In order to execute this module, the Service Account you run as must have the **Organization Policy Administrator** (`roles/orgpolicy.PolicyAdmin`) role.
-
-## Install
-### Terraform
-Be sure you have the correct Terraform version (>= 1.3.x), you can choose the binary here:
-- https://releases.hashicorp.com/terraform/
-
-### Terraform plugins
-
-- [terraform-provider-google](https://github.com/terraform-providers/terraform-provider-google) >= v3.53
-
-
-### Fast install (optional)
-For a fast install, please configure the variables on init_centos.sh  or init_debian.sh script and then launch it.
-
-The script will do:
-- Environment variables setting
-- Installation of base packages like wget, curl, unzip, gcloud, etc.
