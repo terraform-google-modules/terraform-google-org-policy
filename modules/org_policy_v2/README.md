@@ -26,7 +26,7 @@ module "gcp_org_policy_v2_bool" {
   rules = [
     # Rule 1
     {
-      enforcement = true
+      enforcement = false
     },
     # Rule 2
     {
