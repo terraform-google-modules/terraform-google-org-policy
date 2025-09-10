@@ -19,7 +19,7 @@
  *****************************************/
 module "org-policy" {
   source  = "terraform-google-modules/org-policy/google"
-  version = "~> 6.0"
+  version = "~> 7.0"
 
   policy_for        = "organization"
   organization_id   = var.organization_id
