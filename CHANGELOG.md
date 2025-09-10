@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [7.2.0](https://github.com/terraform-google-modules/terraform-google-org-policy/compare/v7.1.0...v7.2.0) (2025-09-10)
+
+
+### Features
+
+* **deps:** Update Terraform Google Provider to v7 (major) ([#175](https://github.com/terraform-google-modules/terraform-google-org-policy/issues/175)) ([9ce51c9](https://github.com/terraform-google-modules/terraform-google-org-policy/commit/9ce51c9e0d633a12e6922cd8bfac41d0b313cf4e))
+
 ## [7.1.0](https://github.com/terraform-google-modules/terraform-google-org-policy/compare/v7.0.0...v7.1.0) (2025-07-10)
 
 

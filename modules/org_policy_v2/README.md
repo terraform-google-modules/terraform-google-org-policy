@@ -83,7 +83,7 @@ module "parameterized_org_policy_v2_bool" {
 ```hcl
 module "gcp_org_policy_v2_list" {
   source  = "terraform-google-modules/org-policy/google//modules/org_policy_v2"
-  version = "~> 7.1"
+  version = "~> 7.2"
 
   policy_root    = "organization"    # either of organization, folder or project
   policy_root_id = "123456789"       # either of org id, folder id or project id

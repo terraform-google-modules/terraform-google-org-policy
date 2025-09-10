@@ -25,7 +25,7 @@ terraform {
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-org-policy:bucket_policy_only/v7.1.0"
+    module_name = "blueprints/terraform/terraform-google-org-policy:bucket_policy_only/v7.2.0"
   }
 
 }
