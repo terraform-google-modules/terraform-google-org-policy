@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -64,6 +64,7 @@ variable "rules" {
   type = list(object(
     {
       enforcement = bool
+      dry_run     = optional(bool, false)
       parameters  = optional(string, null)
       allow       = optional(list(string), [])
       deny        = optional(list(string), [])

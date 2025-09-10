@@ -1,5 +1,5 @@
 /**
- * Copyright 2022 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,9 +15,13 @@
  */
 
 # Organization ID for this example
-# It could be Folder or Project ID
 variable "org_id" {
   description = "The organization id for applying the policy"
   type        = string
   default     = null
+}
+
+variable "test_folder_id" {
+  description = "The test folder id"
+  type        = string
 }

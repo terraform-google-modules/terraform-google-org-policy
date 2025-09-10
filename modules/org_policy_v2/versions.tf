@@ -1,5 +1,5 @@
 /**
- * Copyright 2022 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,12 +20,12 @@ terraform {
 
     google = {
       source  = "hashicorp/google"
-      version = ">= 6.14, < 7"
+      version = ">= 6.14, < 8"
     }
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-org-policy:org_policy_v2/v7.0.0"
+    module_name = "blueprints/terraform/terraform-google-org-policy:org_policy_v2/v7.1.0"
   }
 
 }

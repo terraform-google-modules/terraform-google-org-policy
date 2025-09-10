@@ -26,6 +26,10 @@ output "folder_id" {
   value = var.folder_id
 }
 
+output "test_folder_id" {
+  value = google_folder.test_folder.folder_id
+}
+
 output "sa_key" {
   value     = google_service_account_key.int_test.private_key
   sensitive = true
