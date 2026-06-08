@@ -18,6 +18,11 @@ data "google_organization" "orgs" {
   for_each = toset(var.domains_to_allow)
   domain   = each.value
 }
+locals {
+  customer_ids    = [for org in data.google_organization.orgs : org["directory_customer_id"]]
+  principal_sets  = [for id in var.principal_set_org_ids : "principalSet://iam.googleapis.com/organizations/${id}"]
+  allowed_members = concat(local.customer_ids, local.principal_sets)
+}
 
 module "allowed-policy-member-domains" {
   source            = "../../"
@@ -27,8 +32,17 @@ module "allowed-policy-member-domains" {
   project_id        = var.project_id
   constraint        = "constraints/iam.allowedPolicyMemberDomains"
   policy_type       = "list"
-  allow             = [for org in data.google_organization.orgs : org["directory_customer_id"]]
-  allow_list_length = length(var.domains_to_allow)
+  allow             = local.allowed_members
+  allow_list_length = length(var.domains_to_allow) + length(var.principal_set_org_ids)
   exclude_folders   = var.exclude_folders
   exclude_projects  = var.exclude_projects
+}
+
+resource "null_resource" "input_validation" {
+  lifecycle {
+    precondition {
+      condition     = length(var.domains_to_allow) > 0 || length(var.principal_set_org_ids) > 0
+      error_message = "Error: You must provide at least one domain in 'domains_to_allow' or at least one Org ID in 'principal_set_org_ids'."
+    }
+  }
 }
