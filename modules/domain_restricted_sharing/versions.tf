@@ -30,7 +30,7 @@ terraform {
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-org-policy:domain_restricted_sharing/v7.2.0"
+    module_name = "blueprints/terraform/terraform-google-org-policy:domain_restricted_sharing/v7.3.0"
   }
 
 }

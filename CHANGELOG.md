@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [7.3.0](https://github.com/terraform-google-modules/terraform-google-org-policy/compare/v7.2.0...v7.3.0) (2026-06-11)
+
+
+### Features
+
+* add support for organization principal set ([#184](https://github.com/terraform-google-modules/terraform-google-org-policy/issues/184)) ([ce3ad45](https://github.com/terraform-google-modules/terraform-google-org-policy/commit/ce3ad455ced3a19f9fa249f266b6f0a53e4f98e7))
+
 ## [7.2.0](https://github.com/terraform-google-modules/terraform-google-org-policy/compare/v7.1.0...v7.2.0) (2025-09-10)
 
 

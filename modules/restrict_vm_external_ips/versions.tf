@@ -25,7 +25,7 @@ terraform {
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-org-policy:restrict_vm_external_ips/v7.2.0"
+    module_name = "blueprints/terraform/terraform-google-org-policy:restrict_vm_external_ips/v7.3.0"
   }
 
 }
