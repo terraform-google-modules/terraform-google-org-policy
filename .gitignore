@@ -37,6 +37,7 @@ crash.log
 
 # Files used for testing
 **/terraform.tfvars
+tmp/
 
 # Secrets
 credentials.json
@@ -46,4 +47,4 @@ credentials.json
 
 # tf lock file
 .terraform.lock.hcl
-
+.terraform.lock
