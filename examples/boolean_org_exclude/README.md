@@ -6,11 +6,13 @@ If you wanted to set the policy on a folder level and selectively disable it on 
 
 ```hcl
 module "folder-disable-serial-port-access-enforce-with-excludes" {
-  source      = "github.com/terraform-google-modules/terraform-google-org-policy"
-  folder_id   = "folders/my-folder-id"
-  constraint  = "compute.disableSerialPortAccess"
-  enforce     = true
-  policy_type = "boolean"
+  source           = "terraform-google-modules/org-policy/google"
+  version          = "~> 7.0"
+  policy_for       = "folder"
+  folder_id        = "folders/my-folder-id"
+  constraint       = "compute.disableSerialPortAccess"
+  enforce          = true
+  policy_type      = "boolean"
   exclude_projects = ["my-project"]
 }
 ```
