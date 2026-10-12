@@ -7,7 +7,7 @@ Organization Policies are of two types `boolean` and `list`.
 ---
 
 ## Usage
-Example usage is included in the [examples](./examples/org_policy_v2) folder, but simple usage is as follows:
+Example usage is included in the [examples](../../examples/v2_boolean_org_enforce) folder, but simple usage is as follows:
 
 - Boolean organization policy
 
@@ -116,11 +116,11 @@ To control module's behavior, change variables' values regarding the following:
 - `exclude_folders`: a list of folder IDs to be excluded from this policy. These folders must be lower in the hierarchy than the policy root.
 - `exclude_projects`: a list of project IDs to be excluded from this policy. They must be lower in the hierarchy than the policy root.
 - `rules`: Specify policy rules and conditions. Rules contain the following parameters:
-  - `enforcement`: if `true` or `null`then policy will `deny_all`; if `false` then policy will `allow_all`. Applies for `boolean` based policies.
+  - `enforcement`: if `true` or `null` then policy will `deny_all`; if `false` then policy will `allow_all`. Applies for `boolean` based policies.
   - `parameters`: Applies for `boolean` type policies for `managed` constraints, if constraint has parameters defined. Pass parameter values when policy enforcement is enabled. Ensure that parameter value types match those defined in the constraint definition. For example: `{"allowedLocations" : ["us-east1", "us-west1"], "allowAll" : true }`
-  - `allow`: list of values to include in the policy with ALLOW behavior. Set `enforce` to `null` to use it.
-  - `deny`: list of values to include in the policy with DENY behavior. Set `enforce` to `null` to use it.
-  - `conditions`: A condition which determines whether this rule is used in the evaluation of the policy. When set, the expression field in the `Expr` must include from 1 to 10 subexpressions, joined by the "||" or "&&" operators. Each subexpression must be of the form "resource.matchTag('/tag_key_short_name, 'tag_value_short_name')". or "resource.matchTagId('tagKeys/key_id', 'tagValues/value_id')". where key_name and value_name are the resource names for Label Keys and Values. These names are available from the Tag Manager Service. An example expression is: "resource.matchTag('123456789/environment, 'prod')". or "resource.matchTagId('tagKeys/123', 'tagValues/456')". Each condition has the following properties:
+  - `allow`: list of values to include in the policy with ALLOW behavior. Set `enforcement` to `null` to use it.
+  - `deny`: list of values to include in the policy with DENY behavior. Set `enforcement` to `null` to use it.
+  - `conditions`: A condition which determines whether this rule is used in the evaluation of the policy. When set, the expression field in the `Expr` must include from 1 to 10 subexpressions, joined by the "||" or "&&" operators. Each subexpression must be of the form "resource.matchTag('tag_key_short_name', 'tag_value_short_name')". or "resource.matchTagId('tagKeys/key_id', 'tagValues/value_id')". where key_name and value_name are the resource names for Label Keys and Values. These names are available from the Tag Manager Service. An example expression is: "resource.matchTag('123456789/environment', 'prod')". or "resource.matchTagId('tagKeys/123', 'tagValues/456')". Each condition has the following properties:
     - `description`: Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
     - `expression`: Common Expression Language, or CEL, is the expression language used to specify conditional expressions. A conditional expression consists of one or more statements that are joined using logical operators (&&, ||, or !). For more information, see the [CEL spec](https://github.com/google/cel-spec) and its [language definition](https://github.com/google/cel-spec/blob/master/doc/langdef.md).
     - `location`: String indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
@@ -129,14 +129,14 @@ To control module's behavior, change variables' values regarding the following:
 ---
 
 ### IMPORTANT
-- Boolean policies (with `type: "boolean"`) can set the following variables:
+- Boolean policies (with `policy_type: "boolean"`) can set the following variables:
   - `enforcement`: if `true` or `null` then the policy is enforced at the root; if `false` then policy is not enforced at the root.
   - Following requirements apply, refer [Terraform Documentation](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/org_policy_policy#rules):
   	- There must be one and only one Policy Rule where condition is unset.
   	- Boolean Policy Rules with conditions must set enforced to the opposite of the PolicyRule without a condition.
   	- During policy evaluation, Policy Rules with conditions that are true for a target resource take precedence.
 
-- List policies (with `type: "list"`) can set `allow` and `deny` with a list of resources to allow or deny. For `enforcement` you can set it as follows:
+- List policies (with `policy_type: "list"`) can set `allow` and `deny` with a list of resources to allow or deny. For `enforcement` you can set it as follows:
   - set `enforcement` = false for `allow all`
   - set `enforcement` = true for `deny all`
 
@@ -169,7 +169,7 @@ To control module's behavior, change variables' values regarding the following:
 ---
 
 ## Compatibility
-This module is meant for use with Terraform 1.3+ and tested using Terraform 1.0+. If you find incompatibilities using Terraform >=1.3, please open an issue.
+This module is meant for use with Terraform 1.3+ and tested using Terraform 1.10+. If you find incompatibilities using Terraform >=1.3, please open an issue.
 
 ## Requirements
 ### Terraform plugins

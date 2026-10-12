@@ -2,7 +2,7 @@
 
 This example shows how to set a list constraint on an org level and selectively disable it.
 
-Specifically, it sets a trusted image policy so only images from a trusted image project can be used. Then it excludes that project from the policy so alternative images can be tested in that project.
+Specifically, it sets the `compute.sharedReservationsOwnerProjects` constraint so only a specific project can create and own shared reservations in the organization, and excludes that project from the policy.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs
